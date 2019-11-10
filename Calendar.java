@@ -1,6 +1,10 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Calendar {
-    private Date currDate;
-    private Date[] SunPH; //Stores sundays and public holidays in an Array
+    public LocalDateTime selectedDate;
+    private LocalDateTime[] SunPH; //Stores sundays and public holidays in an Array
+
+    public LocalDateTime[] getSunPH(){
+        return SunPH;
+    }
 }
