@@ -1,3 +1,4 @@
 public class Cineplex {
-    private Cinema Cinemas[];
+    private int cinemaNb = 3;
+    private Cinema[] Cinemas;
 }
