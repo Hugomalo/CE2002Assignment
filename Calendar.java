@@ -1,6 +1,6 @@
 import java.util.Date;
 
 public class Calendar {
-    Date currDate;
-    Date[] SunPH; //Stores sundays and public holidays in an Array
+    private Date currDate;
+    private Date[] SunPH; //Stores sundays and public holidays in an Array
 }

@@ -1,6 +1,7 @@
 public class Movie {
     enum MovieTypes{
-
+        Blockbuster,
+        _3D
     };
     enum ShowingStatus{
         Coming_Soon,
@@ -12,7 +13,7 @@ public class Movie {
     private ShowingStatus showingStatus;
     private String synopsis;
     private String director;
-    private String[] Cast;
+    private String[] cast;
     private Review[] reviews;
     private int reviewNb;
     private int globalRating;
