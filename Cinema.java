@@ -1,4 +1,12 @@
 public class Cinema {
+    public char[] getCineCode() {
+        return cineCode;
+    }
+
+    private void setCineCode(char[] cineCode) {
+        this.cineCode = cineCode;
+    }
+
     enum CinemaClasses{
 
     };
