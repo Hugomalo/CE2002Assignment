@@ -1,26 +1,50 @@
 import java.util.ArrayList;
 
 public class Cinema {
-    enum CinemaClasses{
-        Platinium_Suite,
-        iMax
-    };
+
+
+    Cinema()
+    {
+        numOfSeat=1;
+        availableSeat=1;
+        cineCode="aaa";
+        cinemaClass= cinemaClassEnum.Normal;
 
     private CinemaClasses cinemaClass;
     private int numOfSeat;
     private int availableSeat;
     private ArrayList<Seat> layout;
-    private char[] cineCode = new char[3];
     private ArrayList<Showtime> showtimes;
 
 
     public char[] getCineCode() {
         return cineCode;
     }
-
-    protected void setCineCode(char[] cineCode) {
-        this.cineCode = cineCode;
+    Cinema(int seats,String code,int cineClass)
+    {
+        numOfSeat=seats;
+        availableSeat=numOfSeat;
+        cineCode=code;
+        switch (cineClass) {
+            case 1:
+                cinemaClass = cinemaClassEnum.Gold;
+                break;
+            case 2:
+                cinemaClass = cinemaClassEnum.Normal;
+                break;
+        }
     }
+
+    private enum cinemaClassEnum{
+        Gold,
+        Normal,
+    }
+    private cinemaClassEnum cinemaClass;
+    private int numOfSeat;
+    private int availableSeat;
+    private String cineCode;
+    // private Showtimes : Showtime[];
+    //layout: Seat[];
     protected void addShowtime(Showtime s){};
     public ArrayList<Showtime> getShowtimes() {return showtimes;};
     public ArrayList<Seat> getLayout() {return layout;};
@@ -30,5 +54,23 @@ public class Cinema {
     }
     public int getAvailableSeat() {return availableSeat;}
 
-    public CinemaClasses getCinemaClass() {return cinemaClass;}
+    //public getShowTimes();
+    // package admin addShowTimes ()
+    public String getCineCode()
+    {
+        return cineCode;
+
+    }
+    public int getNumOfSeat()
+    {
+        return numOfSeat;
+    }
+    public cinemaClassEnum getCinemaClass()
+    {
+        return cinemaClass;
+    }
+    //public getLayout(){}
+    //public bookSeats ()
+    //public getAvailable(){}
+    //public getClass
 }
