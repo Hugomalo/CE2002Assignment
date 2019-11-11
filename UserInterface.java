@@ -26,6 +26,5 @@ public class UserInterface {
 
     public void mainSwitch(){
         System.out.println("What action do you want to do ?");
-
     }
 }
