@@ -34,8 +34,7 @@ public class Movie {
         }
         System.out.printf("\nReviews :");
         for(int i=0; i<reviews.size(); i++){
-            System.out.printf(" %s", reviews.get(i));
+            System.out.println(reviews.get(i).displayReview());
         }
-
     }
 }
