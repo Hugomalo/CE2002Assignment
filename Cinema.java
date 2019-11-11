@@ -9,17 +9,14 @@ public class Cinema {
         availableSeat=1;
         cineCode="aaa";
         cinemaClass= cinemaClassEnum.Normal;
-
-    private CinemaClasses cinemaClass;
+    }
     private int numOfSeat;
     private int availableSeat;
     private ArrayList<Seat> layout;
     private ArrayList<Showtime> showtimes;
 
 
-    public char[] getCineCode() {
-        return cineCode;
-    }
+
     Cinema(int seats,String code,int cineClass)
     {
         numOfSeat=seats;
@@ -40,8 +37,6 @@ public class Cinema {
         Normal,
     }
     private cinemaClassEnum cinemaClass;
-    private int numOfSeat;
-    private int availableSeat;
     private String cineCode;
     // private Showtimes : Showtime[];
     //layout: Seat[];

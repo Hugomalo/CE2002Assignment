@@ -30,9 +30,9 @@ public class CinemaTest {
                         newcinecode = input.next();
                     }while (newcinecode.length()!=3);
                     do {
-                        System.out.println("what is the cinema class 0 for Gold ,1 for Normal");
+                        System.out.println("what is the cinema class 1 for Gold ,2 for Normal");
                         newCineClass = input.nextInt();
-                    }while (newCineClass<0 || newCineClass>1);
+                    }while (newCineClass<1 || newCineClass>2);
                     switch (cineplexChoice){
                         case 1:
                             System.out.println("cineplex a");
@@ -58,7 +58,7 @@ public class CinemaTest {
                     for (i=0;i<b.getCinemaNb();i++){
                         b.getCinemaInfo(i);
                     }
-                    System.out.println("a cinemas:" );
+                    System.out.println("c cinemas:" );
                     for (i=0;i<c.getCinemaNb();i++){
                         c.getCinemaInfo(i);
                     }
