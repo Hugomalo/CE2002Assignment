@@ -21,4 +21,8 @@ public class Movie {
     private MovieTypes movieType;
 
     public void addReview(Review r){};
+    public String getTitle(){return title;}
+    public void showMovieDetails(){
+        System.out.println("blabla");
+    }
 }

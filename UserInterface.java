@@ -16,4 +16,9 @@ public class UserInterface {
     protected void addReview(){
 
     }
+
+    public void mainSwitch(){
+        System.out.println("What action do you want to do ?");
+
+    }
 }
