@@ -8,7 +8,7 @@ public class Pricing {
     private Float previewSurcharge;
     private Float classSurcharge;
 
-    public Float priceCalc(Ticket t, Movie m, Calendar cal, Cinema c){return Float.valueOf(1);}
+    public Float priceCalc(Ticket t, Movie m, Calendar cal, Cinema c){return 1f;}
     protected void setBasePrice(Float p){
         basePrice = p;
     }

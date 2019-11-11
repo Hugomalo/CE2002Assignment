@@ -8,7 +8,7 @@ public class MovieListing {
         movies.add(m);
     };
 
-    public void getMoveDetails(String t){
+    public void getMovieDetails(String t){
         for (int i=0; i<movies.size(); i++){
             if (movies.get(i).getTitle().equals(t)){
                 movies.get(i).showMovieDetails();

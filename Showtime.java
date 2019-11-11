@@ -1,6 +1,6 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Showtime {
     private Movie movie;
-    private Date movieShowtime;
+    private LocalDateTime movieShowtime;
 }
