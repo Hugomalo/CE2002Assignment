@@ -16,7 +16,7 @@ public class UserInterface {
 
     protected void addReview(Movie m){
         Review r = new Review();
-        Scanner sc;
+        Scanner sc = new Scanner(System.in);
         System.out.println("What is your score for the movie " + m.getTitle() + " ?");
         r.rating = sc.nextInt();
         System.out.println("Please tell us more, what did you think of " + m.getTitle() + " ?");
