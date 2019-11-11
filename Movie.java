@@ -23,8 +23,12 @@ public class Movie {
     private int ticketSales;
     private MovieTypes movieType;
 
-    public void addReview(Review r){};
     public String getTitle(){return title;}
+    public void addReview(Review r){
+        reviews.add(r);
+        globalRating = (globalRating*reviewNb + r.rating)/(reviewNb+1);
+        reviewNb += 1;
+    }
     public void showMovieDetails(){
         System.out.println("Title : " + title);
         System.out.println("Synopsis : " + synopsis);
@@ -36,7 +40,7 @@ public class Movie {
         System.out.println("Movie type: " + movieType);
         System.out.println("Ticket sales: " + ticketSales);
         System.out.println("Global rating: " + globalRating + "/5");
-        System.out.printf("\nReviews :");
+        System.out.print("\nReviews :");
         for(int i=0; i<reviews.size(); i++){
             System.out.println(reviews.get(i).rating + "/5 : ");
             System.out.print(reviews.get(i).review);

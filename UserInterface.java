@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserInterface {
     private ArrayList<Booking> bookings;
@@ -13,8 +14,14 @@ public class UserInterface {
         return usrBookings;
     }
 
-    protected void addReview(){
-
+    protected void addReview(Movie m){
+        Review r = new Review();
+        Scanner sc;
+        System.out.println("What is your score for the movie " + m.getTitle() + " ?");
+        r.rating = sc.nextInt();
+        System.out.println("Please tell us more, what did you think of " + m.getTitle() + " ?");
+        r.review = sc.nextLine();
+        m.addReview(r);
     }
 
     public void mainSwitch(){
