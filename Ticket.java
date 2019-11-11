@@ -1,8 +1,11 @@
-public class MovieGoer extends User {
+public class Ticket {
     enum AgeClasses{
         adult,
         senior_citizen,
-        child
+        child,
+        student
     }
+
+    private Float price;
     private AgeClasses ageClass;
 }

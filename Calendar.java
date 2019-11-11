@@ -7,4 +7,6 @@ public class Calendar {
     public LocalDateTime[] getSunPH(){
         return SunPH;
     }
+    public void setSelectedDate(){}
+    public LocalDateTime getSelectedDate(){return selectedDate;}
 }
