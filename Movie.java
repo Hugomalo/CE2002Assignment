@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Movie {
@@ -32,9 +33,13 @@ public class Movie {
         for(int i=0; i<cast.size(); i++){
             System.out.printf(" %s", cast.get(i));
         }
+        System.out.println("Movie type: " + movieType);
+        System.out.println("Ticket sales: " + ticketSales);
+        System.out.println("Global rating: " + globalRating + "/5");
         System.out.printf("\nReviews :");
         for(int i=0; i<reviews.size(); i++){
-            System.out.println(reviews.get(i).displayReview());
+            System.out.println(reviews.get(i).rating + "/5 : ");
+            System.out.print(reviews.get(i).review);
         }
     }
 }
