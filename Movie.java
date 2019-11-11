@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Movie {
     enum MovieTypes{
         Blockbuster,
@@ -13,8 +15,8 @@ public class Movie {
     private ShowingStatus showingStatus;
     private String synopsis;
     private String director;
-    private String[] cast;
-    private Review[] reviews;
+    private ArrayList<String> cast;
+    private ArrayList<Review> reviews;
     private int reviewNb;
     private float globalRating;
     private int ticketSales;
@@ -23,6 +25,17 @@ public class Movie {
     public void addReview(Review r){};
     public String getTitle(){return title;}
     public void showMovieDetails(){
-        System.out.println("blabla");
+        System.out.println("Title : " + title);
+        System.out.println("Synopsis : " + synopsis);
+        System.out.println("Director :" + director);
+        System.out.print("\nCast :");
+        for(int i=0; i<cast.size(); i++){
+            System.out.printf(" %s", cast.get(i));
+        }
+        System.out.printf("\nReviews :");
+        for(int i=0; i<reviews.size(); i++){
+            System.out.printf(" %s", reviews.get(i));
+        }
+
     }
 }
