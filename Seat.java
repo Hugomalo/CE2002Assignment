@@ -13,4 +13,8 @@ public class Seat {
     private Row row;
     private int column;
     private boolean available;
+
+    protected void book(){
+        available = false;
+    }
 }

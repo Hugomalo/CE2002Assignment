@@ -16,7 +16,9 @@ public class Movie {
     private String[] cast;
     private Review[] reviews;
     private int reviewNb;
-    private int globalRating;
+    private float globalRating;
     private int ticketSales;
     private MovieTypes movieType;
+
+    public void addReview(Review r){};
 }
