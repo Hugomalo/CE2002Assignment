@@ -1,4 +1,6 @@
-import java.sql.SQLOutput;
+package admin;
+
+import user.Review;
 import java.util.ArrayList;
 
 public class Movie {
@@ -26,7 +28,7 @@ public class Movie {
     public String getTitle(){return title;}
     public void addReview(Review r){
         reviews.add(r);
-        globalRating = (globalRating*reviewNb + r.rating)/(reviewNb+1);
+        globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
         reviewNb += 1;
     }
     public void showMovieDetails(){
@@ -42,8 +44,8 @@ public class Movie {
         System.out.println("Global rating: " + globalRating + "/5");
         System.out.print("\nReviews :");
         for(int i=0; i<reviews.size(); i++){
-            System.out.println(reviews.get(i).rating + "/5 : ");
-            System.out.print(reviews.get(i).review);
+            System.out.println(reviews.get(i).getRating() + "/5 : ");
+            System.out.print(reviews.get(i).getReview());
         }
     }
 }

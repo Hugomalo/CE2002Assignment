@@ -1,3 +1,7 @@
+package user;
+
+import admin.Movie;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

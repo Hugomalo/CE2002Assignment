@@ -1,3 +1,5 @@
+package admin;
+
 public class Seat {
     enum Row{
         A,

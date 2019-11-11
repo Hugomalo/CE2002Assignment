@@ -1,3 +1,7 @@
+package user;
+
+import admin.Cinema;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

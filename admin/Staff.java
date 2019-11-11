@@ -1,3 +1,5 @@
+package admin;
+
 public class Staff{
     String login;
     String password;

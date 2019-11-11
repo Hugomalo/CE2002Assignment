@@ -1,3 +1,5 @@
+package user;
+
 public class Ticket {
     enum AgeClasses{
         adult,
