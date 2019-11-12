@@ -26,6 +26,8 @@ public class Movie {
     private MovieTypes movieType;
 
     public String getTitle(){return title;}
+    public Float getRating(){return globalRating;}
+    public int getTicketSales(){return getTicketSales();}
     public void addReview(Review r){
         reviews.add(r);
         globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
