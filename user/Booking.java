@@ -21,5 +21,10 @@ public class Booking {
         return name;
     }
 
-    public void seeBookings(String n){};
+    public static void seeBookings(String n){
+    }
+
+    public static void book(){
+
+    }
 }

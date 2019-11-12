@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    private ArrayList<Booking> bookings;
+    private static ArrayList<Booking> bookings;
 
     public ArrayList<Booking> getBookings(String n) {
         ArrayList<Booking> usrBookings = new ArrayList<Booking>();
@@ -49,14 +49,24 @@ public class UserInterface {
                         subChoice = sc.nextInt();
                         sc.nextLine(); // to avoid skipping of next sc instruction
                         switch (subChoice){
+                            case 0:{
+                                break;
+                            }
                             case 1:{
                                 MovieListing.showMovies();
+                                break;
                             }
                             case 2:{
                                 MovieListing.showRanking(false);
+                                break;
                             }
                             case 3:{
                                 MovieListing.showRanking(true);
+                                break;
+                            }
+                            default:{
+                                System.out.println("Please input a valid entry");
+                                break;
                             }
                         }
                     }while (subChoice != 0);
@@ -73,31 +83,45 @@ public class UserInterface {
                         if (subChoice == 0){
                             break;
                         }
-                        CineplexListing.showShowtimes(subChoice-1);
-                        if (subChoice < 0 || subChoice > CineplexListing.getNbOfCineplexes()){
+                        else if (subChoice > 0 && subChoice < CineplexListing.getNbOfCineplexes()) {
+                            CineplexListing.showShowtimes(subChoice - 1);
+                            break;
+                        }
+                        else{
                             System.out.println("Please input valid entry");
                         }
-                    }while (subChoice != 0);
+                    }while (true);
                     break;
                 }
                 case 3:{
                     String subChoice;
-                    do{
-                        System.out.println("Hit 0 to go back to main");
-                        System.out.println("Please input the name used for your order");
-                        subChoice = sc.nextLine();
-                        if (subChoice == "0"){
-                            break;
-                        }
-                    }while (subChoice != "0");
+                    System.out.println("Hit 0 to go back to main");
+                    System.out.println("Please input the name used for your order");
+                    subChoice = sc.nextLine();
+                    if (subChoice.equals("0")){
+                    }
+                    else{
+                        Booking.seeBookings(subChoice);
+                    }
                     break;
                 }
                 case 4:{
                     int subChoice;
                     do{
+                        System.out.println("Do you want to enter in booking mode ? Hit 1 for Yes, Hit 0 to go back to main");
                         subChoice = sc.nextInt();
                         sc.nextLine();
-                    }while (subChoice != 3);
+                        if(subChoice == 0){
+                            break;
+                        }
+                        else if (subChoice == 1){
+                            Booking.book();
+                            break;
+                        }
+                        else{
+                            System.out.println("Please input a valid entry");
+                        }
+                    }while(true);
                     break;
                 }
                 case 5:{
@@ -105,6 +129,7 @@ public class UserInterface {
                 }
                 default:{
                     System.out.println("Invalid entry, please try again");
+                    break;
                 }
             }
         }
