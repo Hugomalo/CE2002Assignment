@@ -99,6 +99,7 @@ public class UserInterface {
                     System.out.println("Please input the name used for your order");
                     subChoice = sc.nextLine();
                     if (subChoice.equals("0")){
+                        break;
                     }
                     else{
                         Booking.seeBookings(subChoice);
