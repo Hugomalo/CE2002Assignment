@@ -3,6 +3,8 @@ package admin;
 import user.Calendar;
 import user.Ticket;
 
+import java.time.LocalDateTime;
+
 public class Pricing {
     private Float basePrice;
     private Float stdDiscount;
@@ -13,7 +15,7 @@ public class Pricing {
     private Float previewSurcharge;
     private Float classSurcharge;
 
-    public Float priceCalc(Ticket t, Movie m, Calendar cal, Cinema c){return 1f;}
+    public static Float priceCalc(Ticket t, Movie m, Cinema c){return 1f;}
     protected void setBasePrice(Float p){
         basePrice = p;
     }

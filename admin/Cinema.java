@@ -46,19 +46,15 @@ public class Cinema {
     protected void addShowtime(Showtime s) {
     }
 
-    ;
 
     public ArrayList<Showtime> getShowtimes() {
         return showtimes;
     }
 
-    ;
-
     public ArrayList<Seat> getLayout() {
         return layout;
     }
 
-    ;
 
     public void bookSeat(Seat s) {
         s.book();
@@ -69,8 +65,23 @@ public class Cinema {
         return availableSeat;
     }
 
-    //public getShowTimes();
-    // package admin addShowTimes ()
+    public ArrayList<Showtime> getShowShowtimes(String title){
+        ArrayList<Showtime> movieST = new ArrayList<Showtime>();
+        for(Showtime st : showtimes){
+            if (st.getMovie().getTitle().equals(title) && st.getMovieShowtime().isAfter(LocalDateTime.now())){
+                movieST.add(st);
+            }
+        }
+        for (Showtime s : movieST) {
+            LocalDateTime show = s.getMovieShowtime();
+            Movie m = s.getMovie();
+            if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                System.out.println("[" + movieST.indexOf(s) + "]  " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+            }
+        }
+        return movieST;
+    }
+
     public String getCineCode() {
         return cineCode;
 

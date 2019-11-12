@@ -1,11 +1,21 @@
 package admin;
 
+import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
 public class MovieListing {
     private static ArrayList<Movie> movies;
+
+    public static Movie getMovie(String title){
+        for (Movie m : movies){
+            if (m.getTitle().equals(title)){
+                return m;
+            }
+        }
+        return null;
+    }
 
     public static void showMovies(){
         for (Movie movie : movies){

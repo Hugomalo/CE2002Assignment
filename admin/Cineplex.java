@@ -41,4 +41,20 @@ public class Cineplex {
         }
     }
 
+    public ArrayList<Cinema> getCinemas(){
+        return cinemas;
+    }
+
+    public ArrayList<String> getMovies(){
+        ArrayList<String> movies = new ArrayList<String>();
+        for (Cinema cine : cinemas){
+            for (Showtime s : cine.getShowtimes()){
+                if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() !=  Movie.ShowingStatus.End_Of_Showing)) {
+                    movies.add(s.getMovie().getTitle());
+                }
+            }
+        }
+        return movies;
+    }
+
 }

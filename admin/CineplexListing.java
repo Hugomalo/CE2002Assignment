@@ -11,7 +11,7 @@ public class CineplexListing {
     }
     public static void showCineplexes(){
         for (Cineplex cineplex : cineplexes){
-            System.out.printf("[%d] : %s", cineplexes.indexOf(cineplex)+1, cineplex.getName());
+            System.out.println("[" + (cineplexes.indexOf(cineplex)+1) + "]" + " : " + cineplex.getName());
         }
     }
     public static void showShowtimes(int i){
@@ -20,5 +20,9 @@ public class CineplexListing {
 
     public static int getNbOfCineplexes() {
         return nbOfCineplexes;
+    }
+
+    public static Cineplex getCineplex(int i){
+        return cineplexes.get(i);
     }
 }
