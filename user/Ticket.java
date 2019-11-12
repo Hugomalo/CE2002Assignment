@@ -15,11 +15,6 @@ public class Ticket {
     private AgeClasses ageClass;
     private Showtime selection;
 
-    public Ticket(Float price, AgeClasses ageClass, Showtime selection) {
-        this.price = price;
-        this.ageClass = ageClass;
-        this.selection = selection;
-    }
 
     public Showtime getSelection() {
         return selection;

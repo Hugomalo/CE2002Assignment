@@ -25,6 +25,7 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is your score for the movie " + m.getTitle() + " ?");
         r.rating = sc.nextInt();
+        sc.nextLine();
         System.out.println("Please tell us more, what did you think of " + m.getTitle() + " ?");
         r.review = sc.nextLine();
         m.addReview(r);
@@ -116,7 +117,9 @@ public class UserInterface {
                             break;
                         }
                         else if (subChoice == 1){
-                            Booking.book();
+                            Booking booking = new Booking();
+                            booking.book();
+                            bookings.add(booking);
                             break;
                         }
                         else{
