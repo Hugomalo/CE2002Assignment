@@ -15,17 +15,17 @@ public class MovieListing {
 
     public static void showRanking(boolean r){
         if (r){
-            ArrayList<Movie> rankedMovies = new ArrayList<Movie>();
-            rankedMovies = .sort(movies);
-            for (Movie movie : rankedMovies){
-                System.out.println(movie.getTitle() + " : " + movie.getRating());
+            ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
+            Sorting.ratingSort(rankedMovies);
+            for (int i = 0; i<5; i++){
+                System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getRating() + "/5");
             }
         }
         else{
-            ArrayList<Movie> rankedMovies = new ArrayList<Movie>();
-            rankedMovies = .sort(movies);
-            for (Movie movie : rankedMovies){
-                System.out.println(movie.getTitle() + " : " + movie.getTicketSales());
+            ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
+            Sorting.saleSort(rankedMovies);
+            for (int i = 0; i<5; i++){
+                System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getTicketSales() + " tickets");
             }
         }
     }

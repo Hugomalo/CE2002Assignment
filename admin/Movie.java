@@ -28,6 +28,62 @@ public class Movie {
     public String getTitle(){return title;}
     public Float getRating(){return globalRating;}
     public int getTicketSales(){return getTicketSales();}
+
+
+    public int compareToRating(Object o){
+        if (o instanceof Movie){
+            Movie c = (Movie) o;
+            if (getRating() < c.getRating()){
+                return -1;
+            }
+            else if (getRating() > c.getRating()){
+                return 1;
+            }
+            else if (getTicketSales() != (c.getTicketSales())){
+                if(getTicketSales() < getTicketSales()){
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            }
+            else if (getTitle().compareTo(c.getTitle()) != 0){
+                return getTitle().compareTo(c.getTitle());
+            }
+            else{
+                return 0;
+            }
+        }
+        return 0;
+    }
+
+    public int compareToSale(Object o){
+        if (o instanceof Movie){
+            Movie c = (Movie) o;
+            if (getTicketSales() < c.getTicketSales()){
+                return -1;
+            }
+            else if (getTicketSales() > c.getTicketSales()){
+                return 1;
+            }
+            else if (!getRating().equals(c.getRating())){
+                if(getRating() < getRating()){
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            }
+            else if (getTitle().compareTo(c.getTitle()) != 0){
+                return getTitle().compareTo(c.getTitle());
+            }
+            else{
+                return 0;
+            }
+        }
+        return 0;
+    }
+
     public void addReview(Review r){
         reviews.add(r);
         globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
