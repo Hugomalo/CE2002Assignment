@@ -8,30 +8,37 @@ public class Cineplex {
 
     Cineplex(){
         cinemaNb=0;
-        cinema = new ArrayList<Cinema>();
+        cinemas = new ArrayList<Cinema>();
     }
 
 
-
+    private String name;
     private int cinemaNb;
-
-    private ArrayList<Cinema> cinema ;
+    private ArrayList<Cinema> cinemas;
 
     //package admin
     public void addCinema(int seats,String code,int cineClass) {
         Cinema newCinema = new Cinema(seats,code,cineClass);
-        cinema.add(newCinema);
+        cinemas.add(newCinema);
         cinemaNb+=1;
     }
 
+    public String getName(){return name;}
     public  int getCinemaNb(){
         return cinemaNb;
     }
     public void getCinemaInfo(int i){
-        System.out.println("cine code="+ cinema.get(i).getCineCode());
-        System.out.println("cine number of seats="+ cinema.get(i).getNumOfSeat());
-        System.out.println("cine Class="+ cinema.get(i).getCinemaClass());
+        System.out.println("cine code="+ cinemas.get(i).getCineCode());
+        System.out.println("cine number of seats="+ cinemas.get(i).getNumOfSeat());
+        System.out.println("cine Class="+ cinemas.get(i).getCinemaClass());
 
+    }
+
+    public void showShowtimes(){
+        for(Cinema cine : cinemas){
+            System.out.println("Cinema " + cine.getCineCode() + ":");
+            cine.showShowtimes();
+        }
     }
 
 }

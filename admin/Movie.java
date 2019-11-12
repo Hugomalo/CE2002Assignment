@@ -106,4 +106,6 @@ public class Movie {
             System.out.print(reviews.get(i).getReview());
         }
     }
+
+    protected ShowingStatus getShowingStatus(){return showingStatus;}
 }

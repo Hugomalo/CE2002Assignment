@@ -1,5 +1,6 @@
 package user;
 
+import admin.CineplexListing;
 import admin.Movie;
 import admin.MovieListing;
 
@@ -44,7 +45,7 @@ public class UserInterface {
                         System.out.println("Do you want to see all movies (including not showing) ? Hit 1");
                         System.out.println("Do you want to see top 5 movies ranking by ticket sales ? Hit 2");
                         System.out.println("Do you want to see top 5 movies ranking by overall reviews ? Hit 3");
-                        System.out.println("Hit 4 to go back to main");
+                        System.out.println("Hit 0 to go back to main");
                         subChoice = sc.nextInt();
                         sc.nextLine(); // to avoid skipping of next sc instruction
                         switch (subChoice){
@@ -58,23 +59,37 @@ public class UserInterface {
                                 MovieListing.showRanking(true);
                             }
                         }
-                    }while (subChoice != 4);
+                    }while (subChoice != 0);
                     break;
                 }
                 case 2:{
                     int subChoice;
                     do{
+                        System.out.println("Hit 0 to go back to main");
+                        System.out.println("To select the cinema you want to display showtimes, please select the cineplex first :");
+                        CineplexListing.showCineplexes();
                         subChoice = sc.nextInt();
                         sc.nextLine();
-                    }while (subChoice != 3);
+                        if (subChoice == 0){
+                            break;
+                        }
+                        CineplexListing.showShowtimes(subChoice-1);
+                        if (subChoice < 0 || subChoice > CineplexListing.getNbOfCineplexes()){
+                            System.out.println("Please input valid entry");
+                        }
+                    }while (subChoice != 0);
                     break;
                 }
                 case 3:{
-                    int subChoice;
+                    String subChoice;
                     do{
-                        subChoice = sc.nextInt();
-                        sc.nextLine();
-                    }while (subChoice != 3);
+                        System.out.println("Hit 0 to go back to main");
+                        System.out.println("Please input the name used for your order");
+                        subChoice = sc.nextLine();
+                        if (subChoice == "0"){
+                            break;
+                        }
+                    }while (subChoice != "0");
                     break;
                 }
                 case 4:{
