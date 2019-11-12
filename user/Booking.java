@@ -1,11 +1,7 @@
 package user;
 
-import admin.Cinema;
-import admin.CineplexListing;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Booking {
     private String name;
@@ -14,9 +10,19 @@ public class Booking {
     private String TID;
     private ArrayList<Ticket> tickets;
 
-    public void SetTID(Cinema c){
+    public Booking(String name, int phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
+        this.name = name;
+        this.phoneNb = phoneNb;
+        this.email = email;
+        this.tickets = tickets;
+        this.TID = SetTID(cineCode);
+    }
+
+
+    public String SetTID(String c){
         LocalDateTime d = LocalDateTime.now();
-        TID = String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c.getCineCode());
+        String tid = String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
+        return tid;
     }
 
     public String getName(){
@@ -24,18 +30,5 @@ public class Booking {
     }
 
     public static void seeBookings(String n){
-    }
-
-    public void book(){
-        Scanner sc = new Scanner(System.in);
-        int ticketNb;
-        do {
-            System.out.println("How many tickets do you want to book ?");
-            ticketNb = sc.nextInt();
-            if (ticketNb > 10 || ticketNb < 1){
-                System.out.println("Please input a number of tickets between 1 and 10.");
-            }
-        }while(ticketNb > 10 || ticketNb < 1);
-        tickets = Ticket.book(ticketNb);
     }
 }
