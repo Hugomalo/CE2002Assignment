@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class MovieListing {
     private ArrayList<Movie> movies;
 
-    public ArrayList<Movie> getMovies(){return movies;};
+    public ArrayList<Movie> getMovies(){return movies;}
     protected void addMovie(Movie m){
         movies.add(m);
-    };
+    }
 
     public void getMovieDetails(String t){
         for (int i=0; i<movies.size(); i++){

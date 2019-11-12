@@ -1,8 +1,8 @@
 package admin;
 
 public class Staff{
-    String login;
-    String password;
+    private static String login = "Admin";
+    private static String password = "Admin";
 
     protected void setShowtimes(){};
     protected void setMovie(){};
@@ -10,12 +10,7 @@ public class Staff{
     public static void mainSwitch() {
         System.out.println("Choose an action: ");
     }
-    public boolean login(String login, String password){
-        if (login.equals(this.login) && password.equals(this.password)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public static boolean login(String lgin, String psw){
+        return login.equals(lgin) && password.equals(psw);
     }
 }

@@ -28,7 +28,18 @@ public class UserInterface {
         m.addReview(r);
     }
 
-    public void mainSwitch(){
-        System.out.println("What action do you want to do ?");
+    public static void mainSwitch(){
+        Scanner sc = new Scanner(System.in);
+        int choice = 0;
+        while (choice != 5) {
+            System.out.println("What action do you want to do ?");
+            System.out.println("Hit 1 to display movie listing, hit 2 to display showtimes, hit 3 to view your bookings, hit 4 to book tickets, 5 to quit");
+            choice = sc.nextInt();
+            switch (choice){
+                case 1:{
+
+                }
+            }
+        }
     }
 }
