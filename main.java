@@ -7,8 +7,6 @@ import user.UserInterface;
 import java.util.Scanner;
 
 public class main {
-    MovieListing mvList;
-    CineplexListing cineList;
 
     public static void main(String[] args) {
         CineplexInit.init();
