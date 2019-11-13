@@ -25,11 +25,6 @@ public class Movie {
     private int ticketSales;
     private MovieTypes movieType;
 
-    public String getTitle(){return title;}
-    public Float getRating(){return globalRating;}
-    public int getTicketSales(){return getTicketSales();}
-
-
     public int compareToRating(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
@@ -56,7 +51,6 @@ public class Movie {
         }
         return 0;
     }
-
     public int compareToSale(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
@@ -84,11 +78,17 @@ public class Movie {
         return 0;
     }
 
+    public String getTitle(){return title;}
+    public Float getRating(){return globalRating;}
+    public int getTicketSales(){return getTicketSales();}
+    protected ShowingStatus getShowingStatus(){return showingStatus;}
+
     public void addReview(Review r){
         reviews.add(r);
         globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
         reviewNb += 1;
     }
+
     public void showMovieDetails(){
         System.out.println("Title : " + title);
         System.out.println("Synopsis : " + synopsis);
@@ -106,6 +106,4 @@ public class Movie {
             System.out.print(reviews.get(i).getReview());
         }
     }
-
-    protected ShowingStatus getShowingStatus(){return showingStatus;}
 }
