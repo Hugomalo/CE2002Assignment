@@ -3,7 +3,8 @@ package admin;
 import java.util.ArrayList;
 
 public class CineplexListing {
-    private static ArrayList<Cineplex> cineplexes;
+
+    protected static ArrayList<Cineplex> cineplexes=new ArrayList<Cineplex>();
     private static int nbOfCineplexes;
 
     protected static void addCineplex(Cineplex c){

@@ -6,9 +6,10 @@ public class Cineplex {
 
 
 
-    Cineplex(){
+    Cineplex(String n){
         cinemaNb=0;
         cinemas = new ArrayList<Cinema>();
+        name=n;
     }
 
 
@@ -17,8 +18,8 @@ public class Cineplex {
     private ArrayList<Cinema> cinemas;
 
     //package admin
-    public void addCinema(int seats,String code,int cineClass) {
-        Cinema newCinema = new Cinema(seats,code,cineClass);
+    public void addCinema(String code,int cineClass) {
+        Cinema newCinema = new Cinema(code,cineClass);
         cinemas.add(newCinema);
         cinemaNb+=1;
     }

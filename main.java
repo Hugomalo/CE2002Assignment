@@ -1,3 +1,4 @@
+import admin.CineplexInit;
 import admin.CineplexListing;
 import admin.MovieListing;
 import admin.Staff;
@@ -10,6 +11,7 @@ public class main {
     CineplexListing cineList;
 
     public static void main(String[] args) {
+        CineplexInit.init();
         Scanner sc = new Scanner(System.in);
         char choice = 'D';
         do {
@@ -28,7 +30,8 @@ public class main {
                             tryagain = false;
                             System.out.println("Welcome to admin mode");
                             Staff.mainSwitch();
-                        } else {
+                        }
+                        else {
                             System.out.println("Wrong login or password, do you want to try again ? hit Y for yes, anything for no");
                             tryagain = sc.next().charAt(0) == 'Y';
                             sc.nextLine();

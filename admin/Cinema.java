@@ -19,8 +19,8 @@ public class Cinema {
     private ArrayList<Showtime> showtimes;
 
 
-    Cinema(int seats, String code, int cineClass) {
-        numOfSeat = seats;
+    Cinema(String code, int cineClass) {
+        numOfSeat = 100;
         availableSeat = numOfSeat;
         cineCode = code;
         switch (cineClass) {
