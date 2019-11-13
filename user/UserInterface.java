@@ -99,6 +99,7 @@ public class UserInterface {
         do {
             System.out.println("How many tickets do you want to book ?");
             nbOfTickets = sc.nextInt();
+            sc.nextLine();
             if (nbOfTickets > 10 || nbOfTickets < 1){
                 System.out.println("Please input a number of tickets between 1 and 10.");
             }
