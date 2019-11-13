@@ -10,6 +10,7 @@ public class CineplexListing {
     protected static void addCineplex(Cineplex c){
         cineplexes.add(c);
     }
+
     public static void showCineplexes(){
         if(cineplexes != null) {
             for (Cineplex cineplex : cineplexes) {
@@ -20,6 +21,7 @@ public class CineplexListing {
             System.out.println("No cineplex to show");
         }
     }
+
     public static void showShowtimes(int i) {
         if (cineplexes != null) {
             cineplexes.get(i).showShowtimes();

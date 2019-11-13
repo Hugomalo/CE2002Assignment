@@ -14,20 +14,22 @@ public class Seat {
         J,
 
     }
+
+    private Row row;
+    private int column;
+    private boolean available;
+
     Seat(Row r,int c)
     {
         available=true;
         row=r;
         column=c;
     }
-    private Row row;
-    private int column;
-    private boolean available;
-
 
     public boolean getAvailable(){
         return  available;
     }
+
     protected void book(){
         available = false;
     }
