@@ -5,19 +5,24 @@ import java.util.ArrayList;
 
 public class Cinema {
 
-
-    Cinema() {
-        numOfSeat = 1;
-        availableSeat = 1;
-        cineCode = "aaa";
-        cinemaClass = cinemaClassEnum.Normal;
+    private enum cinemaClasses {
+        Gold,
+        Normal,
     }
 
+    private cinemaClasses cinemaClass;
+    private String cineCode;
     private int numOfSeat;
     private int availableSeat;
     private ArrayList<Seat> layout;
     private ArrayList<Showtime> showtimes;
 
+    Cinema() {
+        numOfSeat = 1;
+        availableSeat = 1;
+        cineCode = "aaa";
+        cinemaClass = cinemaClasses.Normal;
+    }
 
     Cinema(String code, int cineClass) {
         Seat s;
@@ -26,10 +31,10 @@ public class Cinema {
         cineCode = code;
         switch (cineClass) {
             case 1:
-                cinemaClass = cinemaClassEnum.Gold;
+                cinemaClass = cinemaClasses.Gold;
                 break;
             case 2:
-                cinemaClass = cinemaClassEnum.Normal;
+                cinemaClass = cinemaClasses.Normal;
                 break;
         }
         layout=new ArrayList<>();
@@ -44,36 +49,8 @@ public class Cinema {
 
     }
 
-    private enum cinemaClassEnum {
-        Gold,
-        Normal,
-    }
-
-    private cinemaClassEnum cinemaClass;
-    private String cineCode;
-
-    // private Showtimes : Showtime[];
-    //layout: Seat[];
-    protected void addShowtime(Showtime s) {
-    }
-
-
     public ArrayList<Showtime> getShowtimes() {
         return showtimes;
-    }
-
-    public ArrayList<Seat> getLayout() {
-        return layout;
-    }
-
-
-    public void bookSeat(Seat s) {
-        s.book();
-        availableSeat -= 1;
-    }
-
-    public int getAvailableSeat() {
-        return availableSeat;
     }
 
     public ArrayList<Showtime> getShowShowtimes(String title){
@@ -98,16 +75,8 @@ public class Cinema {
 
     public String getCineCode() {
         return cineCode;
-
     }
 
-    public int getNumOfSeat() {
-        return numOfSeat;
-    }
-
-    public cinemaClassEnum getCinemaClass() {
-        return cinemaClass;
-    }
     public void showLayout(){
         int i=0;
         System.out.println("    1  2  3  4  5  6  7  8  9  10 \n");
@@ -140,5 +109,29 @@ public class Cinema {
                 System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
             }
         }
+    }
+
+    public int getNumOfSeat() {
+        return numOfSeat;
+    }
+
+    public cinemaClasses getCinemaClass() {
+        return cinemaClass;
+    }
+
+    public ArrayList<Seat> getLayout() {
+        return layout;
+    }
+
+    public void bookSeat(Seat s) {
+        s.book();
+        availableSeat -= 1;
+    }
+
+    public int getAvailableSeat() {
+        return availableSeat;
+    }
+
+    protected void addShowtime(Showtime s) {
     }
 }
