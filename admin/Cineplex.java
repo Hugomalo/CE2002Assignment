@@ -28,16 +28,26 @@ public class Cineplex {
         return cinemaNb;
     }
     public void getCinemaInfo(int i){
-        System.out.println("cine code="+ cinemas.get(i).getCineCode());
-        System.out.println("cine number of seats="+ cinemas.get(i).getNumOfSeat());
-        System.out.println("cine Class="+ cinemas.get(i).getCinemaClass());
+        if (cinemas != null) {
+            System.out.println("cine code=" + cinemas.get(i).getCineCode());
+            System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
+            System.out.println("cine Class=" + cinemas.get(i).getCinemaClass());
+        }
+        else{
+            System.out.println("No cinema found in this cineplex");
+        }
 
     }
 
     public void showShowtimes(){
-        for(Cinema cine : cinemas){
-            System.out.println("Cinema " + cine.getCineCode() + ":");
-            cine.showShowtimes();
+        if (cinemas != null) {
+            for (Cinema cine : cinemas) {
+                System.out.println("Cinema " + cine.getCineCode() + ":");
+                cine.showShowtimes();
+            }
+        }
+        else{
+            System.out.println("No cinema in this cineplex");
         }
     }
 
@@ -47,14 +57,17 @@ public class Cineplex {
 
     public ArrayList<String> getMovies(){
         ArrayList<String> movies = new ArrayList<String>();
-        for (Cinema cine : cinemas){
-            for (Showtime s : cine.getShowtimes()){
-                if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() !=  Movie.ShowingStatus.End_Of_Showing)) {
-                    movies.add(s.getMovie().getTitle());
+        if (cinemas != null) {
+            for (Cinema cine : cinemas) {
+                for (Showtime s : cine.getShowtimes()) {
+                    if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                        movies.add(s.getMovie().getTitle());
+                    }
                 }
             }
+            return movies;
         }
-        return movies;
+        else {return null;}
     }
 
 }

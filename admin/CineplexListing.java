@@ -10,12 +10,19 @@ public class CineplexListing {
         cineplexes.add(c);
     }
     public static void showCineplexes(){
-        for (Cineplex cineplex : cineplexes){
-            System.out.println("[" + (cineplexes.indexOf(cineplex)+1) + "]" + " : " + cineplex.getName());
+        if(cineplexes != null) {
+            for (Cineplex cineplex : cineplexes) {
+                System.out.println("[" + (cineplexes.indexOf(cineplex) + 1) + "]" + " : " + cineplex.getName());
+            }
+        }
+        else{
+            System.out.println("No cineplex to show");
         }
     }
-    public static void showShowtimes(int i){
-        cineplexes.get(i).showShowtimes();
+    public static void showShowtimes(int i) {
+        if (cineplexes != null) {
+            cineplexes.get(i).showShowtimes();
+        }
     }
 
     public static int getNbOfCineplexes() {
@@ -23,6 +30,9 @@ public class CineplexListing {
     }
 
     public static Cineplex getCineplex(int i){
-        return cineplexes.get(i);
+        if (cineplexes != null) {
+            return cineplexes.get(i);
+        }
+        else{return null;}
     }
 }

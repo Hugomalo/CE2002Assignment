@@ -67,19 +67,22 @@ public class Cinema {
 
     public ArrayList<Showtime> getShowShowtimes(String title){
         ArrayList<Showtime> movieST = new ArrayList<Showtime>();
-        for(Showtime st : showtimes){
-            if (st.getMovie().getTitle().equals(title) && st.getMovieShowtime().isAfter(LocalDateTime.now())){
-                movieST.add(st);
+        if (showtimes != null) {
+            for (Showtime st : showtimes) {
+                if (st.getMovie().getTitle().equals(title) && st.getMovieShowtime().isAfter(LocalDateTime.now())) {
+                    movieST.add(st);
+                }
             }
-        }
-        for (Showtime s : movieST) {
-            LocalDateTime show = s.getMovieShowtime();
-            Movie m = s.getMovie();
-            if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                System.out.println("[" + movieST.indexOf(s) + "]  " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+            for (Showtime s : movieST) {
+                LocalDateTime show = s.getMovieShowtime();
+                Movie m = s.getMovie();
+                if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                    System.out.println("[" + movieST.indexOf(s) + "]  " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+                }
             }
+            return movieST;
         }
-        return movieST;
+        else{return null;}
     }
 
     public String getCineCode() {
