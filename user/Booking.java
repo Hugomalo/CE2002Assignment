@@ -29,6 +29,13 @@ public class Booking {
         return name;
     }
 
-    public static void seeBookings(String n){
+    public void showBooking(){
+        System.out.println("Transaction ID: " + TID);
+        System.out.println("Phone number: " + phoneNb);
+        System.out.println("email: " + email);
+        System.out.println("Tickets :");
+        for (Ticket t : tickets){
+            t.showTicket();
+        }
     }
 }

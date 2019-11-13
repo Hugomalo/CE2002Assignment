@@ -200,7 +200,21 @@ public class UserInterface {
                         break;
                     }
                     else{
-                        Booking.seeBookings(subChoice);
+                        ArrayList<Booking> usrBooking = new ArrayList<Booking>();
+                        for (Booking b : bookings){
+                            if (b.getName().equals(subChoice)){
+                                usrBooking.add(b);
+                            }
+                        }
+                        if(usrBooking.size() == 0){
+                            System.out.println("No booking found under name " + subChoice + ".");
+                        }
+                        else{
+                            System.out.println(usrBooking.size() + " bookings found with name " + subChoice + ":");
+                            for (Booking b : usrBooking){
+                                b.showBooking();
+                            }
+                        }
                     }
                     break;
                 }

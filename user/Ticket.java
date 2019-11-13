@@ -9,14 +9,6 @@ import java.util.Scanner;
 
 public class Ticket {
 
-    protected Ticket(Float price, AgeClasses age, Showtime selectedST, Cineplex cineplex, Cinema cine) {
-        this.price = price;
-        ageClass = age;
-        selection = selectedST;
-        cineplexName = cineplex.getName();
-        cineCode = cine.getCineCode();
-    }
-
     enum AgeClasses{
         adult,
         senior_citizen,
@@ -29,6 +21,15 @@ public class Ticket {
     private Showtime selection;
     private String cineplexName;
     private String cineCode;
+
+    protected Ticket(Float price, AgeClasses age, Showtime selectedST, Cineplex cineplex, Cinema cine) {
+        this.price = price;
+        ageClass = age;
+        selection = selectedST;
+        cineplexName = cineplex.getName();
+        cineCode = cine.getCineCode();
+    }
+
     protected void setPrice(Movie m, Cinema cine){
         price = Pricing.priceCalc(this, m, cine);
     }
@@ -37,5 +38,12 @@ public class Ticket {
 
     public Showtime getSelection() {
         return selection;
+    }
+
+    public void showTicket(){
+        System.out.println("    Ticket age class: " + ageClass);
+        System.out.println("    Cineplex: " + cineplexName +  "Cinema" + cineCode);
+        System.out.println("    Movie: " + selection.getMovie().getTitle() + " on " + selection.getMovieShowtime().getDayOfMonth() + "/" + selection.getMovieShowtime().getMonth() + "/" + selection.getMovieShowtime().getYear() + " at " + selection.getMovieShowtime().getHour() + ":" + selection.getMovieShowtime().getMinute());
+        System.out.println("    Price: " + price + "S$");
     }
 }
