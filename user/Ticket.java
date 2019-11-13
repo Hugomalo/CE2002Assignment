@@ -36,10 +36,6 @@ public class Ticket {
 
     protected String getCineCode(){return cineCode;}
 
-    public Showtime getSelection() {
-        return selection;
-    }
-
     public void showTicket(){
         System.out.println("    Ticket age class: " + ageClass);
         System.out.println("    Cineplex: " + cineplexName +  "Cinema" + cineCode);

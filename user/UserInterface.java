@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class UserInterface {
     private static ArrayList<Booking> bookings;
 
+
     public ArrayList<Booking> getBookings(String n) {
         ArrayList<Booking> usrBookings = new ArrayList<Booking>();
         for (int i=0; i<bookings.size(); i++){
@@ -31,9 +32,7 @@ public class UserInterface {
         m.addReview(r);
     }
 
-
-
-    public static ArrayList<Ticket> selectTickets(int nbOfTicket){
+    private static ArrayList<Ticket> selectTickets(int nbOfTicket){
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         Scanner sc = new Scanner(System.in);
         int cpIndex;
@@ -92,7 +91,7 @@ public class UserInterface {
         return tickets;
     }
 
-    public static ArrayList<Ticket> book(){
+    private static ArrayList<Ticket> book(){
         Scanner sc = new Scanner(System.in);
         int nbOfTickets;
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
