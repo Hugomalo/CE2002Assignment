@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Cineplex {
 
-
+    private String name;
+    private int cinemaNb;
+    private ArrayList<Cinema> cinemas;
 
     Cineplex(String n){
         cinemaNb=0;
@@ -12,47 +14,16 @@ public class Cineplex {
         name=n;
     }
 
-
-    private String name;
-    private int cinemaNb;
-    private ArrayList<Cinema> cinemas;
-
-    //package admin
-    public void addCinema(String code,int cineClass) {
+    protected void addCinema(String code,int cineClass) {
         Cinema newCinema = new Cinema(code,cineClass);
         cinemas.add(newCinema);
         cinemaNb+=1;
     }
 
     public String getName(){return name;}
+
     public  int getCinemaNb(){
         return cinemaNb;
-    }
-    public void showCinemaInfo(int i){
-        if (cinemas != null) {
-            System.out.println("cine code=" + cinemas.get(i).getCineCode());
-            System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
-            System.out.println("cine Class=" + cinemas.get(i).getCinemaClass());
-        }
-        else{
-            System.out.println("No cinema found in this cineplex");
-        }
-
-    }
-    protected Cinema getCinema(int i){
-        return cinemas.get(i);
-    }
-
-    public void showShowtimes(){
-        if (cinemas != null) {
-            for (Cinema cine : cinemas) {
-                System.out.println("Cinema " + cine.getCineCode() + ":");
-                cine.showShowtimes();
-            }
-        }
-        else{
-            System.out.println("No cinema in this cineplex");
-        }
     }
 
     public ArrayList<Cinema> getCinemas(){
@@ -72,6 +43,34 @@ public class Cineplex {
             return movies;
         }
         else {return null;}
+    }
+
+    protected Cinema getCinema(int i){
+        return cinemas.get(i);
+    }
+
+    public void showShowtimes(){
+        if (cinemas != null) {
+            for (Cinema cine : cinemas) {
+                System.out.println("Cinema " + cine.getCineCode() + ":");
+                cine.showShowtimes();
+            }
+        }
+        else{
+            System.out.println("No cinema in this cineplex");
+        }
+    }
+
+    public void showCinemaInfo(int i){
+        if (cinemas != null) {
+            System.out.println("cine code=" + cinemas.get(i).getCineCode());
+            System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
+            System.out.println("cine Class=" + cinemas.get(i).getCinemaClass());
+        }
+        else{
+            System.out.println("No cinema found in this cineplex");
+        }
+
     }
 
 }

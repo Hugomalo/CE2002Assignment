@@ -77,6 +77,24 @@ public class Cinema {
         return cineCode;
     }
 
+    protected void showShowtimes() {
+        for (Showtime s : showtimes) {
+            LocalDateTime show = s.getMovieShowtime();
+            Movie m = s.getMovie();
+            if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+            }
+        }
+    }
+
+    public int getNumOfSeat() {
+        return numOfSeat;
+    }
+
+    public cinemaClasses getCinemaClass() {
+        return cinemaClass;
+    }
+
     public void showLayout(){
         int i=0;
         System.out.println("    1  2  3  4  5  6  7  8  9  10 \n");
@@ -99,24 +117,6 @@ public class Cinema {
             }
             System.out.println();
         }
-    }
-
-    protected void showShowtimes() {
-        for (Showtime s : showtimes) {
-            LocalDateTime show = s.getMovieShowtime();
-            Movie m = s.getMovie();
-            if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
-            }
-        }
-    }
-
-    public int getNumOfSeat() {
-        return numOfSeat;
-    }
-
-    public cinemaClasses getCinemaClass() {
-        return cinemaClass;
     }
 
     public ArrayList<Seat> getLayout() {
