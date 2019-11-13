@@ -42,18 +42,20 @@ public class Staff{
                     }while (newCineClass<1 || newCineClass>2);
                     System.out.println("cineplex :"+cineplexList.get(cineplexChoice-1).getName());
                     cineplexList.get(cineplexChoice-1).addCinema(newCineCode,newCineClass);
+                    break;
                 case 2:
                     System.out.println(cineplexList.get(0).getName()+" cinemas:" );
                     for (i=0;i<cineplexList.get(0).getCinemaNb();i++){
-                        cineplexList.get(0).getCinemaInfo(i);
+                        cineplexList.get(0).showCinemaInfo(i);
+                        cineplexList.get(0).getCinema(i).showLayout();
                     }
                     System.out.println(cineplexList.get(1).getName()+" cinemas:" );
                     for (i=0;i<cineplexList.get(1).getCinemaNb();i++){
-                        cineplexList.get(1).getCinemaInfo(i);
+                        cineplexList.get(1).showCinemaInfo(i);
                     }
                     System.out.println(cineplexList.get(2).getName()+" cinemas:" );
                     for (i=0;i<cineplexList.get(2).getCinemaNb();i++){
-                        cineplexList.get(2).getCinemaInfo(i);
+                        cineplexList.get(2).showCinemaInfo(i);
                     }
             }
         }while (choice!=0);

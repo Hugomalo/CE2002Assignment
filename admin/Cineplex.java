@@ -28,7 +28,7 @@ public class Cineplex {
     public  int getCinemaNb(){
         return cinemaNb;
     }
-    public void getCinemaInfo(int i){
+    public void showCinemaInfo(int i){
         if (cinemas != null) {
             System.out.println("cine code=" + cinemas.get(i).getCineCode());
             System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
@@ -38,6 +38,9 @@ public class Cineplex {
             System.out.println("No cinema found in this cineplex");
         }
 
+    }
+    protected Cinema getCinema(int i){
+        return cinemas.get(i);
     }
 
     public void showShowtimes(){

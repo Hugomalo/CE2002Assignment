@@ -20,6 +20,7 @@ public class Cinema {
 
 
     Cinema(String code, int cineClass) {
+        Seat s;
         numOfSeat = 100;
         availableSeat = numOfSeat;
         cineCode = code;
@@ -31,6 +32,16 @@ public class Cinema {
                 cinemaClass = cinemaClassEnum.Normal;
                 break;
         }
+        layout=new ArrayList<>();
+        for (Seat.Row r : Seat.Row.values())
+        {
+            for(int j =1;j<=10;j++)
+            {
+                s=new Seat(r,j);
+                layout.add(s);
+            }
+        }
+
     }
 
     private enum cinemaClassEnum {
@@ -97,10 +108,29 @@ public class Cinema {
     public cinemaClassEnum getCinemaClass() {
         return cinemaClass;
     }
-    //public getLayout(){}
-    //public bookSeats ()
-    //public getAvailable(){}
-    //public getClass
+    public void showLayout(){
+        int i=0;
+        System.out.println("    1  2  3  4  5  6  7  8  9  10 \n");
+        for (Seat.Row r : Seat.Row.values())
+        {
+            System.out.print(r+"  ");
+            for(int j =1;j<=10;j++)
+            {
+                System.out.print("|");
+                if (layout.get(i).getAvailable())
+                {
+                    System.out.print(" ");
+                }
+                else
+                {
+                    System.out.print("X");
+                }
+                System.out.print("|");
+                i++;
+            }
+            System.out.println();
+        }
+    }
 
     protected void showShowtimes() {
         for (Showtime s : showtimes) {
