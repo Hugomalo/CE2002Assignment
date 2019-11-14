@@ -47,8 +47,13 @@ public class Cineplex {
         else {return null;}
     }
 
-    protected Cinema getCinema(int i){
-        return cinemas.get(i);
+    protected Cinema getCinema(String code){
+        for (Cinema c : cinemas) {
+            if (c.getCineCode().equals(code)){
+                return c;
+            }
+        }
+        return null;
     }
 
     public void showShowtimes(){
@@ -101,6 +106,14 @@ public class Cineplex {
             newCineClass = input.nextInt();
         } while (newCineClass < 1 || newCineClass > 2);
         return newCineClass;
+    }
+
+    protected void addShowtime(String cineCode, Showtime s){
+        for (Cinema c : cinemas){
+            if (c.getCineCode().equals(cineCode)){
+                c.addShowtime(s);
+            }
+        }
     }
 }
 

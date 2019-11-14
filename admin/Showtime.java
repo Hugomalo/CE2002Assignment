@@ -3,12 +3,26 @@ package admin;
 import user.Ticket;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 
 public class Showtime {
     private Movie movie;
     private LocalDateTime movieShowtime;
     private ArrayList<Seat> availableSeats;
+
+    protected Showtime(Movie m, int month, int day, int hour, int minute){
+        int year;
+        LocalDateTime curr = LocalDateTime.now();
+        if (month < curr.getMonthValue()){
+            year = curr.getYear() + 1;
+        }
+        else{
+            year = curr.getYear();
+        }
+        movieShowtime = LocalDateTime.of(year, Month.of(month), day, hour, minute, 0);
+        movie = m;
+    }
 
     public Movie getMovie(){return movie;}
     public LocalDateTime getMovieShowtime(){return movieShowtime;}

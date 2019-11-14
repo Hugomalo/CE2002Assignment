@@ -8,14 +8,78 @@ public class Staff {
     private static String password = "Admin";
 
     protected void setShowtimes() {
+        int subChoice;
+        Scanner sc = new Scanner(System.in);
+        do{
+            System.out.println("Hit 0 to go back to main");
+            System.out.println("To select the cinema you want to change showtime, please select the cineplex first :");
+            CineplexListing.showCineplexes();
+            subChoice = sc.nextInt();
+            sc.nextLine();
+            if (subChoice == 0){
+                break;
+            }
+            else if (subChoice > 0 && subChoice < CineplexListing.getNbOfCineplexes()) {
+                int cineplexIndex = subChoice - 1;
+                String cineCode;
+                Cinema c;
+                System.out.println("Here are current showtimes:");
+                CineplexListing.showShowtimes(cineplexIndex);
+                do{
+                    System.out.println("Please input the Code of the cinema of which you want to change showtimes");
+                    cineCode = sc.nextLine();
+                    c = CineplexListing.cineplexes.get(cineplexIndex).getCinema(cineCode);
+                    if (c != null){
+                        Movie m;
+                        System.out.println("Here are the movies for which you can add a showtime:");
+                        MovieListing.showMoviesShowing();
+                        do {
+                            System.out.println("What is the name of the Movie you want to add ?");
+                            m = MovieListing.getMovie(sc.nextLine());
+                            if (m == null){
+                                System.out.println("Please enter a valid title.");
+                            }
+                        }while (m == null);
+                        int i;
+                        System.out.println( "How many showtimes do you want to add for this cinema and Movie ?");
+                        i = sc.nextInt();
+                        sc.nextLine();
+                        for (int j=0; j<i; j++){
+                            int month = 00;
+                            int day = 00;
+                            int hour = 00;
+                            int minute = 00;
+                            boolean tryagain = false;
+                            do{
+                                try {
+                                    System.out.println("What is the month for your showtime ? in 2 digit format");
+                                    month = Integer.parseInt(sc.nextLine());
+                                    System.out.println("What is the day for your showtime ? in 2 digit format");
+                                    day = Integer.parseInt(sc.nextLine());
+                                    System.out.println("What is the hour for your showtime ? in 2 digit format");
+                                    hour = Integer.parseInt(sc.nextLine());
+                                    System.out.println("What is the minute for your showtime ? in 2 digit format");
+                                    minute = Integer.parseInt(sc.nextLine());
+                                }catch(NumberFormatException e){
+                                    System.out.println( "Please input a valid entry, re-enter the information for the last showtime.");
+                                    tryagain = true;
+                                }
+                            }while (tryagain);
+                            Showtime s= new Showtime(m, month, day, hour, minute);
+                            CineplexListing.cineplexes.get(cineplexIndex).addShowtime(cineCode, s);
+                        }
+                    }
+                    else{
+                        System.out.println("Please input a valid Cinema Code");
+                    }
+                }while (c == null);
+                break;
+            }
+            else{
+                System.out.println("Please input valid entry");
+            }
+        }while (true);
     }
-
-    ;
-
-    protected void setMovie() {
-    }
-
-    ;
 
     public static void mainSwitch() {
 
