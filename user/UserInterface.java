@@ -32,6 +32,43 @@ public class UserInterface {
         m.addReview(r);
     }
 
+    public static void showAllMovies()
+    {
+        Scanner sc = new Scanner(System.in);
+        int subChoice;
+        do {
+            System.out.println("Do you want to see all movies (including not showing) ? Hit 1");
+            System.out.println("Do you want to see top 5 movies ranking by ticket sales ? Hit 2");
+            System.out.println("Do you want to see top 5 movies ranking by overall reviews ? Hit 3");
+            System.out.println("Hit 0 to go back to main");
+            subChoice = sc.nextInt();
+            sc.nextLine(); // to avoid skipping of next sc instruction
+            switch (subChoice){
+                case 0:{
+                    break;
+                }
+                case 1:{
+                    MovieListing.showMovies();
+                    break;
+                }
+                case 2:{
+                    MovieListing.showRanking(false);
+                    break;
+                }
+                case 3:{
+                    MovieListing.showRanking(true);
+                    break;
+                }
+                default:{
+                    System.out.println("Please input a valid entry");
+                    break;
+                }
+            }
+        }while (subChoice != 0);
+
+
+    }
+
     private static ArrayList<Ticket> selectTickets(int nbOfTicket){
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         Scanner sc = new Scanner(System.in);
@@ -153,8 +190,8 @@ public class UserInterface {
             sc.nextLine();
             switch (choice){
                 case 1:{
-                    MovieListing.showAllMovies();
-                       break;
+                    showAllMovies();
+                    break;
                 }
                 case 2:{
                     int subChoice;
