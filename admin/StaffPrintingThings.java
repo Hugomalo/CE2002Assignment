@@ -31,7 +31,7 @@ public class StaffPrintingThings {
                     break;
                 }
                 case 2:
-                    MovieListing.showAllMovies();
+                    MovieListing.showMovies();
                     break;
             }
         }while(choice!=0);
