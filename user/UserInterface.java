@@ -124,7 +124,7 @@ public class UserInterface {
                     break;
                 }
             }
-        }while(choice != 'Y' || choice != 'N');
+        }while(choice != 'Y' && choice != 'N');
         return tickets;
     }
 
