@@ -19,15 +19,23 @@ public class StaffPrintingThings {
             {
                 case 0:
                     break;
-                case 1:
+                case 1:{
+                    System.out.println("Here are the cineplexes:");
                     CineplexListing.showCineplexes();
+                    System.out.println("Do you want to know the films or the different cinemas in this cineplex? Enter it's index or 0 to quit");
+                    int subchoice =input.nextInt();
+                    if(subchoice!=0)
+                    {
+                        CineplexListing.showShowtimes(subchoice-1);
+                    }
                     break;
+                }
                 case 2:
+                    MovieListing.showAllMovies();
                     break;
             }
         }while(choice!=0);
     }
-    public static void showStuffinCineplexes(){
 
-    }
+    
 }
