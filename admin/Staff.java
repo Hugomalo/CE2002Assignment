@@ -55,6 +55,9 @@ public class Staff {
                 case 4:{
                     addMovie();
                 }
+                case 5:{
+                    removeMovie();
+                }
             }
         } while (choice != -1);
     }
@@ -154,5 +157,35 @@ public class Staff {
             }
         }while (tryagain);
         MovieListing.addMovie(new Movie(title, showStat, synopsis, director, cast, movieType));
+    }
+
+    private  static void removeMovie(){
+        Scanner input = new Scanner(System.in);
+        int choice;
+        String title;
+        System.out.println("Do you want to delete a movie (Hit 1) or to change its showing status to End_Of_Showing (Hit 2) ?");
+        choice = input.nextInt();
+        input.nextLine();
+        Movie m = null;
+        switch (choice){
+            case 1:{
+                while (m == null) {
+                    System.out.println("Here is the movie listing:");
+                    MovieListing.showMovies();
+                    System.out.println("What is the title of the movie you want to delete ?");
+                    title = input.nextLine();
+                    m = MovieListing.getMovie(title);
+                    if (m != null){
+                        MovieListing.removeMovie(m);
+                    }
+                }
+                break;
+            }
+            case 2:{
+                while (m == null){
+                    System.out.println("Here are the movies in showing status");
+                }
+            }
+        }
     }
 }

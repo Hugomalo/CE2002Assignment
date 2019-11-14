@@ -55,6 +55,9 @@ public class MovieListing {
     protected static void addMovie(Movie m){
         movies.add(m);
     }
+    protected static void removeMovie(Movie m){
+        movies.remove(m);
+    }
 
     public static void getMovieDetails(String t){
         for (Movie movie : movies) {
