@@ -255,7 +255,14 @@ public class UserInterface {
                             phoneNb = Integer.parseInt(sc.nextLine(), 10);
                             System.out.println("What is your email ?");
                             email = sc.nextLine().toLowerCase();
-                            bookings.add(new Booking(name, phoneNb, email, cineID, tickets));
+                            Booking b = new Booking(name, phoneNb, email, cineID, tickets);
+                            bookings.add(b);
+                            System.out.println("Recap :");
+                            b.showBooking();
+                            System.out.println("Please proceed to payment");
+                            System.out.println("Key in your CB number:");
+                            sc.nextLine();
+                            System.out.println("Paiment is sccessfull.");
                             break;
                         }
                         else{

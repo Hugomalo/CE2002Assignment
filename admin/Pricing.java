@@ -15,7 +15,7 @@ public class Pricing {
     private Float prwSurcharge;
     private Float classSurcharge;
 
-    public static Float priceCalc(Ticket t, Movie m, Cinema c){
+    public static Float priceCalc(Ticket t, String a, Movie m, Cinema c){
 //    	float prcOfTicket = basePrice;
 //    	
 //    	if AgeClasses is student or elder {

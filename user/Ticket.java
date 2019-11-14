@@ -35,10 +35,12 @@ public class Ticket {
     }
 
     protected void setPrice(Movie m, Cinema cine){
-        price = Pricing.priceCalc(this, m, cine);
+        price = Pricing.priceCalc(this, this.ageClass.toString(), m, cine);
     }
 
     protected String getCineCode(){return cineCode;}
+
+    protected Float getPrice(){return price;}
 
     public void showTicket(){
         System.out.println("    Ticket age class: " + ageClass);
@@ -46,5 +48,6 @@ public class Ticket {
         System.out.println("    Movie: " + selection.getMovie().getTitle() + " on " + selection.getMovieShowtime().getDayOfMonth() + "/" + selection.getMovieShowtime().getMonth() + "/" + selection.getMovieShowtime().getYear() + " at " + selection.getMovieShowtime().getHour() + ":" + selection.getMovieShowtime().getMinute());
         System.out.println("    Seat: " + SeatRow + SeatColumn);
         System.out.println("    Price: " + price + "S$");
+        System.out.println();
     }
 }

@@ -9,6 +9,7 @@ public class Booking {
     private String email;
     private String TID;
     private ArrayList<Ticket> tickets;
+    private Float price;
 
     public Booking(String name, int phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
         this.name = name;
@@ -16,6 +17,11 @@ public class Booking {
         this.email = email;
         this.tickets = tickets;
         this.TID = SetTID(cineCode);
+        Float pr = 0.f;
+        for (Ticket t : tickets){
+            pr += t.getPrice();
+        }
+        price = pr;
     }
 
 
@@ -33,6 +39,7 @@ public class Booking {
         System.out.println("Transaction ID: " + TID);
         System.out.println("Phone number: " + phoneNb);
         System.out.println("email: " + email);
+        System.out.println("Total Price: " + price);
         System.out.println("Tickets :");
         for (Ticket t : tickets){
             t.showTicket();
