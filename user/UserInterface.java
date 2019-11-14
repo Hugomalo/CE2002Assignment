@@ -74,12 +74,27 @@ public class UserInterface {
                 System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
                 selectedST = movieST.get(cineIndex).get(sc.nextInt());
                 for (int i=0; i<nbOfTicket; i++){
+                    String r;
+                    int c;
+                    ArrayList<Seat> avlbSeat = new ArrayList<>(selectedST.getAvailableSeats());
+                    System.out.println("Here is the layout of the room at cinema " + cinema.getCineCode() + " :");
+                    cinema.showLayout();
+                    System.out.println("Please select a seat from the list below:");
+                    for (Seat s : avlbSeat){
+                        System.out.print("Row: " + s.getRow() + " ; " + "Column: " + s.getColumn());
+                    }
+                    System.out.println("Input desired Row:");
+                    r = sc.nextLine();
+                    System.out.println("Input desired Column:");
+                    c = sc.nextInt();
+                    sc.nextLine();
+                    if (selectedST.book(r,c))
                     System.out.println("What is the age class for the ticket nb " + i + "among :");
-                    for (Ticket.AgeClasses c : Ticket.AgeClasses.values()){
-                        System.out.println(c);
+                    for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()){
+                        System.out.println(ac);
                     }
                     Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
-                    Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema);
+                    Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
                     newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
                     tickets.add(newTicket);
                 }

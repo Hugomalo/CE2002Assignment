@@ -16,9 +16,10 @@ public class Showtime {
     public ArrayList<Seat> getAvailableSeats() {
         return availableSeats;
     }
-    public boolean book(Seat.Row Row, int column){
+    public boolean book(String Row, int column){
+        Seat.Row row = Seat.Row.valueOf(Row);
         int i = 0;
-        while((i < availableSeats.size()) && (availableSeats.get(i).getRow().equals(Row) && (availableSeats.get(i).getColumn() == column))){
+        while((i < availableSeats.size()) && (availableSeats.get(i).getRow().equals(row) && (availableSeats.get(i).getColumn() == column))){
             i++;
         }
         if (i<availableSeats.size()){
