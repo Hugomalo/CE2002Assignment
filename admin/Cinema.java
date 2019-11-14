@@ -73,12 +73,17 @@ public class Cinema {
     }
 
     protected void showShowtimes() {
-        for (Showtime s : showtimes) {
-            LocalDateTime show = s.getMovieShowtime();
-            Movie m = s.getMovie();
-            if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+        if (showtimes != null) {
+            for (Showtime s : showtimes) {
+                LocalDateTime show = s.getMovieShowtime();
+                Movie m = s.getMovie();
+                if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                    System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+                }
             }
+        }
+        else{
+            System.out.println("No showtimes in this cinema yet");
         }
     }
 

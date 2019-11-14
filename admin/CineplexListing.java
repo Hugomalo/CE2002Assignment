@@ -6,8 +6,6 @@ public class CineplexListing {
 
     protected static ArrayList<Cineplex> cineplexes=new ArrayList<Cineplex>();
 
-    private static int nbOfCineplexes;
-
     protected static void addCineplex(Cineplex c){
         cineplexes.add(c);
     }
@@ -30,7 +28,7 @@ public class CineplexListing {
     }
 
     public static int getNbOfCineplexes() {
-        return nbOfCineplexes;
+        return cineplexes.size();
     }
 
     public static Cineplex getCineplex(int i){

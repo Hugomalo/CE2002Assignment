@@ -11,11 +11,11 @@ public class Staff {
         int subChoice;
         Scanner sc = new Scanner(System.in);
         do{
-            System.out.println("Hit 0 to go back to main");
-            System.out.println("To select the cinema you want to change showtime, please select the cineplex first :");
-            CineplexListing.showCineplexes();
-            subChoice = sc.nextInt();
-            sc.nextLine();
+            try {
+                System.out.println("Hit 0 to go back to main");
+                System.out.println("To select the cinema you want to change showtime, please select the cineplex first :");
+                CineplexListing.showCineplexes();
+                subChoice = Integer.parseInt(sc.nextLine());
             if (subChoice == 0){
                 break;
             }
@@ -76,7 +76,10 @@ public class Staff {
                 break;
             }
             else{
-                System.out.println("Please input valid entry");
+                System.out.println("Please input a number in the range of available index");
+            }
+            }catch (Exception e){
+                System.out.println("Please input a valid entry");
             }
         }while (true);
     }
@@ -145,15 +148,20 @@ public class Staff {
         Cinema cine;
         int cineplexChoice;
         Scanner input = new Scanner(System.in);
-        System.out.println("In which cineplex do you want to add a cinema?");
-        do {
-            for (int j = 0; j < CineplexListing.cineplexes.size(); j++) {
-                System.out.println((j + 1) + "for cineplex" + CineplexListing.cineplexes.get(j).getName());
-            }
-            cineplexChoice = input.nextInt();
-        } while (cineplexChoice < CineplexListing.cineplexes.size());
-        cine = new Cinema(Cineplex.chooseNewCinemaCode(), Cineplex.chooseNewCinemaClass());
-        CineplexListing.cineplexes.get(cineplexChoice).addCinema(cine);
+        if(CineplexListing.cineplexes.size() == 0){
+            System.out.println("No cineplex created");
+        }
+        else {
+            System.out.println("In which cineplex do you want to add a cinema?");
+            do {
+                for (int j = 0; j < CineplexListing.cineplexes.size(); j++) {
+                    System.out.println((j + 1) + "for cineplex" + CineplexListing.cineplexes.get(j).getName());
+                }
+                cineplexChoice = input.nextInt() -1;
+            } while (cineplexChoice < CineplexListing.cineplexes.size());
+            cine = new Cinema(Cineplex.chooseNewCinemaCode(), Cineplex.chooseNewCinemaClass());
+            CineplexListing.cineplexes.get(cineplexChoice).addCinema(cine);
+        }
     }
 
     private static void setPricing(){
