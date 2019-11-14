@@ -103,7 +103,7 @@ public class Cinema {
             System.out.print(r+"  ");
             for(int j =1;j<=10;j++)
             {
-                System.out.print("|");
+                System.out.print("[");
                 if (layout.get(i).getAvailable())
                 {
                     System.out.print(" ");
@@ -112,7 +112,7 @@ public class Cinema {
                 {
                     System.out.print("X");
                 }
-                System.out.print("|");
+                System.out.print("]");
                 i++;
             }
             System.out.println();
