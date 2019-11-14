@@ -15,16 +15,16 @@ public class Movie {
         Now_Showing,
         End_Of_Showing
     }
-    private String title;
-    private ShowingStatus showingStatus;
-    private String synopsis;
-    private String director;
-    private ArrayList<String> cast;
-    private ArrayList<Review> reviews;
-    private int reviewNb;
-    private float globalRating;
-    private int ticketSales;
-    private MovieTypes movieType;
+    protected String title;
+    protected ShowingStatus showingStatus;
+    protected String synopsis;
+    protected String director;
+    protected ArrayList<String> cast;
+    protected ArrayList<Review> reviews;
+    protected int reviewNb;
+    protected float globalRating;
+    protected int ticketSales;
+    protected MovieTypes movieType;
 
     public Movie(String title, ShowingStatus showingStatus, String synopsis, String director, ArrayList<String> cast, MovieTypes movieType) {
         this.title = title;
