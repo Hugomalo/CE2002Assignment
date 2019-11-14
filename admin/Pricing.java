@@ -6,14 +6,14 @@ import user.Ticket;
 import java.time.LocalDateTime;
 
 public class Pricing {
-    private Float basePrice;
-    private Float stdDiscount;
-    private Float elderDiscount;
-    private Float sunPHSurcharge;
-    private Float _3DSurcharge;
-    private Float BBSurcharge;
-    private Float prwSurcharge;
-    private Float classSurcharge;
+    private static Float basePrice;
+    private static Float stdDiscount;
+    private static Float elderDiscount;
+    private static Float sunPHSurcharge;
+    private static Float _3DSurcharge;
+    private static Float BBSurcharge;
+    private static Float prwSurcharge;
+    private static Float classSurcharge;
 
     public static Float priceCalc(Ticket t, String a, Movie m, Cinema c){
 //    	float prcOfTicket = basePrice;
@@ -45,10 +45,10 @@ public class Pricing {
 //    	
     	return 1f;
     }
-    protected void setBasePrice(Float p){
+    protected static void setBasePrice(Float p){
         basePrice = p;
     }
-    protected void setDiscountSurcharge(Float d1, Float d2, Float s1, Float s2, Float s3, Float s4, Float s5){
+    protected static void setDiscountSurcharge(Float d1, Float d2, Float s1, Float s2, Float s3, Float s4, Float s5){
     	stdDiscount = d1;
     	elderDiscount = d2;
     	sunPHSurcharge = s1;

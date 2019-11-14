@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class Movie {
     enum MovieTypes{
         Blockbuster,
-        _3D
+        _3D,
+        Classic
     };
     enum ShowingStatus{
         Coming_Soon,
@@ -24,6 +25,20 @@ public class Movie {
     private float globalRating;
     private int ticketSales;
     private MovieTypes movieType;
+
+    public Movie(String title, ShowingStatus showingStatus, String synopsis, String director, ArrayList<String> cast, MovieTypes movieType) {
+        this.title = title;
+        this.showingStatus = showingStatus;
+        this.synopsis = synopsis;
+        this.director = director;
+        this.cast = cast;
+        this.movieType = movieType;
+        this.reviewNb = 0;
+        this.globalRating = 0;
+        this.ticketSales = 0;
+        this.reviews = new ArrayList<Review>();
+    }
+
 
     public int compareToRating(Object o){
         if (o instanceof Movie){
