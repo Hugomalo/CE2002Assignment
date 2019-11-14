@@ -1,6 +1,7 @@
 package user;
 
 import admin.*;
+import com.sun.source.tree.WhileLoopTree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,20 +36,35 @@ public class UserInterface {
     public static void showAllMovies()
     {
         Scanner sc = new Scanner(System.in);
-        int subChoice;
+        int Choice;
         do {
             System.out.println("Do you want to see all movies (including not showing) ? Hit 1");
             System.out.println("Do you want to see top 5 movies ranking by ticket sales ? Hit 2");
             System.out.println("Do you want to see top 5 movies ranking by overall reviews ? Hit 3");
             System.out.println("Hit 0 to go back to main");
-            subChoice = sc.nextInt();
+            Choice = sc.nextInt();
             sc.nextLine(); // to avoid skipping of next sc instruction
-            switch (subChoice){
+            switch (Choice){
                 case 0:{
                     break;
                 }
                 case 1:{
                     MovieListing.showMovies();
+                    int subChoice;
+                    System.out.println("Do you want to display movie details ? Hit 1 for yes, 2 for no");
+                    subChoice = sc.nextInt();
+                    boolean movieHit = false;
+                    if (subChoice == 1){
+                        while (!movieHit) {
+                            String title;
+                            System.out.println("What is the title of the Movie you want to get details ?");
+                            title = sc.nextLine();
+                            movieHit = MovieListing.getMovieDetails(title);
+                            if (!movieHit) {
+                                System.out.println("Please input a valid movie title.");
+                            }
+                        }
+                    }
                     break;
                 }
                 case 2:{
@@ -64,7 +80,7 @@ public class UserInterface {
                     break;
                 }
             }
-        }while (subChoice != 0);
+        }while (Choice != 0);
 
 
     }

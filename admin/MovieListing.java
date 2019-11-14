@@ -23,6 +23,13 @@ public class MovieListing {
             System.out.println(movie.getTitle());
         }
     }
+    public static void showMoviesShowing(){
+        for (Movie movie : movies){
+            if (movie.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing) {
+                System.out.println(movie.getTitle());
+            }
+        }
+    }
 
     public static void showRanking(boolean r){
         if (r){
@@ -60,13 +67,14 @@ public class MovieListing {
         movies.remove(m);
     }
 
-    public static void getMovieDetails(String t){
+    public static boolean getMovieDetails(String t){
         for (Movie movie : movies) {
             if (movie.getTitle().equals(t)) {
                 movie.showMovieDetails();
-                break;
+                return true;
             }
         }
+        return false;
     }
 
 

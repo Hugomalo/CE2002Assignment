@@ -99,6 +99,10 @@ public class Movie {
     protected ShowingStatus getShowingStatus(){return showingStatus;}
     protected int getReviewNb(){return reviewNb;}
 
+    protected void updateShowingStatus(ShowingStatus sh){
+        showingStatus = sh;
+    }
+
     public void addReview(Review r){
         reviews.add(r);
         globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
