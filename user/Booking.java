@@ -27,8 +27,7 @@ public class Booking {
 
     public String SetTID(String c){
         LocalDateTime d = LocalDateTime.now();
-        String tid = String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
-        return tid;
+        return String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
     }
 
     public String getName(){

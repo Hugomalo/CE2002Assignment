@@ -262,7 +262,7 @@ public class UserInterface {
                             System.out.println("Please proceed to payment");
                             System.out.println("Key in your CB number:");
                             sc.nextLine();
-                            System.out.println("Paiment is sccessfull.");
+                            System.out.println("Payment is successful.");
                             break;
                         }
                         else{

@@ -26,6 +26,12 @@ public class MovieListing {
     public static void showRanking(boolean r){
         if (r){
             ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
+            for (int i=0; i<rankedMovies.size(); i++){
+                if(rankedMovies.get(i).getReviewNb() > 1){
+                    rankedMovies.remove(i);
+                    i--;
+                }
+            }
             Sorting.ratingSort(rankedMovies);
             for (int i = 0; i<5; i++){
                 System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getRating() + "/5");
@@ -33,6 +39,12 @@ public class MovieListing {
         }
         else{
             ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
+            for (int i=0; i<rankedMovies.size(); i++){
+                if(rankedMovies.get(i).getReviewNb() > 1){
+                    rankedMovies.remove(i);
+                    i--;
+                }
+            }
             Sorting.saleSort(rankedMovies);
             for (int i = 0; i<5; i++){
                 System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getTicketSales() + " tickets");
