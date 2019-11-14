@@ -30,7 +30,7 @@ public class Staff {
 
 
         do {
-            System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie");
+            System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie");
             choice = input.nextInt();
             input.nextLine();
             switch (choice) {
@@ -51,12 +51,19 @@ public class Staff {
                 }
                 case 3:{
                     setPricing();
+                    break;
                 }
                 case 4:{
                     addMovie();
+                    break;
                 }
                 case 5:{
                     removeMovie();
+                    break;
+                }
+                case 6:{
+                    updateMovie();
+                    break;
                 }
             }
         } while (choice != -1);
@@ -108,6 +115,31 @@ public class Staff {
         System.out.println("What is the surcharge for gold class cinemas ?");
         s5 = input.nextFloat();
         Pricing.setDiscountSurcharge(d1, d2, s1, s2, s3, s4, s5);
+    }
+    private static void updateMovie() {
+        Scanner input = new Scanner(System.in);
+        Movie m = null;
+        String title, toChange;
+        while (m == null) {
+            System.out.println("Here is the movie listing:");
+            MovieListing.showMovies();
+            System.out.println("What is the title of the movie you want to update ?");
+            title = input.nextLine();
+            m = MovieListing.getMovie(title);
+            if (m != null) {
+                {
+                    System.out.println("Here is the movie listing:");
+                    MovieListing.showMovies();
+                    System.out.println("What is the title of the movie you want to update ?");
+                    title = input.nextLine();
+                    m = MovieListing.getMovie(title);
+                    if (m != null) {
+                        MovieListing.removeMovie(m);
+                        Staff.addMovie();
+                    }
+                }
+            }
+        }
     }
 
     private static void addMovie(){
