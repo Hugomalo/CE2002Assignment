@@ -97,7 +97,7 @@ public class Cinema {
 
     public void showLayout(){
         int i=0;
-        System.out.println("    1  2  3  4  5  6  7  8  9  10 \n");
+        System.out.println("    1  2  3    4  5  6  7  8  9  10 \n");
         for (Seat.Row r : Seat.Row.values())
         {
             System.out.print(r+"  ");
@@ -113,6 +113,9 @@ public class Cinema {
                     System.out.print("X");
                 }
                 System.out.print("]");
+                if (j==3){
+                    System.out.print("  ");
+                }
                 i++;
             }
             System.out.println();
