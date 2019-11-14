@@ -7,7 +7,7 @@ public class Staff {
     private static String login = "Admin";
     private static String password = "Admin";
 
-    protected void setShowtimes() {
+    protected static void setShowtimes() {
         int subChoice;
         Scanner sc = new Scanner(System.in);
         do{
@@ -94,7 +94,7 @@ public class Staff {
 
 
         do {
-            System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie");
+            System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 add showtimes");
             choice = input.nextInt();
             input.nextLine();
             switch (choice) {
@@ -128,6 +128,9 @@ public class Staff {
                 case 6:{
                     updateMovie();
                     break;
+                }
+                case 7:{
+                    setShowtimes();
                 }
             }
         } while (choice != -1);
@@ -235,8 +238,9 @@ public class Staff {
         System.out.println("Who is the director of the movie ?");
         director = input.nextLine();
         System.out.println("How many actors/actress in the cast ?");
-        for (int i=0; i<input.nextInt(); i++){
-            input.nextLine();
+        int a;
+        a = Integer.parseInt(input.nextLine());
+        for (int i=0; i<a; i++){
             System.out.println("Please input actor/actress nb: " + i);
             cast.add(input.nextLine());
         }

@@ -102,8 +102,13 @@ public class Cineplex {
      int newCineClass;
      Scanner input = new Scanner(System.in);
         do {
-            System.out.println("what is the cinema class 1 for Gold, 2 for Normal");
-            newCineClass = input.nextInt();
+            try {
+                System.out.println("what is the cinema class 1 for Gold, 2 for Normal");
+                newCineClass = Integer.parseInt(input.nextLine());
+            }catch (Exception e){
+                newCineClass = 0;
+                System.out.println("Please input a valid entry");
+            }
         } while (newCineClass < 1 || newCineClass > 2);
         return newCineClass;
     }

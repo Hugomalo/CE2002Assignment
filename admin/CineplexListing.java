@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CineplexListing {
 
     protected static ArrayList<Cineplex> cineplexes=new ArrayList<Cineplex>();
+
     private static int nbOfCineplexes;
 
     protected static void addCineplex(Cineplex c){

@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class MovieListing {
-    private static ArrayList<Movie> movies;
+    private static ArrayList<Movie> movies = new ArrayList<Movie>();
 
     public static Movie getMovie(String title){
         for (Movie m : movies){
@@ -61,6 +61,9 @@ public class MovieListing {
     }
 
     protected static void addMovie(Movie m){
+        if (m == null){
+            System.out.println("Null problème...");
+        }
         movies.add(m);
     }
     protected static void removeMovie(Movie m){
