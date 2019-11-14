@@ -13,6 +13,7 @@ public class Showtime {
     public Movie getMovie(){return movie;}
     public LocalDateTime getMovieShowtime(){return movieShowtime;}
 
+
     public ArrayList<Seat> getAvailableSeats() {
         return availableSeats;
     }
