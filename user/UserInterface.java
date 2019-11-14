@@ -21,7 +21,7 @@ public class UserInterface {
         return usrBookings;
     }
 
-    protected void addReview(Movie m){
+    protected static void addReview(Movie m){
         Review r = new Review();
         Scanner sc = new Scanner(System.in);
         System.out.println("What is your score for the movie " + m.getTitle() + " ?");
@@ -146,9 +146,9 @@ public class UserInterface {
     public static void mainSwitch(){
         Scanner sc = new Scanner(System.in);
         int choice = 0;
-        while (choice != 5) {
+        while (choice != 6) {
             System.out.println("What action do you want to do ?");
-            System.out.println("Hit 1 to display movie listing, hit 2 to display showtimes, hit 3 to view your bookings, hit 4 to book tickets, 5 to quit");
+            System.out.println("Hit 1 to display movie listing, hit 2 to display showtimes, hit 3 to view your bookings, hit 4 to book tickets, Hit 5 to write a review, 6 to quit");
             choice = sc.nextInt();
             sc.nextLine();
             switch (choice){
@@ -272,6 +272,24 @@ public class UserInterface {
                     break;
                 }
                 case 5:{
+                    String title;
+                    System.out.println("Here are the movies available:");
+                    MovieListing.showMovies();
+                    System.out.println();
+                    Movie m = null;
+                    while (m == null){
+                        System.out.println("Please input the title of the movie you want to write a review for:");
+                        title = sc.nextLine();
+                        m = MovieListing.getMovie(title);
+                        if (m != null) {
+                            addReview(m);
+                        } else {
+                            System.out.println("Please input a valid Movie name");
+                        }
+                    }
+                    break;
+                }
+                case 6:{
                     break;
                 }
                 default:{
