@@ -6,11 +6,11 @@ import java.util.Scanner;
 public class Cineplex {
 
     private String name;
-    private int cinemaNb;
+    private int nbOfCinema;
     private ArrayList<Cinema> cinemas;
 
     Cineplex(String n){
-        cinemaNb=0;
+        nbOfCinema=0;
         cinemas = new ArrayList<Cinema>();
         name=n;
         threeNewCinema();
@@ -18,14 +18,14 @@ public class Cineplex {
 
     protected void addCinema(Cinema cine) {
         cinemas.add(cine);
-        cinemaNb+=1;
+        nbOfCinema+=1;
     }
 
     public String getName(){return name;}
 
 
     public  int getCinemaNb(){
-        return cinemaNb;
+        return nbOfCinema;
     }
 
     public ArrayList<Cinema> getCinemas(){
