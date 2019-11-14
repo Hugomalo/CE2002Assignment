@@ -1,6 +1,3 @@
-import admin.CineplexInit;
-import admin.CineplexListing;
-import admin.MovieListing;
 import admin.Staff;
 import user.UserInterface;
 
@@ -9,7 +6,6 @@ import java.util.Scanner;
 public class main {
 
     public static void main(String[] args) {
-        CineplexInit.init();
         Scanner sc = new Scanner(System.in);
         char choice = 'D';
         do {

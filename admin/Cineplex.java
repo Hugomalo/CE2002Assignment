@@ -1,6 +1,7 @@
 package admin;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Cineplex {
 
@@ -12,15 +13,16 @@ public class Cineplex {
         cinemaNb=0;
         cinemas = new ArrayList<Cinema>();
         name=n;
+        threeNewCinema();
     }
 
-    protected void addCinema(String code,int cineClass) {
-        Cinema newCinema = new Cinema(code,cineClass);
-        cinemas.add(newCinema);
+    protected void addCinema(Cinema cine) {
+        cinemas.add(cine);
         cinemaNb+=1;
     }
 
     public String getName(){return name;}
+
 
     public  int getCinemaNb(){
         return cinemaNb;
@@ -73,4 +75,33 @@ public class Cineplex {
 
     }
 
+    public void threeNewCinema(){
+        Cinema cine;
+        System.out.println("You need to add 3 new cinema when creating a new cineplex");
+        for (int i = 0;i<3;i++) {
+            cine = new Cinema(chooseNewCinemaCode(),chooseNewCinemaClass());
+            this.addCinema(cine);
+        }
+    }
+    protected static String chooseNewCinemaCode(){
+        String newCineCode;
+        Scanner input = new Scanner(System.in);
+        do {
+            System.out.println("what is the cinema code enter exactly 3 character ");
+            newCineCode = input.next();
+        } while (newCineCode.length() != 3);
+        return newCineCode;
+    }
+
+    protected static int chooseNewCinemaClass() {
+     int newCineClass;
+     Scanner input = new Scanner(System.in);
+        do {
+            System.out.println("what is the cinema class 1 for Gold, 2 for Normal");
+            newCineClass = input.nextInt();
+        } while (newCineClass < 1 || newCineClass > 2);
+        return newCineClass;
+    }
 }
+
+

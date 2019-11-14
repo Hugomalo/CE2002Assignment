@@ -17,12 +17,7 @@ public class Cinema {
     private ArrayList<Seat> layout;
     private ArrayList<Showtime> showtimes;
 
-    Cinema() {
-        numOfSeat = 1;
-        availableSeat = 1;
-        cineCode = "aaa";
-        cinemaClass = cinemaClasses.Normal;
-    }
+
 
     Cinema(String code, int cineClass) {
         Seat s;
