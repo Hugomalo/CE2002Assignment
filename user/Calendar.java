@@ -26,8 +26,6 @@ public class Calendar {
     	}
     	return isPH;
     }
- 
-}
 
     public static void initSunPH(){
 
@@ -45,10 +43,10 @@ public class Calendar {
         SunPH.add(labourDay);
         LocalDateTime vesakDay= LocalDateTime.of(2020,5,7,0,0);
         SunPH.add(vesakDay);
-        LocalDateTime haryRayaP= LocalDateTime.of(2020,5,24,0,0);
-        SunPH.add(haryRayaP);
-        LocalDateTime haryRayaH= LocalDateTime.of(2020,7,31,0,0);
-        SunPH.add(haryRayaH);
+        LocalDateTime hariRayaP= LocalDateTime.of(2020,5,24,0,0);
+        SunPH.add(hariRayaP);
+        LocalDateTime hariRayaH= LocalDateTime.of(2020,7,31,0,0);
+        SunPH.add(hariRayaH);
         LocalDateTime nationalDay= LocalDateTime.of(2020,8,9,0,0);
         SunPH.add(nationalDay);
         LocalDateTime deepavali= LocalDateTime.of(2020,11,14,0,0);
