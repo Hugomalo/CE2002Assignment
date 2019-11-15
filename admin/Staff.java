@@ -217,7 +217,7 @@ public class Staff {
     private static void updateMovie() {
         Scanner input = new Scanner(System.in);
         Movie m = null;
-        String title, toChange;
+        String title;
         while (m == null) {
             System.out.println("Here is the movie listing:");
             MovieListing.showMovies();
@@ -226,13 +226,10 @@ public class Staff {
             m = MovieListing.getMovie(title);
             if (m != null) {
                 {
-                    System.out.println("Here is the movie listing:");
-                    MovieListing.showMovies();
-                    System.out.println("What is the title of the movie you want to update ?");
-                    title = input.nextLine();
                     m = MovieListing.getMovie(title);
                     if (m != null) {
                         MovieListing.removeMovie(m);
+                        System.out.println("please enter the new data of the updated movie");
                         Staff.addMovie();
                     }
                 }
