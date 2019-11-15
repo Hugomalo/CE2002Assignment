@@ -22,7 +22,7 @@ public class Cineplex {
     }
 
     public String getName(){return name;}
-
+    public void setName(String n){name = n;}
 
     public  int getCinemaNb(){
         return nbOfCinema;
@@ -36,9 +36,11 @@ public class Cineplex {
         ArrayList<String> movies = new ArrayList<String>();
         if (cinemas != null) {
             for (Cinema cine : cinemas) {
-                for (Showtime s : cine.getShowtimes()) {
-                    if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                        movies.add(s.getMovie().getTitle());
+                if (cine.getShowtimes() != null) {
+                    for (Showtime s : cine.getShowtimes()) {
+                        if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                            movies.add(s.getMovie().getTitle());
+                        }
                     }
                 }
             }

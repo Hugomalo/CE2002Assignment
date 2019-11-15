@@ -13,7 +13,6 @@ public class Cinema {
     private cinemaClasses cinemaClass;
     private String cineCode;
     private int numOfSeat;
-    private int availableSeat;
     private ArrayList<Seat> layout;
     private ArrayList<Showtime> showtimes;
 
@@ -22,7 +21,6 @@ public class Cinema {
     Cinema(String code, int cineClass) {
         Seat s;
         numOfSeat = 100;
-        availableSeat = numOfSeat;
         cineCode = code;
         switch (cineClass) {
             case 1:
@@ -41,7 +39,31 @@ public class Cinema {
                 layout.add(s);
             }
         }
+    }
 
+    protected void setLayout(int numSeat){
+        Seat s;
+        layout=new ArrayList<>();
+        numOfSeat = numSeat;
+        for (Seat.Row r : Seat.Row.values())
+        {
+            for(int j =1;j<=Math.sqrt(numSeat);j++)
+            {
+                s=new Seat(r,j);
+                layout.add(s);
+            }
+        }
+    }
+
+    protected void setClass(int cineClass){
+        switch (cineClass) {
+            case 1:
+                cinemaClass = cinemaClasses.Gold;
+                break;
+            case 2:
+                cinemaClass = cinemaClasses.Normal;
+                break;
+        }
     }
 
     public ArrayList<Showtime> getShowtimes() {
@@ -70,6 +92,9 @@ public class Cinema {
 
     public String getCineCode() {
         return cineCode;
+    }
+    public void setCineCode(String c) {
+        cineCode = c;
     }
 
     protected void showShowtimes() {
@@ -117,10 +142,6 @@ public class Cinema {
 
     public ArrayList<Seat> getLayout() {
         return layout;
-    }
-
-    public int getAvailableSeat() {
-        return availableSeat;
     }
 
     protected void addShowtime(Showtime s) {

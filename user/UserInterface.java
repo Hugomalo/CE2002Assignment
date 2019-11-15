@@ -4,10 +4,7 @@ import admin.*;
 import com.sun.source.tree.WhileLoopTree;
 
 import javax.management.loading.PrivateMLet;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class UserInterface {
     private static ArrayList<Booking> bookings;
@@ -88,105 +85,122 @@ public class UserInterface {
     private static ArrayList<Ticket> selectTickets(int nbOfTicket){
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         Scanner sc = new Scanner(System.in);
-        int cpIndex;
+        int cpIndex = -1;
         Cineplex cineplex;
         String movieTitle = "";
+        boolean abort = false;
         do {
-            System.out.println("To select the cinema you want to display showtimes, please select the cineplex first :");
+            System.out.println("To select the cinema you want to display showtimes, please select the cineplex first : (Hit 0 to abort)");
             CineplexListing.showCineplexes();
-            cpIndex = sc.nextInt();
-            sc.nextLine();
-            if (cpIndex > 0 && cpIndex <= CineplexListing.getNbOfCineplexes()) {
-                cineplex = CineplexListing.getCineplex(cpIndex-1);
-                System.out.println("Movies available at " + cineplex.getName() + "cpIndex");
-                ArrayList<String> movies = new ArrayList<>(cineplex.getMovies());
-                for (String movie : movies){
-                    System.out.println(movie);
-                }
-                do {
-                    System.out.println("What movie do you want to watch ? : (please input Title");
-                    movieTitle = sc.nextLine();
-                    if (!movies.contains(movieTitle)){
-                        System.out.println("Please input a valid movie Title");
-                    }
-                }while (!movies.contains(movieTitle));
-                System.out.println("Here are the available showtimes for each cinema for" + movieTitle);
-                ArrayList<Cinema> cinemas = new ArrayList<Cinema>(cineplex.getCinemas());
-                Map<Integer, ArrayList<Showtime>> movieST = new HashMap<>();
-                for (Cinema cine : cinemas){
-                    System.out.println("[" + cinemas.indexOf(cine) + "]" + cine.getCineCode());
-                    movieST.put(cinemas.indexOf(cine), cine.getShowShowtimes(movieTitle));
-                }
-                int cineIndex = -1;
-                Cinema cinema = null;
-                Showtime selectedST = null;
-                boolean tryagain = true;
-                while (tryagain) {
-                    try {
-                        System.out.println("Please input desired cinema index :");
-                        cineIndex = sc.nextInt();
-                        cinema = cinemas.get(cineIndex);
-                        sc.nextLine();
-                        tryagain = false;
-                    } catch (Exception e) {
-                        System.out.println("Please input a valid cinema");
-                        tryagain = true;
-                    }
-                }
-                do {
-                    try {
-                        System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
-                        selectedST = movieST.get(cineIndex).get(sc.nextInt());
-                        tryagain = false;
-                    }catch (Exception e){
-                        System.out.println("Please input a valid index for showtime");
-                        tryagain = true;
-                    }
-                }while (tryagain);
-                for (int i=0; i<nbOfTicket; i++){
-                    String r = "Z";
-                    int c = -1;
-                    ArrayList<Seat> avlbSeat = new ArrayList<>(selectedST.getAvailableSeats());
-                    System.out.println("Here is the layout of the room at cinema " + cinema.getCineCode() + " :");
-                    cinema.showLayout();
-                    System.out.println("Please select a seat from the list below:");
-                    for (Seat s : avlbSeat){
-                        System.out.print("Row: " + s.getRow() + " ; " + "Column: " + s.getColumn());
+            try {
+                cpIndex = sc.nextInt();
+                sc.nextLine();
+                if (cpIndex == 0) {
+                    abort = true;
+                } else if (cpIndex > 0 && cpIndex <= CineplexListing.getNbOfCineplexes()) {
+                    cineplex = CineplexListing.getCineplex(cpIndex - 1);
+                    System.out.println("Movies available at " + cineplex.getName());
+                    ArrayList<String> movies = new ArrayList<>(cineplex.getMovies());
+                    for (String movie : movies) {
+                        System.out.println(movie);
                     }
                     do {
-                        try {
-                            System.out.println("Input desired Row:");
-                            r = sc.nextLine();
-                            System.out.println("Input desired Column:");
-                            c = sc.nextInt();
-                            sc.nextLine();
-                            tryagain = false;
-                        }catch (Exception e){
-                            System.out.println("Please input a valid entry for seat selection");
-                            tryagain = true;;
+                        System.out.println("What movie do you want to watch ? : (please input Title)");
+                        movieTitle = sc.nextLine();
+                        if (movieTitle.equals("0")) {
+                            abort = true;
+                        } else if (!movies.contains(movieTitle)) {
+                            System.out.println("Please input a valid movie Title. Hit 0 to abort");
                         }
-                    }while (tryagain);
-                    if (selectedST.book(r,c)) {
-                        System.out.println("What is the age class for the ticket nb " + i + "among :");
-                        for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
-                            System.out.println(ac);
+                    } while (!movies.contains(movieTitle) && !abort);
+                    if (!abort) {
+                        System.out.println("Here are the available showtimes for each cinema for" + movieTitle);
+                        ArrayList<Cinema> cinemas = new ArrayList<Cinema>(cineplex.getCinemas());
+                        Map<Integer, ArrayList<Showtime>> movieST = new HashMap<>();
+                        for (Cinema cine : cinemas) {
+                            System.out.println("[" + cinemas.indexOf(cine) + "]" + cine.getCineCode());
+                            movieST.put(cinemas.indexOf(cine), cine.getShowShowtimes(movieTitle));
                         }
-                        Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
-                        Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
-                        newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
-                        tickets.add(newTicket);
+                        int cineIndex = -1;
+                        Cinema cinema = null;
+                        Showtime selectedST = null;
+                        boolean tryagain = true;
+                        while (tryagain) {
+                            try {
+                                System.out.println("Please input desired cinema index :");
+                                cineIndex = sc.nextInt();
+                                cinema = cinemas.get(cineIndex);
+                                sc.nextLine();
+                                tryagain = false;
+                            } catch (Exception e) {
+                                System.out.println("Please input a valid cinema");
+                                tryagain = true;
+                            }
+                        }
+                        do {
+                            try {
+                                System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
+                                selectedST = movieST.get(cineIndex).get(sc.nextInt());
+                                tryagain = false;
+                            } catch (Exception e) {
+                                System.out.println("Please input a valid index for showtime");
+                                tryagain = true;
+                            }
+                        } while (tryagain);
+                        for (int i = 0; i < nbOfTicket; i++) {
+                            String r = "Z";
+                            int c = -1;
+                            ArrayList<Seat> avlbSeat = new ArrayList<>(selectedST.getAvailableSeats());
+                            System.out.println("Here is the layout of the room at cinema " + cinema.getCineCode() + " :");
+                            cinema.showLayout();
+                            System.out.println("Please select a seat from the list below:");
+                            for (Seat s : avlbSeat) {
+                                System.out.print("Row: " + s.getRow() + " ; " + "Column: " + s.getColumn());
+                            }
+                            do {
+                                try {
+                                    System.out.println("Input desired Row:");
+                                    r = sc.nextLine();
+                                    System.out.println("Input desired Column:");
+                                    c = sc.nextInt();
+                                    sc.nextLine();
+                                    tryagain = false;
+                                } catch (Exception e) {
+                                    System.out.println("Please input a valid entry for seat selection");
+                                    tryagain = true;
+                                    ;
+                                }
+                            } while (tryagain);
+                            if (selectedST.book(r, c)) {
+                                System.out.println("What is the age class for the ticket nb " + i + "among :");
+                                for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
+                                    System.out.println(ac);
+                                }
+                                Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
+                                Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
+                                newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
+                                tickets.add(newTicket);
+                            } else {
+                                System.out.println("This seat is not among list of available seats.");
+                            }
+                        }
                     }
-                    else{
-                        System.out.println("This seat is not among list of available seats.");
-                    }
+                } else {
+                    System.out.println("Please input valid entry");
                 }
+            }catch (InputMismatchException e){
+                System.out.println("Please input a valid entry type.");
+                sc.nextLine();
+                abort = false;
             }
-            else {
-                System.out.println("Please input valid entry");
-            }
-        }while (cpIndex <= 0 || cpIndex <= CineplexListing.getNbOfCineplexes());
-        MovieListing.getMovie(movieTitle).addSales(nbOfTicket);
-        return tickets;
+        }while (!(cpIndex > 0 && cpIndex <= CineplexListing.getNbOfCineplexes()) && !abort);
+        if(abort){
+            return null;
+        }
+        else{
+            Objects.requireNonNull(MovieListing.getMovie(movieTitle)).addSales(nbOfTicket);
+            return tickets;
+        }
     }
 
     private static ArrayList<Ticket> book(){
@@ -213,7 +227,9 @@ public class UserInterface {
                 case 'N': {
                     for (int i = 0; i < nbOfTickets; i++) {
                         ArrayList<Ticket> t = new ArrayList<Ticket>(selectTickets(1));
-                        tickets.add(t.get(0));
+                        if (t != null) {
+                            tickets.add(t.get(0));
+                        }
                     }
                     break;
                 }
@@ -297,26 +313,32 @@ public class UserInterface {
                             break;
                         }
                         else if (subChoice == 1){
-                            ArrayList<Ticket> tickets = new ArrayList<Ticket>(book());
-                            String cineID = tickets.get(0).getCineCode();
-                            String name;
-                            int phoneNb;
-                            String email;
-                            System.out.println();
-                            System.out.println("What is your Name ?");
-                            name = sc.nextLine();
-                            System.out.println("What is your Phone number ?");
-                            phoneNb = Integer.parseInt(sc.nextLine(), 10);
-                            System.out.println("What is your email ?");
-                            email = sc.nextLine().toLowerCase();
-                            Booking b = new Booking(name, phoneNb, email, cineID, tickets);
-                            bookings.add(b);
-                            System.out.println("Recap :");
-                            b.showBooking();
-                            System.out.println("Please proceed to payment");
-                            System.out.println("Key in your CB number:");
-                            sc.nextLine();
-                            System.out.println("Payment is successful.");
+                            try {
+                                ArrayList<Ticket> tickets = new ArrayList<Ticket>(book());
+                            if(tickets.size() > 0) {
+                                String cineID = tickets.get(0).getCineCode();
+                                String name;
+                                int phoneNb;
+                                String email;
+                                System.out.println();
+                                System.out.println("What is your Name ?");
+                                name = sc.nextLine();
+                                System.out.println("What is your Phone number ?");
+                                phoneNb = Integer.parseInt(sc.nextLine(), 10);
+                                System.out.println("What is your email ?");
+                                email = sc.nextLine().toLowerCase();
+                                Booking b = new Booking(name, phoneNb, email, cineID, tickets);
+                                bookings.add(b);
+                                System.out.println("Recap :");
+                                b.showBooking();
+                                System.out.println("Please proceed to payment");
+                                System.out.println("Key in your CB number:");
+                                sc.nextLine();
+                                System.out.println("Payment is successful.");
+                            }
+                            }catch (NullPointerException e){
+                                System.out.println("Abortion of booking");
+                            }
                             break;
                         }
                         else{

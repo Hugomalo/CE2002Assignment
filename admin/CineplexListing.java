@@ -37,4 +37,10 @@ public class CineplexListing {
         }
         else{return null;}
     }
+
+    protected static void setName(int i, String name){
+        if (cineplexes != null) {
+            cineplexes.get(i).setName(name);
+        }
+    }
 }
