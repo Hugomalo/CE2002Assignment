@@ -12,11 +12,11 @@ public class main {
         Calendar.initSunPH();
         char choice = 'D';
         do {
-            System.out.println("Do you want to login as staff ? Hit Y for yes and N for No, Q to quit");
+            System.out.println("Please select type of mode: 'A' for admin, 'M' for movie-goer or 'Q' to quit");
             choice = sc.next().charAt(0);
             sc.nextLine();
             switch (choice) {
-                case 'Y': {
+                case 'A': {
                     boolean tryagain = true;
                     do {
                         System.out.println("Please input the login :");
@@ -36,7 +36,7 @@ public class main {
                     }while (tryagain);
                     break;
                 }
-                case 'N':{
+                case 'M':{
                     System.out.println("Welcome to movie goer mode");
                     UserInterface.mainSwitch();
                     break;
