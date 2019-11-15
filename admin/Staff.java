@@ -51,7 +51,7 @@ public class Staff {
                             int minute = 00;
                             boolean tryagain = false;
                             do{
-                                System.out.println("Please input Showtime nb: " + j);
+                                System.out.println("Please input Showtime nb: " + (j+1));
                                 try {
                                     System.out.println("What is the month for your showtime ? in 2 digit format");
                                     month = Integer.parseInt(sc.nextLine());
@@ -64,6 +64,9 @@ public class Staff {
                                     if(month>12 || month<1 || day>31 || day<1 || hour>24 || hour < 0 || minute > 60 || minute < 1){
                                         System.out.println("Please input a valid date or hour.");
                                         tryagain = true;
+                                    }
+                                    else{
+                                        tryagain = false;
                                     }
                                 }catch(NumberFormatException e){
                                     System.out.println( "Please input a valid entry, re-enter the information for the last showtime.");
