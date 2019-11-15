@@ -1,4 +1,6 @@
 import admin.Staff;
+
+import user.Calendar;
 import user.UserInterface;
 
 import java.util.Scanner;
@@ -7,6 +9,7 @@ public class main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Calendar.initSunPH();
         char choice = 'D';
         do {
             System.out.println("Do you want to login as staff ? Hit Y for yes and N for No, Q to quit");
