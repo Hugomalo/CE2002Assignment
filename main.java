@@ -16,6 +16,7 @@ public class main {
             choice = sc.next().charAt(0);
             sc.nextLine();
             switch (choice) {
+                case 'a':
                 case 'A': {
                     boolean tryagain = true;
                     do {
@@ -36,11 +37,13 @@ public class main {
                     }while (tryagain);
                     break;
                 }
+                case 'm':
                 case 'M':{
                     System.out.println("Welcome to movie goer mode");
                     UserInterface.mainSwitch();
                     break;
                 }
+                case 'q'
                 case 'Q':{
                     break;
                 }
