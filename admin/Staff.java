@@ -51,6 +51,7 @@ public class Staff {
                             int minute = 00;
                             boolean tryagain = false;
                             do{
+                                System.out.println("Please input Showtime nb: " + j);
                                 try {
                                     System.out.println("What is the month for your showtime ? in 2 digit format");
                                     month = Integer.parseInt(sc.nextLine());
@@ -60,6 +61,10 @@ public class Staff {
                                     hour = Integer.parseInt(sc.nextLine());
                                     System.out.println("What is the minute for your showtime ? in 2 digit format");
                                     minute = Integer.parseInt(sc.nextLine());
+                                    if(month>12 || month<1 || day>31 || day<1 || hour>24 || hour < 0 || minute > 60 || minute < 1){
+                                        System.out.println("Please input a valid date or hour.");
+                                        tryagain = true;
+                                    }
                                 }catch(NumberFormatException e){
                                     System.out.println( "Please input a valid entry, re-enter the information for the last showtime.");
                                     tryagain = true;
@@ -295,9 +300,9 @@ public class Staff {
         Scanner input = new Scanner(System.in);
         int choice;
         String title;
-        choice = input.nextInt();
         do {
-        System.out.println("Do you want to delete a movie (Hit 1) or to change its showing status to End_Of_Showing (Hit 2) ?");
+        System.out.println("Do you want to delete a movie (Hit 1) or to change its showing status to End_Of_Showing (Hit 2) or go back to main (Hit 0)?");
+        choice = input.nextInt();
         input.nextLine();
         Movie m = null;
             switch (choice) {
@@ -329,6 +334,9 @@ public class Staff {
                             System.out.println("Please input a valid movie title");
                         }
                     }
+                    break;
+                }
+                case 0:{
                     break;
                 }
                 default: {
