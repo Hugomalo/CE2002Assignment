@@ -19,7 +19,7 @@ public class Staff {
             if (subChoice == 0){
                 break;
             }
-            else if (subChoice > 0 && subChoice < CineplexListing.getNbOfCineplexes()) {
+            else if (subChoice > 0 && subChoice <= CineplexListing.getNbOfCineplexes()) {
                 int cineplexIndex = subChoice - 1;
                 String cineCode;
                 Cinema c;
@@ -97,9 +97,13 @@ public class Staff {
 
 
         do {
-            System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 add showtimes");
-            choice = input.nextInt();
-            input.nextLine();
+            try {
+                System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 add showtimes\n-1 to go back to main");
+                choice = input.nextInt();
+                input.nextLine();
+            }catch (NumberFormatException e) {
+                choice = 20;
+            }
             switch (choice) {
                 case 0: {
                     System.out.println("what is your cineplex name?");
@@ -135,6 +139,12 @@ public class Staff {
                 case 7:{
                     setShowtimes();
                 }
+                case -1:{
+                    break;
+                }
+                default:{
+                    System.out.println("Please input a number among the propositions.");
+                }
             }
         } while (choice != -1);
     }
@@ -152,13 +162,18 @@ public class Staff {
             System.out.println("No cineplex created");
         }
         else {
-            System.out.println("In which cineplex do you want to add a cinema?");
             do {
+                System.out.println("In which cineplex do you want to add a cinema?");
                 for (int j = 0; j < CineplexListing.cineplexes.size(); j++) {
                     System.out.println((j + 1) + "for cineplex" + CineplexListing.cineplexes.get(j).getName());
                 }
-                cineplexChoice = input.nextInt() -1;
-            } while (cineplexChoice < CineplexListing.cineplexes.size());
+                try {
+                    cineplexChoice = Integer.parseInt(input.nextLine()) - 1;
+                }catch (NumberFormatException e){
+                    System.out.println("Please input a valid number");
+                    cineplexChoice = -1;
+                }
+             } while (cineplexChoice > CineplexListing.cineplexes.size() || cineplexChoice < 1);
             cine = new Cinema(Cineplex.chooseNewCinemaCode(), Cineplex.chooseNewCinemaClass());
             CineplexListing.cineplexes.get(cineplexChoice).addCinema(cine);
         }
@@ -225,42 +240,51 @@ public class Staff {
         String director;
         ArrayList<String> cast = new ArrayList<>();
         Movie.MovieTypes movieType = Movie.MovieTypes.Classic;
-        boolean tryagain = false;
+        boolean tryagain = true;
         System.out.println("What is the title of the movie ?");
         title = input.nextLine();
-        do {
+        while (tryagain) {
             try {
                 System.out.println("What is the Showing status of the movie ? Chose among:");
                 for (Movie.ShowingStatus s : Movie.ShowingStatus.values()) {
                     System.out.println(s);
                 }
                 showStat = Movie.ShowingStatus.valueOf(input.nextLine());
+                tryagain = false;
             } catch (IllegalArgumentException e) {
                 System.out.println("Please input a valid Showing status");
                 tryagain = true;
             }
-        }while (tryagain);
-        tryagain = false;
+        }
         System.out.println("What is the synopsis of the movie ?");
         synopsis = input.nextLine();
         System.out.println("Who is the director of the movie ?");
         director = input.nextLine();
-        System.out.println("How many actors/actress in the cast ?");
-        int a;
-        a = Integer.parseInt(input.nextLine());
-        for (int i=0; i<a; i++){
-            System.out.println("Please input actor/actress nb: " + i);
-            cast.add(input.nextLine());
+        tryagain = true;
+        while (tryagain) {
+            try {
+                System.out.println("How many actors/actress in the cast ?");
+                int a;
+                a = Integer.parseInt(input.nextLine());
+                tryagain = false;
+            for (int i = 0; i < a; i++) {
+                System.out.println("Please input actor/actress nb: " + (i+1));
+                cast.add(input.nextLine());
+            }
+            }catch (NumberFormatException e){
+                System.out.println("Please input a number.");
+            }
         }
         do {
             try {
                 System.out.println("What is the movie type ? Chose among:");
                 for (Movie.MovieTypes t : Movie.MovieTypes.values()) {
                     System.out.println(t);
+                    tryagain = false;
                 }
                 movieType = Movie.MovieTypes.valueOf(input.nextLine());
             } catch (IllegalArgumentException e) {
-                System.out.println("Please input a valid Showing status");
+                System.out.println("Please input a valid Movie Type");
                 tryagain = true;
             }
         }while (tryagain);

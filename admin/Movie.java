@@ -95,12 +95,16 @@ public class Movie {
 
     public String getTitle(){return title;}
     public Float getRating(){return globalRating;}
-    public int getTicketSales(){return getTicketSales();}
+    public int getTicketSales(){return ticketSales;}
     protected ShowingStatus getShowingStatus(){return showingStatus;}
     protected int getReviewNb(){return reviewNb;}
 
     protected void updateShowingStatus(ShowingStatus sh){
         showingStatus = sh;
+    }
+
+    public void addSales(int nbOfTicket) {
+        ticketSales += nbOfTicket;
     }
 
     public void addReview(Review r){
@@ -113,17 +117,17 @@ public class Movie {
         System.out.println("Title : " + title);
         System.out.println("Synopsis : " + synopsis);
         System.out.println("Director :" + director);
-        System.out.print("\nCast :");
+        System.out.print("Cast :");
         for(int i=0; i<cast.size(); i++){
             System.out.printf(" %s", cast.get(i));
         }
-        System.out.println("Movie type: " + movieType);
+        System.out.println("\nMovie type: " + movieType);
         System.out.println("Ticket sales: " + ticketSales);
         if (reviewNb > 1) {
             System.out.println("Global rating: " + globalRating + "/5");
         }
         else{
-            System.out.println("Global rating: " + globalRating + "NA");
+            System.out.println("Global rating: NA");
         }
         System.out.print("\nReviews :");
         for (Review review : reviews) {
