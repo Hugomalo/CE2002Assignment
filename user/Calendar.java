@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Calendar {
-    private static ArrayList<LocalDateTime> SunPH; //Stores sundays and public holidays in an Array
+    private static ArrayList<LocalDateTime> SunPH = new ArrayList<LocalDateTime>(); //Stores sundays and public holidays in an Array
 
     public static ArrayList<LocalDateTime> getSunPH(){
         return SunPH;
