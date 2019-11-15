@@ -303,6 +303,7 @@ public class Staff {
         Scanner input = new Scanner(System.in);
         int choice;
         String title;
+        boolean tryagain = true;
         do {
         System.out.println("Do you want to delete a movie (Hit 1) or to change its showing status to End_Of_Showing (Hit 2) or go back to main (Hit 0)?");
         choice = input.nextInt();
@@ -310,42 +311,43 @@ public class Staff {
         Movie m = null;
             switch (choice) {
                 case 1: {
-                    while (m == null) {
-                        System.out.println("Here is the movie listing:");
-                        MovieListing.showMovies();
-                        System.out.println("What is the title of the movie you want to delete ?");
-                        title = input.nextLine();
-                        m = MovieListing.getMovie(title);
-                        if (m != null) {
-                            MovieListing.removeMovie(m);
-                        } else {
-                            System.out.println("Please input a valid movie title");
-                        }
+                    System.out.println("Here is the movie listing:");
+                    MovieListing.showMovies();
+                    System.out.println("What is the title of the movie you want to delete ?");
+                    title = input.nextLine();
+                    m = MovieListing.getMovie(title);
+                    if (m != null) {
+                        MovieListing.removeMovie(m);
+                        tryagain = false;
+                    } else {
+                        System.out.println("Please input a valid movie title");
+                        tryagain = true;
                     }
-                    break;
+                break;
                 }
                 case 2: {
-                    while (m == null) {
-                        System.out.println("Here are the movies in showing status");
-                        MovieListing.showMoviesShowing();
-                        System.out.println("What is the title of the movie you want to delete ?");
-                        title = input.nextLine();
-                        m = MovieListing.getMovie(title);
-                        if (m != null) {
-                            m.updateShowingStatus(Movie.ShowingStatus.End_Of_Showing);
-                        } else {
-                            System.out.println("Please input a valid movie title");
-                        }
+                    System.out.println("Here are the movies in showing status");
+                    MovieListing.showMoviesShowing();
+                    System.out.println("What is the title of the movie you want to delete ?");
+                    title = input.nextLine();
+                    m = MovieListing.getMovie(title);
+                    if (m != null) {
+                        m.updateShowingStatus(Movie.ShowingStatus.End_Of_Showing);
+                        tryagain = false;
+                    } else {
+                        System.out.println("Please input a valid movie title");
+                        tryagain = true;
                     }
-                    break;
                 }
+                break;
                 case 0:{
+                    tryagain = false;
                     break;
                 }
                 default: {
                     System.out.println("Please input a valid entry");
                 }
             }
-        }while (choice != 1 && choice != 2);
+        }while (tryagain);
     }
 }
