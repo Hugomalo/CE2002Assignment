@@ -99,6 +99,11 @@ public class Movie {
     protected ShowingStatus getShowingStatus(){return showingStatus;}
     protected int getReviewNb(){return reviewNb;}
 
+    public MovieTypes getType() {
+    	return movieType;
+    }
+    
+    
     protected void updateShowingStatus(ShowingStatus sh){
         showingStatus = sh;
     }

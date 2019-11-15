@@ -5,6 +5,9 @@ import user.Ticket;
 
 import java.time.LocalDateTime;
 
+import admin.Movie.MovieTypes;
+import admin.Movie.ShowingStatus;
+
 public class Pricing {
     private static Float basePrice;
     private static Float stdDiscount;
@@ -16,34 +19,35 @@ public class Pricing {
     private static Float classSurcharge;
 
     public static Float priceCalc(Ticket t, String a, Movie m, Cinema c){
-//    	float prcOfTicket = basePrice;
-//    	
-//    	if AgeClasses is student or elder {
-//    		prcOfTicket -= stdDiscount;
-//    	}
-//    	else {
-//    		prcOfTicket -= elderDiscount;
-//    	}
-//    	
-//    	if MovieTypes is BB,3D or preview {
-//			prcOfTicket += _3DSurcharge;
-//    	}
-//    	else if {
-//    		prcOfTicket += BBSurcharge;
-//		}
-//    	else {
-//    		prcOfTicket += prwSurcharge;
-//    	}
-//    	
-//    	if sunPH {
-//    		prcOfTicket += sunPHSurcharge;
-//    	}
-//    	
-//    	if cinemaClasses is Gold {
-//    		prcOfTicket += classSurcharge;
-//    	}
-//    	
-    	return 1f;
+    	float prcOfTicket = basePrice;
+    	
+    	if (a.equals("student")) {
+    		prcOfTicket -= stdDiscount;
+    	}
+    	else if (a.equals("senior_citizen")) {
+    		prcOfTicket -= elderDiscount;
+    	}
+    	
+    	if (m.getType().equals(MovieTypes.valueOf("_3D"))) {
+			prcOfTicket += _3DSurcharge;
+    	}
+    	else if (m.getType().equals(MovieTypes.valueOf("Blockbuster"))) {
+    		prcOfTicket += BBSurcharge;
+		}
+    	
+    	if (m.getShowingStatus().equals(ShowingStatus.valueOf("Preview"))) {
+    		prcOfTicket += prwSurcharge;
+    	}
+    	
+    	if (Calendar.isPH(t.getShowtime().getMovieShowtime())) {
+    		prcOfTicket += sunPHSurcharge;
+    	}
+    	
+    	if (c.getCinemaClass().equals(Cinema.cinemaClasses.valueOf("Gold"))) {
+    		prcOfTicket += classSurcharge;
+    	}
+    	
+    	return prcOfTicket;
     }
     protected static void setBasePrice(Float p){
         basePrice = p;

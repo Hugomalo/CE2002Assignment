@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Cinema {
 
-    private enum cinemaClasses {
+    enum cinemaClasses {
         Gold,
         Normal,
     }

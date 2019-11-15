@@ -39,7 +39,7 @@ public class Ticket {
     }
 
     protected String getCineCode(){return cineCode;}
-
+    public Showtime getShowtime(){return selection;}
     protected Float getPrice(){return price;}
 
     public void showTicket(){
