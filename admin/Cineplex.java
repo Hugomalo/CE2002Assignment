@@ -119,6 +119,7 @@ public class Cineplex {
         for (Cinema c : cinemas){
             if (c.getCineCode().equals(cineCode)){
                 c.addShowtime(s);
+                System.out.println("Added successfully");
             }
         }
     }

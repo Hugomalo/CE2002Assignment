@@ -43,7 +43,7 @@ public class main {
                     UserInterface.mainSwitch();
                     break;
                 }
-                case 'q'
+                case 'q':
                 case 'Q':{
                     break;
                 }

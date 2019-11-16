@@ -214,56 +214,59 @@ public class Staff {
                         c = CineplexListing.cineplexes.get(cineplexIndex).getCinema(cineCode);
                         if (c != null){
                             Movie m;
+                            String t;
                             System.out.println("Here are the movies for which you can add a showtime:");
                             MovieListing.showMoviesShowing();
                             do {
                                 System.out.println("What is the name of the Movie you want to add ?");
-                                m = MovieListing.getMovie(sc.nextLine());
+                                t = sc.nextLine();
+                                m = MovieListing.getMovie(t);
                                 if (m == null){
-                                    System.out.println("Please enter a valid title.");
+                                    System.out.println("Please enter a valid title. Hit '0' to abort");
                                 }
-                            }while (m == null);
-                            int i;
-                            System.out.println( "How many showtimes do you want to add for this cinema and Movie ?");
-                            i = sc.nextInt();
-                            sc.nextLine();
-                            for (int j=0; j<i; j++){
-                                int month = 00;
-                                int day = 00;
-                                int hour = 00;
-                                int minute = 00;
-                                boolean tryagain = false;
-                                do{
-                                    System.out.println("Please input Showtime nb: " + (j+1));
-                                    try {
-                                        System.out.println("What is the month for your showtime ? in 2 digit format");
-                                        month = Integer.parseInt(sc.nextLine());
-                                        System.out.println("What is the day for your showtime ? in 2 digit format");
-                                        day = Integer.parseInt(sc.nextLine());
-                                        System.out.println("What is the hour for your showtime ? in 2 digit format");
-                                        hour = Integer.parseInt(sc.nextLine());
-                                        System.out.println("What is the minute for your showtime ? in 2 digit format");
-                                        minute = Integer.parseInt(sc.nextLine());
-                                        if(month>12 || month<1 || day>31 || day<1 || hour>24 || hour < 0 || minute > 60 || minute < 1){
-                                            System.out.println("Please input a valid date or hour.");
-                                            tryagain = true;
-                                        }
-                                        else{
-                                            tryagain = false;
-                                        }
-                                    }catch(NumberFormatException e){
-                                        System.out.println( "Please input a valid entry, re-enter the information for the last showtime.");
-                                        tryagain = true;
+                                else if (!t.equals("0")) {
+                                    int i;
+                                    System.out.println("How many showtimes do you want to add for this cinema and Movie ?");
+                                    i = sc.nextInt();
+                                    sc.nextLine();
+                                    for (int j = 0; j < i; j++) {
+                                        int month;
+                                        int day;
+                                        int hour;
+                                        int minute;
+                                        boolean tryagain = false;
+                                        do {
+                                            System.out.println("Please input Showtime nb: " + (j + 1));
+                                            try {
+                                                System.out.println("What is the month for your showtime ? in 2 digit format");
+                                                month = Integer.parseInt(sc.nextLine());
+                                                System.out.println("What is the day for your showtime ? in 2 digit format");
+                                                day = Integer.parseInt(sc.nextLine());
+                                                System.out.println("What is the hour for your showtime ? in 2 digit format");
+                                                hour = Integer.parseInt(sc.nextLine());
+                                                System.out.println("What is the minute for your showtime ? in 2 digit format");
+                                                minute = Integer.parseInt(sc.nextLine());
+                                                if (month > 12 || month < 1 || day > 31 || day < 1 || hour > 24 || hour < 0 || minute > 60 || minute < 1) {
+                                                    System.out.println("Please input a valid date or hour.");
+                                                    tryagain = true;
+                                                } else {
+                                                    Showtime s = new Showtime(m, month, day, hour, minute);
+                                                    CineplexListing.cineplexes.get(cineplexIndex).addShowtime(cineCode, s);
+                                                    tryagain = false;
+                                                }
+                                            } catch (NumberFormatException e) {
+                                                System.out.println("Please input a valid entry, re-enter the information for the last showtime.");
+                                                tryagain = true;
+                                            }
+                                        } while (tryagain);
                                     }
-                                }while (tryagain);
-                                Showtime s= new Showtime(m, month, day, hour, minute);
-                                CineplexListing.cineplexes.get(cineplexIndex).addShowtime(cineCode, s);
-                            }
+                                }
+                            }while (m == null && !t.equals("0"));
                         }
                         else{
-                            System.out.println("Please input a valid Cinema Code");
+                            System.out.println("Please input a valid Cinema Code. Hit '0' to abort");
                         }
-                    }while (c == null);
+                    }while (c == null && !cineCode.equals("0"));
                     break;
                 }
                 else{

@@ -39,6 +39,7 @@ public class Cinema {
                 layout.add(s);
             }
         }
+        showtimes = new ArrayList<Showtime>();
     }
 
     protected void setLayout(int numSeat){
@@ -145,5 +146,6 @@ public class Cinema {
     }
 
     protected void addShowtime(Showtime s) {
+        showtimes.add(s);
     }
 }
