@@ -1,4 +1,6 @@
-package admin;
+package MOBLIMA.admin;
+
+import MOBLIMA.ObjectsIO;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -35,10 +37,12 @@ public class Staff {
                     newCineplexName = input.nextLine();
                     newCineplex = new Cineplex(newCineplexName);
                     cineplexList.add(newCineplex);
+                    ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
                     break;
                 }
                 case 1: {
                     oneNewCinema();
+                    ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
                     break;
                 }
                 case 2: {
@@ -51,22 +55,27 @@ public class Staff {
                 }
                 case 4:{
                     addMovie();
+                    ObjectsIO.WriteObject(MovieListing.getMovies(), MovieListing.getFilepath());
                     break;
                 }
                 case 5:{
                     removeMovie();
+                    ObjectsIO.WriteObject(MovieListing.getMovies(), MovieListing.getFilepath());
                     break;
                 }
                 case 6:{
                     updateMovie();
+                    ObjectsIO.WriteObject(MovieListing.getMovies(), MovieListing.getFilepath());
                     break;
                 }
                 case 7:{
                     setShowtimes();
+                    ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
                     break;
                 }
                 case 8:{
                     updateCineplex();
+                    ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
                     break;
                 }
                 case -1:{
@@ -102,11 +111,16 @@ public class Staff {
                     Cinema c;
                     boolean tryagain = false;
                     System.out.println("Cinemas in " + CineplexListing.getCineplex(cineplexIndex).getName() + " Cineplex");
-                    for (Cinema cine : CineplexListing.getCineplex(cineplexIndex).getCinemas()){
-                        System.out.println("    " + cine.getCineCode());
+                    try {
+                        for (Cinema cine : CineplexListing.getCineplex(cineplexIndex).getCinemas()) {
+                            System.out.println("    " + cine.getCineCode());
+                        }
+                    }
+                    catch (NullPointerException e){
+                        System.out.println("No cinema in this cineplex");
                     }
                     do{
-                        System.out.println("Please input the Code of the cinema you want to update\nOr key in '-1' to change cineplex name");
+                        System.out.println("Please input the Code of the cinema you want to update\nOr key in '-1' to change cineplex name and -2 to delete cineplex");
                         cineCode = sc.nextLine();
                         if (cineCode.equals("-1")){
                             System.out.println("Please input the new name for cineplex " + CineplexListing.getCineplex(cineplexIndex).getName());
@@ -114,13 +128,16 @@ public class Staff {
                             CineplexListing.setName(cineplexIndex, cineCode);
                             tryagain = false;
                         }
+                        else if (cineCode.equals("-2")){
+                            CineplexListing.removeCineplex(CineplexListing.getCineplex(cineplexIndex));
+                        }
                         else {
                             c = CineplexListing.cineplexes.get(cineplexIndex).getCinema(cineCode);
                             if (c != null) {
                                 int a;
                                 try{
                                     do{
-                                        System.out.println("Do you want to change:\n[1] The cinema Code\n[2] The cinema class \n[3] The seat layout\n[0] To go back");
+                                        System.out.println("Do you want to change:\n[1] The cinema Code\n[2] The cinema class \n[3] The seat layout\n[4] Delete the Cinema form the cineplex\n[0] To go back");
                                         a = sc.nextInt();
                                         sc.nextLine();
                                         switch (a){
@@ -158,6 +175,9 @@ public class Staff {
                                                 }while (b);
                                                 tryagain = false;
                                                 break;
+                                            }
+                                            case 4:{
+                                                CineplexListing.getCineplex(cineplexIndex).removeCine(c);
                                             }
                                             case 0:{
                                                 tryagain = false;
@@ -289,15 +309,15 @@ public class Staff {
             do {
                 System.out.println("In which cineplex do you want to add a cinema?");
                 for (int j = 0; j < CineplexListing.cineplexes.size(); j++) {
-                    System.out.println((j + 1) + "for cineplex" + CineplexListing.cineplexes.get(j).getName());
+                    System.out.println("[" + (j + 1) + "] : " + CineplexListing.cineplexes.get(j).getName());
                 }
                 try {
-                    cineplexChoice = Integer.parseInt(input.nextLine()) - 1;
+                    cineplexChoice = (Integer.parseInt(input.nextLine()) - 1);
                 }catch (NumberFormatException e){
                     System.out.println("Please input a valid number");
                     cineplexChoice = -1;
                 }
-             } while (cineplexChoice > CineplexListing.cineplexes.size() || cineplexChoice < 1);
+             } while (cineplexChoice >= CineplexListing.cineplexes.size() || cineplexChoice < 0);
             cine = new Cinema(Cineplex.chooseNewCinemaCode(), Cineplex.chooseNewCinemaClass());
             CineplexListing.cineplexes.get(cineplexChoice).addCinema(cine);
         }

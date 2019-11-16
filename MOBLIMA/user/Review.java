@@ -1,6 +1,8 @@
-package user;
+package MOBLIMA.user;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     protected int rating;
     protected String review;
 

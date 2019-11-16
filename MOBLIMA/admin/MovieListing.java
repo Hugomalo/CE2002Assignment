@@ -1,13 +1,24 @@
-package admin;
+package MOBLIMA.admin;
 
 import javax.lang.model.type.NullType;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class MovieListing {
-    private static ArrayList<Movie> movies = new ArrayList<Movie>();
+public class MovieListing implements Serializable {
+    private static final String filepath="listing\\movies.ser";
+
+    private static ArrayList<Movie> movies = (ArrayList<Movie>) MOBLIMA.ObjectsIO.ReadObject(MovieListing.filepath);
+
+    public static String getFilepath(){
+        return filepath;
+    }
+
+    public static ArrayList<Movie> getMovies(){
+        return movies;
+    }
 
     public static Movie getMovie(String title){
         for (Movie m : movies){

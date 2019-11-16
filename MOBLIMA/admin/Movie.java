@@ -1,9 +1,11 @@
-package admin;
+package MOBLIMA.admin;
 
-import user.Review;
+import MOBLIMA.user.Review;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Serializable {
     enum MovieTypes{
         Blockbuster,
         _3D,

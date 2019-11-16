@@ -1,13 +1,10 @@
-package user;
+package MOBLIMA.user;
 
-import admin.*;
+import MOBLIMA.admin.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.Serializable;
 
-public class Ticket {
+public class Ticket implements Serializable {
 
     enum AgeClasses{
         adult,

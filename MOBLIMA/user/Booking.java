@@ -1,9 +1,16 @@
-package user;
+package MOBLIMA.user;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Booking {
+public class Booking implements Serializable {
+    private static final String filepath="listing\\bookings.ser";
+
+    public static String getFilepath() {
+        return filepath;
+    }
+
     private String name;
     private String phoneNb;
     private String email;
@@ -38,7 +45,7 @@ public class Booking {
         System.out.println("Transaction ID: " + TID);
         System.out.println("Phone number: " + phoneNb);
         System.out.println("email: " + email);
-        System.out.println("Total Price: " + price);
+        System.out.println("Total Price: " + price + "S$");
         System.out.println("Tickets :");
         for (Ticket t : tickets){
             t.showTicket();

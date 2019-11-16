@@ -1,6 +1,8 @@
-package admin;
+package MOBLIMA.admin;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
     enum Row{
         A,
         B,

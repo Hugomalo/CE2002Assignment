@@ -1,24 +1,24 @@
-package user;
+package MOBLIMA.user;
 
-import admin.*;
-import com.sun.source.tree.WhileLoopTree;
+import MOBLIMA.ObjectsIO;
+import MOBLIMA.admin.*;
 
-import javax.management.loading.PrivateMLet;
 import java.util.*;
 
 public class UserInterface {
-    private static ArrayList<Booking> bookings = new ArrayList<Booking>();
+    private static ArrayList<Booking> bookings = (ArrayList<Booking>) MOBLIMA.ObjectsIO.ReadObject(Booking.getFilepath());
 
 
-    public ArrayList<Booking> getBookings(String n) {
-        ArrayList<Booking> usrBookings = new ArrayList<Booking>();
-        for (int i=0; i<bookings.size(); i++){
-            if (bookings.get(i).getName().equals(n)){
-                usrBookings.add(bookings.get(i));
+    public static ArrayList<Booking> getBookings(String n) {
+        ArrayList<Booking> usrBooking = new ArrayList<Booking>();
+        for (Booking b : bookings) {
+            if (b.getName().equals(n)) {
+                usrBooking.add(b);
             }
         }
-        return usrBookings;
+        return usrBooking;
     }
+
 
     protected static void addReview(Movie m){
         Review r = new Review();
@@ -206,13 +206,11 @@ public class UserInterface {
                                             throw new InputMismatchException();
                                         }
                                         System.out.println("Input desired Column:");
-                                        c = sc.nextInt();
-                                        sc.nextLine();
+                                        c = Integer.parseInt(sc.nextLine());
                                         tryagain = false;
                                     } catch (Exception e) {
                                         System.out.println("Please input a valid entry for seat selection");
                                         tryagain = true;
-                                        sc.nextLine();
                                     }
                                 } while (tryagain);
                                 if (selectedST.book(r, c)) {
@@ -352,11 +350,7 @@ public class UserInterface {
                     }
                     else{
                         ArrayList<Booking> usrBooking = new ArrayList<Booking>();
-                        for (Booking b : bookings){
-                            if (b.getName().equals(subChoice)){
-                                usrBooking.add(b);
-                            }
-                        }
+                        usrBooking = getBookings(subChoice);
                         if(usrBooking.size() == 0){
                             System.out.println("No booking found under name " + subChoice + ".");
                         }
@@ -429,6 +423,9 @@ public class UserInterface {
                                     }
                                 }while (tryagain);
                                 System.out.println("Payment is successful.");
+                                ObjectsIO.WriteObject(bookings, Booking.getFilepath());
+                                ObjectsIO.WriteObject(MovieListing.getMovies(), MovieListing.getFilepath());
+                                ObjectsIO.WriteObject(CineplexListing.getCineplexes(), CineplexListing.getFilepath());
                             }
                             }catch (NullPointerException e){
                                 System.out.println("Abortion of booking");
@@ -453,6 +450,7 @@ public class UserInterface {
                         m = MovieListing.getMovie(title);
                         if (m != null) {
                             addReview(m);
+                            ObjectsIO.WriteObject(MovieListing.getMovies(), MovieListing.getFilepath());
                         } else {
                             System.out.println("Please input a valid Movie name");
                         }

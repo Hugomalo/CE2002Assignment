@@ -1,7 +1,8 @@
-import admin.Staff;
+package MOBLIMA;
 
-import user.Calendar;
-import user.UserInterface;
+import MOBLIMA.admin.Staff;
+import MOBLIMA.user.Calendar;
+import MOBLIMA.user.UserInterface;
 
 import java.util.Scanner;
 

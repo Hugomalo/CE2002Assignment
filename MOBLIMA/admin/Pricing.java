@@ -1,12 +1,9 @@
-package admin;
+package MOBLIMA.admin;
 
-import user.Calendar;
-import user.Ticket;
-
-import java.time.LocalDateTime;
-
-import admin.Movie.MovieTypes;
-import admin.Movie.ShowingStatus;
+import MOBLIMA.user.Calendar;
+import MOBLIMA.user.Ticket;
+import MOBLIMA.admin.Movie.MovieTypes;
+import MOBLIMA.admin.Movie.ShowingStatus;
 
 public class Pricing {
     private static Float basePrice = 5.f;

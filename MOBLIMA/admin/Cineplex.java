@@ -1,9 +1,10 @@
-package admin;
+package MOBLIMA.admin;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Cineplex {
+public class Cineplex implements Serializable {
 
     private String name;
     private int nbOfCinema;
@@ -122,6 +123,10 @@ public class Cineplex {
                 System.out.println("Added successfully");
             }
         }
+    }
+
+    protected void removeCine(Cinema c){
+        cinemas.remove(c);
     }
 }
 

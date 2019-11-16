@@ -1,9 +1,10 @@
-package admin;
+package MOBLIMA.admin;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Cinema {
+public class Cinema implements Serializable {
 
     enum cinemaClasses {
         Gold,

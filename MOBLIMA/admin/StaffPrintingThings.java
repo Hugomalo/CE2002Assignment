@@ -1,4 +1,4 @@
-package admin;
+package MOBLIMA.admin;
 
 import java.util.Scanner;
 

@@ -1,12 +1,11 @@
-package admin;
+package MOBLIMA.admin;
 
-import user.Ticket;
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 
-public class Showtime {
+public class Showtime implements Serializable {
     private Movie movie;
     private LocalDateTime movieShowtime;
     private ArrayList<Seat> availableSeats;
