@@ -40,7 +40,7 @@ public class Showtime {
             return false;
         }
         int i = 0;
-        while((i < availableSeats.size()) && (availableSeats.get(i).getRow().equals(row) && (availableSeats.get(i).getColumn() == column))){
+        while((i < availableSeats.size()) && !((availableSeats.get(i).getRow().equals(row) && (availableSeats.get(i).getColumn() == column)))){
             i++;
         }
         if (i<availableSeats.size()){

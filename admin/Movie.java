@@ -134,10 +134,10 @@ public class Movie {
         else{
             System.out.println("Global rating: NA");
         }
-        System.out.print("\nReviews :");
+        System.out.println("Reviews : ");
         for (Review review : reviews) {
-            System.out.println(review.getRating() + "/5 : ");
-            System.out.print(review.getReview());
+            System.out.print(review.getRating() + "/5 : ");
+            System.out.println(review.getReview());
         }
     }
 }

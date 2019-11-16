@@ -23,9 +23,20 @@ public class UserInterface {
     protected static void addReview(Movie m){
         Review r = new Review();
         Scanner sc = new Scanner(System.in);
-        System.out.println("What is your score for the movie " + m.getTitle() + " ?");
-        r.rating = sc.nextInt();
-        sc.nextLine();
+        int rate;
+        do {
+            try {
+                System.out.println("What is your score for the movie " + m.getTitle() + " ?");
+                rate = Integer.parseInt(sc.nextLine());
+                if (rate < 0 || rate > 5){
+                    throw new NumberFormatException();
+                }
+            }catch (Exception e){
+                System.out.println("Input a rate between 0 and 5");
+                rate = -1;
+            }
+        }while (rate < 0);
+        r.rating = rate;
         System.out.println("Please tell us more, what did you think of " + m.getTitle() + " ?");
         r.review = sc.nextLine();
         m.addReview(r);
@@ -40,12 +51,10 @@ public class UserInterface {
             System.out.println("Do you want to see top 5 movies ranking by overall reviews ? Hit 3");
             System.out.println("Hit 0 to go back to main");
             try {
-                Choice = sc.nextInt();
-                sc.nextLine(); // to avoid skipping of next sc instruction
+                Choice = Integer.parseInt(sc.nextLine());
             }catch (NumberFormatException | InputMismatchException e){
                 System.out.println("Please input a number.");
                 Choice = 20;
-                sc.nextLine();
             }
             switch (Choice){
                 case 0:{
@@ -57,11 +66,10 @@ public class UserInterface {
                     int subChoice = 2;
                     do {
                         try {
-                            System.out.println("Do you want to display movie details ? Hit 1 for yes, 2 for no");
-                            subChoice = sc.nextInt();
-                            sc.nextLine();
+                            System.out.println("\nDo you want to display movie details ? Hit 1 for yes, 2 for no");
+                            subChoice = Integer.parseInt(sc.nextLine());
                             tryagain = false;
-                        }catch (NumberFormatException e){
+                        }catch (NumberFormatException | InputMismatchException e){
                             System.out.println("Please input a valid entry");
                             tryagain = true;
                         }
@@ -212,15 +220,18 @@ public class UserInterface {
                                     for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
                                         System.out.println(ac);
                                     }
-                                    try{
-                                        Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
-                                        Ticket newTicket = new Ticket(0.f, ticketAge, selectedST, cineplex, cinema, r, c);
-                                        newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
-                                        tickets.add(newTicket);
-                                    }catch (IllegalArgumentException e){
-                                        System.out.println("Please input a valid age class.");
-                                        tryagain = true;
-                                    }
+                                    do {
+                                        try {
+                                            Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
+                                            Ticket newTicket = new Ticket(0.f, ticketAge, selectedST, cineplex, cinema, r, c);
+                                            newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
+                                            tickets.add(newTicket);
+                                            tryagain = false;
+                                        } catch (IllegalArgumentException e) {
+                                            System.out.println("Please input a valid age class.");
+                                            tryagain = true;
+                                        }
+                                    }while (tryagain);
                                 } else {
                                     System.out.println("This seat is not among list of available seats.");
                                 }
@@ -251,9 +262,13 @@ public class UserInterface {
         int nbOfTickets;
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         do {
-            System.out.println("How many tickets do you want to book ?");
-            nbOfTickets = sc.nextInt();
-            sc.nextLine();
+            try {
+                System.out.println("How many tickets do you want to book ?");
+                nbOfTickets = sc.nextInt();
+                sc.nextLine();
+            }catch (Exception e){
+                nbOfTickets = 11;
+            }
             if (nbOfTickets > 10 || nbOfTickets < 1){
                 System.out.println("Please input a number of tickets between 1 and 10.");
             }
@@ -301,23 +316,30 @@ public class UserInterface {
                 }
                 case 2:{
                     int subChoice;
+                    boolean tryagain;
                     do{
-                        System.out.println("Hit 0 to go back to main");
-                        System.out.println("To select the cinema you want to display showtimes, please select the cineplex first :");
-                        CineplexListing.showCineplexes();
-                        subChoice = sc.nextInt();
-                        sc.nextLine();
-                        if (subChoice == 0){
-                            break;
+                        try {
+                            System.out.println("Hit 0 to go back to main");
+                            System.out.println("To select the cinema you want to display future showtimes, please select the cineplex first :");
+                            CineplexListing.showCineplexes();
+                            subChoice = sc.nextInt() -1;
+                            sc.nextLine();
+                        }catch (Exception e){
+                            subChoice = -2;
                         }
-                        else if (subChoice > 0 && subChoice < CineplexListing.getNbOfCineplexes()) {
-                            CineplexListing.showShowtimes(subChoice - 1);
-                            break;
+                        if (subChoice == -1){
+                            tryagain = false;
+                        }
+                        else if (subChoice > -1 && subChoice < CineplexListing.getNbOfCineplexes()) {
+                            CineplexListing.showShowtimes(subChoice);
+                            tryagain = false;
                         }
                         else{
                             System.out.println("Please input valid entry");
+                            sc.nextLine();
+                            tryagain = true;
                         }
-                    }while (true);
+                    }while (tryagain);
                     break;
                 }
                 case 3:{
@@ -398,11 +420,11 @@ public class UserInterface {
                                 do {
                                     System.out.println("Key in your CB number:");
                                     String cb = sc.nextLine();
-                                    if (cb.matches("^\\d{10}$")){
+                                    if (cb.matches("^\\d{16}$")){
                                         tryagain = false;
                                     }
                                     else{
-                                        System.out.println("Please input a card number composed of 10 digits.");
+                                        System.out.println("Please input a card number composed of 16 digits.");
                                         tryagain = true;
                                     }
                                 }while (tryagain);
