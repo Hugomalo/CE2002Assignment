@@ -297,7 +297,7 @@ public class Staff {
                     System.out.println("Please input a valid number");
                     cineplexChoice = -1;
                 }
-             } while (cineplexChoice > CineplexListing.cineplexes.size() || cineplexChoice < 1);
+             } while (cineplexChoice > CineplexListing.cineplexes.size() || cineplexChoice < 0);
             cine = new Cinema(Cineplex.chooseNewCinemaCode(), Cineplex.chooseNewCinemaClass());
             CineplexListing.cineplexes.get(cineplexChoice).addCinema(cine);
         }
