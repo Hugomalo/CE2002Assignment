@@ -83,7 +83,7 @@ public class Cinema {
                 LocalDateTime show = s.getMovieShowtime();
                 Movie m = s.getMovie();
                 if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                    System.out.println("[" + movieST.indexOf(s) + "]  " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+                    System.out.println("    [" + (movieST.indexOf(s)+1) + "]  " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
                 }
             }
             return movieST;
@@ -104,7 +104,7 @@ public class Cinema {
                 LocalDateTime show = s.getMovieShowtime();
                 Movie m = s.getMovie();
                 if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
-                    System.out.println(m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
+                    System.out.println("    " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
                 }
             }
         }

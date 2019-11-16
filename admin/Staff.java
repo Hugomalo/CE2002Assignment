@@ -250,7 +250,7 @@ public class Staff {
                                                     System.out.println("Please input a valid date or hour.");
                                                     tryagain = true;
                                                 } else {
-                                                    Showtime s = new Showtime(m, month, day, hour, minute);
+                                                    Showtime s = new Showtime(m, month, day, hour, minute, c);
                                                     CineplexListing.cineplexes.get(cineplexIndex).addShowtime(cineCode, s);
                                                     tryagain = false;
                                                 }

@@ -118,7 +118,7 @@ public class UserInterface {
                         ArrayList<Cinema> cinemas = new ArrayList<Cinema>(cineplex.getCinemas());
                         Map<Integer, ArrayList<Showtime>> movieST = new HashMap<>();
                         for (Cinema cine : cinemas) {
-                            System.out.println("[" + cinemas.indexOf(cine) + "]" + cine.getCineCode());
+                            System.out.println("[" + (cinemas.indexOf(cine)+1) + "]" + cine.getCineCode());
                             movieST.put(cinemas.indexOf(cine), cine.getShowShowtimes(movieTitle));
                         }
                         int cineIndex = -1;
@@ -128,65 +128,83 @@ public class UserInterface {
                         while (tryagain) {
                             try {
                                 System.out.println("Please input desired cinema index :");
-                                cineIndex = sc.nextInt();
-                                cinema = cinemas.get(cineIndex);
-                                sc.nextLine();
-                                tryagain = false;
+                                cineIndex = sc.nextInt() -1;
+                                if (cineIndex == -1){
+                                    abort = true;
+                                    tryagain = false;
+                                }
+                                else {
+                                    cinema = cinemas.get(cineIndex);
+                                    sc.nextLine();
+                                    tryagain = false;
+                                }
                             } catch (Exception e) {
-                                System.out.println("Please input a valid cinema");
+                                System.out.println("Please input a valid cinema, Hit 0 to abort");
                                 tryagain = true;
                             }
                         }
-                        do {
+                        tryagain = true;
+                        while (tryagain) {
                             try {
                                 System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
-                                selectedST = movieST.get(cineIndex).get(sc.nextInt());
-                                tryagain = false;
+                                int a = sc.nextInt() -1;
+                                sc.nextLine();
+                                if (a == -1){
+                                    abort = true;
+                                    tryagain = false;
+                                }
+                                else {
+                                    selectedST = movieST.get(cineIndex).get(a);
+                                    tryagain = false;
+                                }
                             } catch (Exception e) {
-                                System.out.println("Please input a valid index for showtime");
+                                System.out.println("Please input a valid index for showtime. Hit 0 to abort");
                                 tryagain = true;
                             }
-                        } while (tryagain);
-                        for (int i = 0; i < nbOfTicket; i++) {
-                            String r = "Z";
-                            int c = -1;
-                            ArrayList<Seat> avlbSeat = new ArrayList<>(selectedST.getAvailableSeats());
-                            System.out.println("Here is the layout of the room at cinema " + cinema.getCineCode() + " :");
-                            cinema.showLayout();
-                            System.out.println("Please select a seat from the list below:");
-                            for (Seat s : avlbSeat) {
-                                System.out.print("Row: " + s.getRow() + " ; " + "Column: " + s.getColumn());
-                            }
-                            do {
-                                try {
-                                    System.out.println("Input desired Row:");
-                                    r = sc.nextLine();
-                                    System.out.println("Input desired Column:");
-                                    c = sc.nextInt();
-                                    sc.nextLine();
-                                    tryagain = false;
-                                } catch (Exception e) {
-                                    System.out.println("Please input a valid entry for seat selection");
-                                    tryagain = true;
-                                    ;
+                        }
+                        if (!abort) {
+                            for (int i = 0; i < nbOfTicket; i++) {
+                                String r = "Z";
+                                int c = -1;
+                                ArrayList<Seat> avlbSeat = new ArrayList<>();
+                                avlbSeat = selectedST.getAvailableSeats();
+                                System.out.println("Here is the layout of the room at cinema " + cinema.getCineCode() + " :");
+                                cinema.showLayout();
+                                System.out.println("Please select a seat from the list below:");
+                                for (Seat s : avlbSeat) {
+                                    System.out.println("Row: " + s.getRow() + " ; " + "Column: " + s.getColumn());
                                 }
-                            } while (tryagain);
-                            if (selectedST.book(r, c)) {
-                                System.out.println("What is the age class for the ticket nb " + i + "among :");
-                                for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
-                                    System.out.println(ac);
+                                do {
+                                    try {
+                                        System.out.println("Input desired Row:");
+                                        r = sc.nextLine();
+                                        System.out.println("Input desired Column:");
+                                        c = sc.nextInt();
+                                        sc.nextLine();
+                                        tryagain = false;
+                                    } catch (Exception e) {
+                                        System.out.println("Please input a valid entry for seat selection");
+                                        tryagain = true;
+                                    }
+                                } while (tryagain);
+                                if (selectedST.book(r, c)) {
+                                    System.out.println("What is the age class for the ticket nb " + (i+1) + " among :");
+                                    for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
+                                        System.out.println(ac);
+                                    }
+                                    Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
+                                    Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
+                                    newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
+                                    tickets.add(newTicket);
+                                } else {
+                                    System.out.println("This seat is not among list of available seats.");
                                 }
-                                Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
-                                Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
-                                newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
-                                tickets.add(newTicket);
-                            } else {
-                                System.out.println("This seat is not among list of available seats.");
                             }
                         }
                     }
                 } else {
                     System.out.println("Please input valid entry");
+                    abort = false;
                 }
             }catch (InputMismatchException e){
                 System.out.println("Please input a valid entry type.");
@@ -226,7 +244,8 @@ public class UserInterface {
                 }
                 case 'N': {
                     for (int i = 0; i < nbOfTickets; i++) {
-                        ArrayList<Ticket> t = new ArrayList<Ticket>(selectTickets(1));
+                        ArrayList<Ticket> t = new ArrayList<Ticket>();
+                        t = selectTickets(1);
                         if (t != null) {
                             tickets.add(t.get(0));
                         }

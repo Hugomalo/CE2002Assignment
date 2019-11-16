@@ -11,7 +11,7 @@ public class Showtime {
     private LocalDateTime movieShowtime;
     private ArrayList<Seat> availableSeats;
 
-    protected Showtime(Movie m, int month, int day, int hour, int minute){
+    protected Showtime(Movie m, int month, int day, int hour, int minute, Cinema c){
         int year;
         LocalDateTime curr = LocalDateTime.now();
         if (month < curr.getMonthValue()){
@@ -22,6 +22,7 @@ public class Showtime {
         }
         movieShowtime = LocalDateTime.of(year, Month.of(month), day, hour, minute, 0);
         movie = m;
+        availableSeats = c.getLayout();
     }
 
     public Movie getMovie(){return movie;}
