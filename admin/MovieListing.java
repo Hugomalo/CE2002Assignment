@@ -41,7 +41,7 @@ public class MovieListing {
                 }
             }
             Sorting.ratingSort(rankedMovies);
-            for (int i = 0; i<5; i++){
+            for (int i = 0; i<Integer.min(5, rankedMovies.size()); i++){
                 System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getRating() + "/5");
             }
         }
@@ -54,7 +54,7 @@ public class MovieListing {
                 }
             }
             Sorting.saleSort(rankedMovies);
-            for (int i = 0; i<5; i++){
+            for (int i = 0; i<Integer.min(5, rankedMovies.size()); i++){
                 System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getTicketSales() + " tickets");
             }
         }

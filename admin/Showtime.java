@@ -33,7 +33,12 @@ public class Showtime {
         return availableSeats;
     }
     public boolean book(String Row, int column){
-        Seat.Row row = Seat.Row.valueOf(Row);
+        Seat.Row row;
+        try {
+            row = Seat.Row.valueOf(Row);
+        }catch (Exception e){
+            return false;
+        }
         int i = 0;
         while((i < availableSeats.size()) && (availableSeats.get(i).getRow().equals(row) && (availableSeats.get(i).getColumn() == column))){
             i++;

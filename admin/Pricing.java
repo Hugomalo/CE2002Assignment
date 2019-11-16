@@ -9,14 +9,14 @@ import admin.Movie.MovieTypes;
 import admin.Movie.ShowingStatus;
 
 public class Pricing {
-    private static Float basePrice;
-    private static Float stdDiscount;
-    private static Float elderDiscount;
-    private static Float sunPHSurcharge;
-    private static Float _3DSurcharge;
-    private static Float BBSurcharge;
-    private static Float prwSurcharge;
-    private static Float classSurcharge;
+    private static Float basePrice = 5.f;
+    private static Float stdDiscount = 1.f;
+    private static Float elderDiscount = 2.f;
+    private static Float sunPHSurcharge = 1.f;
+    private static Float _3DSurcharge = 0.5f;
+    private static Float BBSurcharge = 0.5f;
+    private static Float prwSurcharge = 1.5f;
+    private static Float classSurcharge = 2.f;
 
     public static Float priceCalc(Ticket t, String a, Movie m, Cinema c){
     	float prcOfTicket = basePrice;

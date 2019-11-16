@@ -44,7 +44,7 @@ public class Ticket {
 
     public void showTicket(){
         System.out.println("    Ticket age class: " + ageClass);
-        System.out.println("    Cineplex: " + cineplexName +  "Cinema" + cineCode);
+        System.out.println("    Cineplex: " + cineplexName +  " Cinema: " + cineCode);
         System.out.println("    Movie: " + selection.getMovie().getTitle() + " on " + selection.getMovieShowtime().getDayOfMonth() + "/" + selection.getMovieShowtime().getMonth() + "/" + selection.getMovieShowtime().getYear() + " at " + selection.getMovieShowtime().getHour() + ":" + selection.getMovieShowtime().getMinute());
         System.out.println("    Seat: " + SeatRow + SeatColumn);
         System.out.println("    Price: " + price + "S$");

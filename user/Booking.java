@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Booking {
     private String name;
-    private int phoneNb;
+    private String phoneNb;
     private String email;
     private String TID;
     private ArrayList<Ticket> tickets;
     private Float price;
 
-    public Booking(String name, int phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
+    public Booking(String name, String phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
         this.name = name;
         this.phoneNb = phoneNb;
         this.email = email;

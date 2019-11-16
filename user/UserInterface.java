@@ -7,7 +7,7 @@ import javax.management.loading.PrivateMLet;
 import java.util.*;
 
 public class UserInterface {
-    private static ArrayList<Booking> bookings;
+    private static ArrayList<Booking> bookings = new ArrayList<Booking>();
 
 
     public ArrayList<Booking> getBookings(String n) {
@@ -39,17 +39,33 @@ public class UserInterface {
             System.out.println("Do you want to see top 5 movies ranking by ticket sales ? Hit 2");
             System.out.println("Do you want to see top 5 movies ranking by overall reviews ? Hit 3");
             System.out.println("Hit 0 to go back to main");
-            Choice = sc.nextInt();
-            sc.nextLine(); // to avoid skipping of next sc instruction
+            try {
+                Choice = sc.nextInt();
+                sc.nextLine(); // to avoid skipping of next sc instruction
+            }catch (NumberFormatException | InputMismatchException e){
+                System.out.println("Please input a number.");
+                Choice = 20;
+                sc.nextLine();
+            }
             switch (Choice){
                 case 0:{
                     break;
                 }
                 case 1:{
                     MovieListing.showMovies();
-                    int subChoice;
-                    System.out.println("Do you want to display movie details ? Hit 1 for yes, 2 for no");
-                    subChoice = sc.nextInt();
+                    boolean tryagain;
+                    int subChoice = 2;
+                    do {
+                        try {
+                            System.out.println("Do you want to display movie details ? Hit 1 for yes, 2 for no");
+                            subChoice = sc.nextInt();
+                            sc.nextLine();
+                            tryagain = false;
+                        }catch (NumberFormatException e){
+                            System.out.println("Please input a valid entry");
+                            tryagain = true;
+                        }
+                    }while (tryagain);
                     boolean movieHit = false;
                     if (subChoice == 1){
                         while (!movieHit) {
@@ -178,6 +194,9 @@ public class UserInterface {
                                     try {
                                         System.out.println("Input desired Row:");
                                         r = sc.nextLine();
+                                        if (!(r.matches("^[A-Z]+"))){
+                                            throw new InputMismatchException();
+                                        }
                                         System.out.println("Input desired Column:");
                                         c = sc.nextInt();
                                         sc.nextLine();
@@ -185,6 +204,7 @@ public class UserInterface {
                                     } catch (Exception e) {
                                         System.out.println("Please input a valid entry for seat selection");
                                         tryagain = true;
+                                        sc.nextLine();
                                     }
                                 } while (tryagain);
                                 if (selectedST.book(r, c)) {
@@ -192,10 +212,15 @@ public class UserInterface {
                                     for (Ticket.AgeClasses ac : Ticket.AgeClasses.values()) {
                                         System.out.println(ac);
                                     }
-                                    Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
-                                    Ticket newTicket = new Ticket((float) 0, ticketAge, selectedST, cineplex, cinema, r, c);
-                                    newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
-                                    tickets.add(newTicket);
+                                    try{
+                                        Ticket.AgeClasses ticketAge = Ticket.AgeClasses.valueOf(sc.nextLine());
+                                        Ticket newTicket = new Ticket(0.f, ticketAge, selectedST, cineplex, cinema, r, c);
+                                        newTicket.setPrice(MovieListing.getMovie(movieTitle), cinema);
+                                        tickets.add(newTicket);
+                                    }catch (IllegalArgumentException e){
+                                        System.out.println("Please input a valid age class.");
+                                        tryagain = true;
+                                    }
                                 } else {
                                     System.out.println("This seat is not among list of available seats.");
                                 }
@@ -335,24 +360,52 @@ public class UserInterface {
                             try {
                                 ArrayList<Ticket> tickets = new ArrayList<Ticket>(book());
                             if(tickets.size() > 0) {
+                                boolean tryagain = true;
                                 String cineID = tickets.get(0).getCineCode();
                                 String name;
-                                int phoneNb;
+                                String phoneNb;
                                 String email;
                                 System.out.println();
                                 System.out.println("What is your Name ?");
                                 name = sc.nextLine();
-                                System.out.println("What is your Phone number ?");
-                                phoneNb = Integer.parseInt(sc.nextLine(), 10);
-                                System.out.println("What is your email ?");
-                                email = sc.nextLine().toLowerCase();
+                                 do{
+                                    System.out.println("What is your Phone number ?");
+                                    phoneNb = sc.nextLine();
+                                    if (phoneNb.matches("^\\d{8,11}(?!\\d)$")){
+                                        tryagain = false;
+                                    }
+                                    else{
+                                        System.out.println("Please input a phone number composed of 8 to 11 digits only.");
+                                        tryagain = true;
+                                    }
+                                }while(tryagain);
+                                do {
+                                    System.out.println("What is your email ?");
+                                    email = sc.nextLine().toLowerCase();
+                                    if (email.matches("^(.+)@(.+).(.+)$")){
+                                        tryagain = false;
+                                    }
+                                    else{
+                                        System.out.println("Please input a valid email : example@something.domain");
+                                        tryagain = true;
+                                    }
+                                }while (tryagain);
                                 Booking b = new Booking(name, phoneNb, email, cineID, tickets);
                                 bookings.add(b);
                                 System.out.println("Recap :");
                                 b.showBooking();
                                 System.out.println("Please proceed to payment");
-                                System.out.println("Key in your CB number:");
-                                sc.nextLine();
+                                do {
+                                    System.out.println("Key in your CB number:");
+                                    String cb = sc.nextLine();
+                                    if (cb.matches("^\\d{10}$")){
+                                        tryagain = false;
+                                    }
+                                    else{
+                                        System.out.println("Please input a card number composed of 10 digits.");
+                                        tryagain = true;
+                                    }
+                                }while (tryagain);
                                 System.out.println("Payment is successful.");
                             }
                             }catch (NullPointerException e){

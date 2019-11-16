@@ -246,7 +246,7 @@ public class Staff {
                                                 hour = Integer.parseInt(sc.nextLine());
                                                 System.out.println("What is the minute for your showtime ? in 2 digit format");
                                                 minute = Integer.parseInt(sc.nextLine());
-                                                if (month > 12 || month < 1 || day > 31 || day < 1 || hour > 24 || hour < 0 || minute > 60 || minute < 1) {
+                                                if (month > 12 || month < 1 || day > 31 || day < 1 || hour > 23 || hour < 0 || minute > 59 || minute < 1) {
                                                     System.out.println("Please input a valid date or hour.");
                                                     tryagain = true;
                                                 } else {
