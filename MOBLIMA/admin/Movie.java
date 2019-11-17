@@ -1,9 +1,13 @@
 package MOBLIMA.admin;
 
 import MOBLIMA.user.Review;
-
 import java.io.Serializable;
 import java.util.ArrayList;
+
+/**
+ * Movie class for movie information (e.g. type, status, title, synopsis etc).
+ * @author CE2002 SE3 Group 4
+ */
 
 public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -30,6 +34,15 @@ public class Movie implements Serializable {
     private int ticketSales;
     private MovieTypes movieType;
 
+    /**
+     * Creates a movie with all of its relevant information included, and also creates a new list for storing reviews.
+     * @param title Movie title
+     * @param showingStatus Showing status of movie (Coming Soon, Preview, Now Showing or End Of Showing)
+     * @param synopsis Movie synopsis
+     * @param director Movie director
+     * @param cast Movie cast
+     * @param movieType Type of movie (Blockbuster, 3D or Classic)
+     */
     public Movie(String title, ShowingStatus showingStatus, String synopsis, String director, ArrayList<String> cast, MovieTypes movieType) {
         this.title = title;
         this.showingStatus = showingStatus;
@@ -43,7 +56,11 @@ public class Movie implements Serializable {
         this.reviews = new ArrayList<Review>();
     }
 
-
+    /**
+     * Compares the rating between 2 movies.
+     * @param o Object
+     * @return Integer denoting which movie has a higher/lower rating
+     */
     int compareToRating(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
@@ -70,6 +87,12 @@ public class Movie implements Serializable {
         }
         return 0;
     }
+
+    /**
+     * Compares the ticket sales between 2 movies.
+     * @param o Object
+     * @return Integer denoting which movie has higher/lower sales
+     */
     int compareToSale(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
@@ -97,31 +120,66 @@ public class Movie implements Serializable {
         return 0;
     }
 
+    /**
+     * Gets the movie title.
+     * @return Movie title
+     */
     public String getTitle(){return title;}
+    /**
+     * Gets the overall rating of the movie.
+     * @return Movie overall rating
+     */
     Float getRating(){return globalRating;}
+    /**
+     * Gets the ticket sales of the movie.
+     * @return Movie ticket sales
+     */
     int getTicketSales(){return ticketSales;}
+    /**
+     * Gets the showing status of the movie.
+     * @return Movie showing status
+     */
     ShowingStatus getShowingStatus(){return showingStatus;}
+    /**
+     * Gets the number of reviews for the movie.
+     * @return Number of reviews
+     */
     int getReviewNb(){return reviewNb;}
+    /**
+     * Gets the type of movie.
+     * @return Movie type
+     */
+    MovieTypes getType() {return movieType;}
 
-    MovieTypes getType() {
-    	return movieType;
-    }
-    
-    
+    /**
+     * Updates the showing status of a movie.
+     * @param sh Showing status
+     */
     void updateShowingStatus(ShowingStatus sh){
         showingStatus = sh;
     }
 
+    /**
+     * Adds the number of tickets sold to the ticket sales.
+     * @param nbOfTicket Number of tickets sold
+     */
     public void addSales(int nbOfTicket) {
         ticketSales += nbOfTicket;
     }
 
+    /**
+     * Adds a review to a movie.
+     * @param r Review
+     */
     public void addReview(Review r){
         reviews.add(r);
         globalRating = (globalRating*reviewNb + r.getRating())/(reviewNb+1);
         reviewNb += 1;
     }
 
+    /**
+     * Displays the information of a movie.
+     */
     void showMovieDetails(){
         System.out.println("Title: " + title);
         System.out.println("Status: " + showingStatus);

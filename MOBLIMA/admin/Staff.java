@@ -70,7 +70,7 @@ public class Staff {
                     int subchoice;
                     do {
                         try {
-                            System.out.println("Do you you want to add showtimes ? Hit 1, or to remove showtimes ? Hit 2. Hit 0 to go back.");
+                            System.out.println("Hit 1 to add showtimes. Hit 2 to remove showtimes. Hit 0 to go back.");
                             subchoice = Integer.parseInt(input.nextLine());
                         } catch (NumberFormatException e) {
                             subchoice = -1;

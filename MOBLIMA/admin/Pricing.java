@@ -5,6 +5,11 @@ import MOBLIMA.user.Ticket;
 import MOBLIMA.admin.Movie.MovieTypes;
 import MOBLIMA.admin.Movie.ShowingStatus;
 
+/**
+ * Pricing class for all pricing information such as discounts and surcharges.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Pricing {
     private static Float basePrice = 5.f;
     private static Float stdDiscount = 1.f;
@@ -15,6 +20,14 @@ public class Pricing {
     private static Float prwSurcharge = 1.5f;
     private static Float classSurcharge = 2.f;
 
+    /**
+     * Calculates the price of a ticket.
+     * @param t Ticket
+     * @param a Age class converted to string
+     * @param m Movie
+     * @param c Cinema
+     * @return Ticket price
+     */
     public static Float priceCalc(Ticket t, String a, Movie m, Cinema c){
     	float prcOfTicket = basePrice;
     	
@@ -46,9 +59,25 @@ public class Pricing {
     	
     	return prcOfTicket;
     }
+    
+    /**
+     * Sets the base price of a ticket.
+     * @param p Base price
+     */
     protected static void setBasePrice(Float p){
         basePrice = p;
     }
+    
+    /**
+     * Sets all the discounts and surcharges that can be included in a ticket.
+     * @param d1 Student discount
+     * @param d2 Senior citizen discount
+     * @param s1 Surcharge for Sundays/Public Holidays
+     * @param s2 3D movie surcharge
+     * @param s3 Blockbuster movie surcharge
+     * @param s4 Preview movie surcharge
+     * @param s5 Gold class cinema surcharge
+     */
     protected static void setDiscountSurcharge(Float d1, Float d2, Float s1, Float s2, Float s3, Float s4, Float s5){
     	stdDiscount = d1;
     	elderDiscount = d2;
