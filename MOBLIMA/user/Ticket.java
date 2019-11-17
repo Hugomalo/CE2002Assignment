@@ -32,7 +32,7 @@ public class Ticket implements Serializable {
     }
 
     protected void setPrice(Movie m, Cinema cine){
-        price = Pricing.priceCalc(this, ageClass.toString(), m, cine);
+        price = Pricing.priceCalc(this, this.ageClass.toString(), m, cine);
     }
 
     protected String getCineCode(){return cineCode;}
