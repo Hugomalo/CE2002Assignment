@@ -6,6 +6,19 @@ import MOBLIMA.user.UserInterface;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * @author CE2002 SE3 Group 4
+ *
+ */
+
+/**
+ * Main menu for selecting between Admin or Movie-goer mode.
+ * Selecting Admin mode will prompt the user to enter username and 
+ * password for authorisation.
+ * User can choose to quit as well, thereby terminating the program.
+ */
+
 public class main {
 
     public static void main(String[] args) {

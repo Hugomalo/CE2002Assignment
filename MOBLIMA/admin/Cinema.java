@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Cinema class for cinema information in a cineplex.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Cinema implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +24,12 @@ public class Cinema implements Serializable {
     private ArrayList<Showtime> showtimes;
 
 
-
+    /**
+     * Creates a cinema with a seat layout and an array of 
+     * showtimes, given the cinema code and class.
+     * @param code Cinema code 
+     * @param cineClass Cinema class (1 for Gold, 2 for Normal)
+     */
     Cinema(String code, int cineClass) {
         Seat s;
         numOfSeat = 100;
@@ -44,6 +54,10 @@ public class Cinema implements Serializable {
         showtimes = new ArrayList<Showtime>();
     }
 
+    /**
+     * Sets the layout of the cinema.
+     * @param numSeat Number of seats
+     */
     protected void setLayout(int numSeat){
         Seat s;
         layout=new ArrayList<>();
@@ -58,6 +72,10 @@ public class Cinema implements Serializable {
         }
     }
 
+    /**
+     * Sets the class (Gold/Normal) of the cinema.
+     * @param cineClass Cinema class
+     */
     protected void setClass(int cineClass){
         switch (cineClass) {
             case 1:
@@ -69,10 +87,19 @@ public class Cinema implements Serializable {
         }
     }
 
+    /**
+     * Gets the showtimes of a particular cinema.
+     * @return Showtimes of the cinema
+     */
     public ArrayList<Showtime> getShowtimes() {
         return showtimes;
     }
 
+    /**
+     * Gets the showtimes of a movie in a cinema.
+     * @param title Title of movie
+     * @return Showtimes of movie in a cinema
+     */
     public ArrayList<Showtime> getShowShowtimes(String title){
         ArrayList<Showtime> movieST = new ArrayList<Showtime>();
         if (showtimes != null) {
@@ -93,14 +120,26 @@ public class Cinema implements Serializable {
         else{return null;}
     }
 
+    /**
+     * Gets the cinema code of a cinema.
+     * @return Cinema code
+     */
     public String getCineCode() {
         return cineCode;
     }
 
+    /**
+     * Sets the cinema code of a cinema.
+     * @param c Cinema code
+     */
     public void setCineCode(String c) {
         cineCode = c;
     }
 
+    /**
+     * Retrieves the showtimes of a movie that is under
+     * 'Coming Soon', 'Preview' or 'Now Showing' in a cinema.
+     */
     protected void showShowtimes() {
         if (showtimes != null) {
             for (Showtime s : showtimes) {
@@ -116,18 +155,33 @@ public class Cinema implements Serializable {
         }
     }
 
+    /**
+     * Removes a showtime of a cinema.
+     * @param s Cinema showtime
+     */
     protected  void removeShowtime(Showtime s){
         showtimes.remove(s);
     }
 
+    /**
+     * Gets the number of seats in a cinema.
+     * @return Number of seats
+     */
     public int getNumOfSeat() {
         return numOfSeat;
     }
 
+    /**
+     * Gets the class of a cinema.
+     * @return Cinema class
+     */
     public cinemaClasses getCinemaClass() {
         return cinemaClass;
     }
 
+    /**
+     * Displays the layout of a cinema.
+     */
     public void showLayout(){
         int i=0;
         System.out.println("    1  2  3    4  5  6  7  8  9  10 \n");
@@ -148,10 +202,18 @@ public class Cinema implements Serializable {
         }
     }
 
+    /**
+     * Gets the layout of the cinema.
+     * @return Layout of cinema
+     */
     public ArrayList<Seat> getLayout() {
         return layout;
     }
 
+    /**
+     * Adds a showtime for a cinema.
+     * @param s Showtime
+     */
     protected void addShowtime(Showtime s) {
         showtimes.add(s);
     }
