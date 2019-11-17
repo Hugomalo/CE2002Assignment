@@ -19,11 +19,6 @@ public class Booking implements Serializable {
      * @return Filepath
      */
     public static String getFilepath() {
-class Booking implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private static final String filepath = "listing" + File.separator + "bookings.ser";
-
-    static String getFilepath() {
         return filepath;
     }
 
