@@ -13,9 +13,12 @@ public class main {
         Calendar.initSunPH();
         char choice = 'D';
         do {
-            System.out.println("Please select type of mode: 'A' for admin, 'M' for movie-goer or 'Q' to quit");
-            choice = sc.next().charAt(0);
-            sc.nextLine();
+            try {
+                System.out.println("Please select type of mode: 'A' for admin, 'M' for movie-goer or 'Q' to quit");
+                choice = sc.nextLine().charAt(0);
+            }catch (Exception e){
+                choice = 'D';
+            }
             switch (choice) {
                 case 'a':
                 case 'A': {
@@ -31,9 +34,12 @@ public class main {
                             Staff.mainSwitch();
                         }
                         else {
-                            System.out.println("Wrong login or password, do you want to try again ? hit Y for yes, anything for no");
-                            tryagain = sc.next().charAt(0) == 'Y';
-                            sc.nextLine();
+                            try {
+                                System.out.println("Wrong login or password, do you want to try again ? hit Y for yes, anything for no");
+                                tryagain = sc.nextLine().charAt(0) == 'Y';
+                            }catch (Exception e){
+                                tryagain = false;
+                            }
                         }
                     }while (tryagain);
                     break;

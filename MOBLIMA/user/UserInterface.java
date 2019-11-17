@@ -272,8 +272,12 @@ public class UserInterface {
         }while(nbOfTickets > 10 || nbOfTickets < 1);
         char choice;
         do {
-            System.out.println("Are theses tickets for the same showtime and movie ? Hit Y for yes or N for no");
-            choice = sc.nextLine().charAt(0);
+            try {
+                System.out.println("Are theses tickets for the same showtime and movie ? Hit Y for yes or N for no");
+                choice = sc.nextLine().charAt(0);
+            }catch (Exception e){
+                choice = 'e';
+            }
             switch(choice) {
                 case 'Y': {
                     tickets = selectTickets(nbOfTickets);
