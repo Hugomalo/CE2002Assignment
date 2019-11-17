@@ -22,7 +22,7 @@ public class Showtime implements Serializable {
             year = curr.getYear();
         }
         movieShowtime = LocalDateTime.of(year, Month.of(month), day, hour, minute, 0);
-        movie = m;
+        movie = MovieListing.getMovie(m.title);
         availableSeats = c.getLayout();
     }
 

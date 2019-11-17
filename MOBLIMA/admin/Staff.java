@@ -1,7 +1,7 @@
 package MOBLIMA.admin;
 
 import MOBLIMA.ObjectsIO;
-
+import MOBLIMA.user.Calendar;
 import java.util.*;
 
 public class Staff {
@@ -23,7 +23,7 @@ public class Staff {
 
         do {
             try {
-                System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 edit showtimes\n8 to edit cineplex/cinema\n-1 to go back to main");
+                System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 edit showtimes\n8 to edit cineplex/cinema\n9 to add a Public Holiday\n-1 to go back to main");
                 choice = input.nextInt();
                 input.nextLine();
             }catch (NumberFormatException | InputMismatchException e) {
@@ -101,6 +101,9 @@ public class Staff {
                     updateCineplex();
                     ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
                     break;
+                }
+                case 9:{
+                    addPH();
                 }
                 case -1:{
                     break;
@@ -603,5 +606,31 @@ public class Staff {
                 }
             }
         }while (tryagain);
+    }
+
+    private static void addPH(){
+        Scanner sc = new Scanner(System.in);
+        int month;
+        int day;
+        do{
+            try {
+                System.out.println("Please input the month of the new public holiday");
+                month = Integer.parseInt(sc.nextLine());
+                System.out.println("Please input the day of the month of the new public holiday");
+                day = Integer.parseInt(sc.nextLine());
+                if(month > 12 || month < 1 || day > 31 || day < 1){
+                    throw new NumberFormatException();
+                }
+            }catch (NumberFormatException e){
+                System.out.println("Please input a month between 1 and 12 and a day between 1 and 31.");
+                month = 0;
+                day = 0;
+            }
+        }while (month > 12 || month < 1 || day > 31 || day < 1);
+        try {
+            Calendar.addPH(month, day);
+        }catch (Exception e){
+            System.out.println("This date is not valid. New Public Holiday could not be added");
+        }
     }
 }

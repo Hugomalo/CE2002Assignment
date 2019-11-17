@@ -40,7 +40,9 @@ public class Cineplex implements Serializable {
             for (Cinema cine : cinemas) {
                 if (cine.getShowtimes() != null) {
                     for (Showtime s : cine.getShowtimes()) {
-                        if (!movies.contains(s.getMovie().getTitle()) && (s.getMovie().getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
+                        boolean in = movies.contains(s.getMovie().getTitle());
+                        boolean EOS = (s.getMovie().getShowingStatus().equals(Movie.ShowingStatus.End_Of_Showing));
+                        if (!in && !EOS) {
                             movies.add(s.getMovie().getTitle());
                         }
                     }

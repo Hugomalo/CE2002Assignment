@@ -257,13 +257,12 @@ public class UserInterface {
 
     private static ArrayList<Ticket> book(){
         Scanner sc = new Scanner(System.in);
-        int nbOfTickets;
+        int nbOfTickets = 0;
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         do {
             try {
                 System.out.println("How many tickets do you want to book ?");
-                nbOfTickets = sc.nextInt();
-                sc.nextLine();
+                nbOfTickets = Integer.parseInt(sc.nextLine());
             }catch (Exception e){
                 nbOfTickets = 11;
             }

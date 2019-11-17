@@ -54,4 +54,9 @@ public class Calendar {
         LocalDateTime christmas2= LocalDateTime.of(2020,12,25,0,0);
         SunPH.add(christmas2);
     }
+
+    public static void addPH(int month, int day){
+        LocalDateTime newPH = LocalDateTime.of(LocalDateTime.now().getYear(),month,day,0,0);
+        SunPH.add(newPH);
+    }
 }
