@@ -2,8 +2,13 @@ package MOBLIMA.user;
 
 import MOBLIMA.ObjectsIO;
 import MOBLIMA.admin.*;
-
 import java.util.*;
+
+/**
+ * UserInterface class for all the functions for the Moviegoer module
+ * such as viewing movie information and booking tickets.
+ * @author CE2002 SE3 Group 4
+ */
 
 public class UserInterface {
     private static ArrayList<Booking> bookings = (ArrayList<Booking>) MOBLIMA.ObjectsIO.ReadObject(Booking.getFilepath());

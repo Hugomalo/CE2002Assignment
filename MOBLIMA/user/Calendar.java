@@ -4,13 +4,29 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Calendar class for calendar related functions such as
+ * adding a public holiday and checking whether a certain
+ * day falls on a Sunday or a public holiday.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Calendar {
     private static ArrayList<LocalDateTime> SunPH = new ArrayList<LocalDateTime>(); //Stores sundays and public holidays in an Array
 
+    /**
+     * Gets a list of Sundays and public holidays.
+     * @return List of Sundays and public holidays
+     */
     public static ArrayList<LocalDateTime> getSunPH(){
         return SunPH;
     }
     
+    /**
+     * Checks whether a showtime falls on a Sunday/public holiday.
+     * @param showtime Showtime
+     * @return Boolean result
+     */
     public static boolean isPH(LocalDateTime showtime) {
     	boolean isPH = false;
     	for (LocalDateTime time : SunPH) {
@@ -24,6 +40,9 @@ public class Calendar {
     	return isPH;
     }
 
+    /**
+     * A list of all current public holidays until 2020.
+     */
     public static void initSunPH(){
 
         LocalDateTime christmas = LocalDateTime.of(2019,12,25,0,0);
@@ -52,6 +71,11 @@ public class Calendar {
         SunPH.add(christmas2);
     }
 
+    /**
+     * Adds a public holiday to the program's calendar.
+     * @param month Month
+     * @param day Day
+     */
     public static void addPH(int month, int day){
         LocalDateTime newPH = LocalDateTime.of(LocalDateTime.now().getYear(),month,day,0,0);
         SunPH.add(newPH);

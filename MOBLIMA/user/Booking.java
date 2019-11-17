@@ -5,10 +5,19 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Booking class for handling the booking of movie tickets.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String filepath = "listing" + File.separator + "bookings.ser";
 
+    /**
+     * Gets the filepath of the booking.
+     * @return Filepath
+     */
     public static String getFilepath() {
         return filepath;
     }
@@ -20,6 +29,14 @@ public class Booking implements Serializable {
     private ArrayList<Ticket> tickets;
     private Float price;
 
+    /**
+     * Creates a booking of movie tickets.
+     * @param name Name
+     * @param phoneNb Phone number
+     * @param email Email address
+     * @param cineCode Cinema code
+     * @param tickets List of tickets
+     */
     public Booking(String name, String phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
         this.name = name;
         this.phoneNb = phoneNb;
@@ -33,16 +50,27 @@ public class Booking implements Serializable {
         price = pr;
     }
 
-
+    /**
+     * Creates the Transaction ID once booking is submitted.
+     * @param c Cinema code
+     * @return Transaction ID
+     */
     public String SetTID(String c){
         LocalDateTime d = LocalDateTime.now();
         return String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
     }
 
+    /**
+     * Gets the name of the user booking the tickets.
+     * @return Name
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Displays the completed booking along with the Transaction ID.
+     */
     public void showBooking(){
         System.out.println("Transaction ID: " + TID);
         System.out.println("Phone number: " + phoneNb);
