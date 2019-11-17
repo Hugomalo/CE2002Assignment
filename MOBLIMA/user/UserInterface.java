@@ -283,7 +283,7 @@ public class UserInterface {
                     for (int i = 0; i < nbOfTickets; i++) {
                         ArrayList<Ticket> t = new ArrayList<Ticket>();
                         t = selectTickets(1);
-                        if (t != null) {
+                        if (t != null && t.size()>0) {
                             tickets.add(t.get(0));
                         }
                     }
