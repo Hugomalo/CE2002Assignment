@@ -168,7 +168,7 @@ public class UserInterface {
                             }
                         }
                         tryagain = true;
-                        while (tryagain) {
+                        while (tryagain && !abort) {
                             try {
                                 System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
                                 int a = sc.nextInt() -1;

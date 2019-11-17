@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Cinema implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     enum cinemaClasses {
         Gold,
@@ -95,6 +96,7 @@ public class Cinema implements Serializable {
     public String getCineCode() {
         return cineCode;
     }
+
     public void setCineCode(String c) {
         cineCode = c;
     }
@@ -112,6 +114,10 @@ public class Cinema implements Serializable {
         else{
             System.out.println("No showtimes in this cinema yet");
         }
+    }
+
+    protected  void removeShowtime(Showtime s){
+        showtimes.remove(s);
     }
 
     public int getNumOfSeat() {

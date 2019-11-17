@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class MovieListing implements Serializable {
     private static final String filepath="listing\\movies.ser";
+    private static final long serialVersionUID = 1L;
 
     private static ArrayList<Movie> movies = (ArrayList<Movie>) MOBLIMA.ObjectsIO.ReadObject(MovieListing.filepath);
 

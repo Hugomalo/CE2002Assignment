@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Booking implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static final String filepath="listing\\bookings.ser";
 
     public static String getFilepath() {

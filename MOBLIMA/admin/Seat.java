@@ -3,6 +3,8 @@ package MOBLIMA.admin;
 import java.io.Serializable;
 
 public class Seat implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     enum Row{
         A,
         B,

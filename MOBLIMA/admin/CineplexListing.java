@@ -5,6 +5,7 @@ import java.io.Serializable;
 import MOBLIMA.admin.Cineplex;
 
 public class CineplexListing implements Serializable{
+    private static final long serialVersionUID = 1L;
     private static final String filepath="listing\\cineplexes.ser";
 
     protected static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);

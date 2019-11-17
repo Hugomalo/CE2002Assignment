@@ -2,9 +2,7 @@ package MOBLIMA.admin;
 
 import MOBLIMA.ObjectsIO;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Staff {
     private static String login = "Admin";
@@ -25,7 +23,7 @@ public class Staff {
 
         do {
             try {
-                System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 add showtimes\n8 to edit cineplex/cinema\n-1 to go back to main");
+                System.out.println("what do you want to do? \n0 to create a cineplex\n1 to add a cinema in a cineplex \n2 to print everything\n3 to set pricing\n4 to add a movie\n5 to remove a movie\n6 to update a movie\n7 edit showtimes\n8 to edit cineplex/cinema\n-1 to go back to main");
                 choice = input.nextInt();
                 input.nextLine();
             }catch (NumberFormatException | InputMismatchException e) {
@@ -69,8 +67,34 @@ public class Staff {
                     break;
                 }
                 case 7:{
-                    setShowtimes();
-                    ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
+                    int subchoice;
+                    do {
+                        try {
+                            System.out.println("Do you you want to add showtimes ? Hit 1, or to remove showtimes ? Hit 2. Hit 0 to go back.");
+                            subchoice = Integer.parseInt(input.nextLine());
+                        } catch (NumberFormatException e) {
+                            subchoice = -1;
+                        }
+                        switch (subchoice) {
+                            case 0: {
+                                break;
+                            }
+                            case 1: {
+                                setShowtimes();
+                                ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
+                                break;
+                            }
+                            case 2: {
+                                removeShowtimes();
+                                ObjectsIO.WriteObject(cineplexList, CineplexListing.getFilepath());
+                                break;
+                            }
+                            default: {
+                                System.out.println("Please input a valid number (i.e. 0, 1 or 2)");
+                                break;
+                            }
+                        }
+                    }while (subchoice < 0 || subchoice > 2);
                     break;
                 }
                 case 8:{
@@ -210,7 +234,7 @@ public class Staff {
         }while (true);
     }
 
-    protected static void setShowtimes() {
+    private static void setShowtimes() {
         int subChoice;
         Scanner sc = new Scanner(System.in);
         do{
@@ -266,7 +290,7 @@ public class Staff {
                                                 hour = Integer.parseInt(sc.nextLine());
                                                 System.out.println("What is the minute for your showtime ? in 2 digit format");
                                                 minute = Integer.parseInt(sc.nextLine());
-                                                if (month > 12 || month < 1 || day > 31 || day < 1 || hour > 23 || hour < 0 || minute > 59 || minute < 1) {
+                                                if (month > 12 || month < 1 || day > 31 || day < 1 || hour > 23 || hour < 0 || minute > 59 || minute < 0) {
                                                     System.out.println("Please input a valid date or hour.");
                                                     tryagain = true;
                                                 } else {
@@ -296,6 +320,102 @@ public class Staff {
                 System.out.println("Please input a valid entry");
             }
         }while (true);
+    }
+
+    private static void removeShowtimes() {
+        int subChoice;
+        Scanner sc = new Scanner(System.in);
+        boolean abort = false;
+        do {
+            try {
+                System.out.println("Hit 0 to go back to main");
+                System.out.println("To select the cinema you want to change showtime, please select the cineplex first :");
+                CineplexListing.showCineplexes();
+                subChoice = Integer.parseInt(sc.nextLine());
+                if (subChoice == 0) {
+                    abort = true;
+                }
+                else if (subChoice > 0 && subChoice <= CineplexListing.getNbOfCineplexes()) {
+                    int cpIndex = subChoice - 1;
+                    String cineCode;
+                    Cinema c;
+                    String movieTitle;
+                    Cineplex cineplex = CineplexListing.getCineplex(cpIndex);
+                    System.out.println("Movies showing at " + cineplex.getName());
+                    ArrayList<String> movies = new ArrayList<>(cineplex.getMovies());
+                    for (String movie : movies) {
+                        System.out.println(movie);
+                    }
+                    do {
+                        System.out.println("For what movie do you want to remove a showtime ? : (please input Title)");
+                        movieTitle = sc.nextLine();
+                        if (movieTitle.equals("0")) {
+                            abort = true;
+                        } else if (!movies.contains(movieTitle)) {
+                            System.out.println("Please input a valid movie Title. Hit 0 to abort");
+                        }
+                    } while (!movies.contains(movieTitle) && !abort);
+                    if (!abort) {
+                        System.out.println("Here are the available showtimes for each cinema for" + movieTitle);
+                        ArrayList<Cinema> cinemas = new ArrayList<Cinema>(cineplex.getCinemas());
+                        Map<Integer, ArrayList<Showtime>> movieST = new HashMap<>();
+                        for (Cinema cine : cinemas) {
+                            System.out.println("[" + (cinemas.indexOf(cine) + 1) + "]" + cine.getCineCode());
+                            movieST.put(cinemas.indexOf(cine), cine.getShowShowtimes(movieTitle));
+                        }
+                        int cineIndex = -1;
+                        Cinema cinema = null;
+                        Showtime selectedST = null;
+                        boolean tryagain = true;
+                        while (tryagain) {
+                            try {
+                                System.out.println("Please input desired cinema index :");
+                                cineIndex = sc.nextInt() - 1;
+                                if (cineIndex == -1) {
+                                    abort = true;
+                                    tryagain = false;
+                                } else {
+                                    cinema = cinemas.get(cineIndex);
+                                    sc.nextLine();
+                                    tryagain = false;
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Please input a valid cinema, Hit 0 to abort");
+                                tryagain = true;
+                            }
+                        }
+                        tryagain = true;
+                        while (tryagain && !abort) {
+                            try {
+                                System.out.println("Please input the desired showtime at cinema " + cinema.getCineCode());
+                                int a = sc.nextInt() - 1;
+                                sc.nextLine();
+                                if (a == -1) {
+                                    abort = true;
+                                    tryagain = false;
+                                } else {
+                                    selectedST = movieST.get(cineIndex).get(a);
+                                    tryagain = false;
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Please input a valid index for showtime. Hit 0 to abort");
+                                tryagain = true;
+                            }
+                        }
+                        if (abort) {
+                            break;
+                        } else {
+                            cinema.removeShowtime(selectedST);
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }catch(NumberFormatException e){
+                System.out.println("Please input a valid entry");
+            }
+        } while (!abort);
     }
 
     private static void oneNewCinema() {

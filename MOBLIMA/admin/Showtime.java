@@ -6,6 +6,8 @@ import java.time.Month;
 import java.util.ArrayList;
 
 public class Showtime implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Movie movie;
     private LocalDateTime movieShowtime;
     private ArrayList<Seat> availableSeats;
