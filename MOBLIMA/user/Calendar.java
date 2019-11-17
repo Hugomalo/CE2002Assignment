@@ -16,6 +16,7 @@ public class Calendar {
     	for (LocalDateTime time : SunPH) {
     		if ((time.getDayOfYear() == showtime.getDayOfYear()) || (showtime.getDayOfWeek().equals(DayOfWeek.SUNDAY))) {
     			isPH = true;
+    		}
     		else {
     			isPH = false;
     		}
