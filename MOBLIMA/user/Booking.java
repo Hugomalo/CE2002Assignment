@@ -1,13 +1,13 @@
 package MOBLIMA.user;
 
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static final String filepath="listing\\bookings.ser";
-    // if you are using linux, change to "listing/bookings.ser"
+    private static final String filepath = "listing" + File.separator + "bookings.ser";
 
     public static String getFilepath() {
         return filepath;
