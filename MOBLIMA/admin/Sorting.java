@@ -2,8 +2,18 @@ package MOBLIMA.admin;
 
 import java.util.ArrayList;
 
+/**
+ * Sorting class for sorting the list of movies by either
+ * ticket sales or overall rating.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Sorting {
-    public static void ratingSort(ArrayList<Movie> list){
+    /**
+     * Sorts the list of movies by overall rating.
+     * @param list List of movies
+     */
+	public static void ratingSort(ArrayList<Movie> list){
         int min;
         Movie temp;
         for (int index = 0; index < list.size()-1; index++){
@@ -17,6 +27,10 @@ public class Sorting {
             list.set(index, temp);
         }
     }
+	/**
+	 * Sorts the list of movies by ticket sales.
+	 * @param list List of movies
+	 */
     public static void saleSort(ArrayList<Movie> list){
         int min;
         Movie temp;

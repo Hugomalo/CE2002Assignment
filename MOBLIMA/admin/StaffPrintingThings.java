@@ -2,8 +2,17 @@ package MOBLIMA.admin;
 
 import java.util.Scanner;
 
+/**
+ * StaffPrintingThings class for displaying of information in
+ * the Admin module.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class StaffPrintingThings {
-    protected static void showStuff(){
+    /**
+     * Displays information such as the list of all cineplexes and movies.
+     */
+	protected static void showStuff(){
         int choice;
         Scanner input = new Scanner(System.in);
         do{

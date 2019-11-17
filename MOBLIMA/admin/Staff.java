@@ -4,11 +4,19 @@ import MOBLIMA.ObjectsIO;
 import MOBLIMA.user.Calendar;
 import java.util.*;
 
+/**
+ * Staff class for all the functions for the Admin module
+ * such as adding/removing/modifying information.
+ * @author CE2002 SE3 Group 4
+ */
+
 public class Staff {
     private static String login = "Admin";
     private static String password = "Admin";
 
-
+    /**
+     * Main menu and functions for the Admin module of the program.
+     */
     public static void mainSwitch() {
 
 
@@ -115,11 +123,21 @@ public class Staff {
         } while (choice != -1);
     }
 
+    /**
+     * Checks whether the username and password matches the one
+     * in the system in order to be granted access to the Admin
+     * module.
+     * @param lgin Username
+     * @param psw Password
+     * @return Boolean result showing whether login is successful
+     */
     public static boolean login(String lgin, String psw) {
         return login.equals(lgin) && password.equals(psw);
     }
 
-
+    /**
+     * Updates the cineplex information such as cinema code and class, layout.
+     */
     private  static void updateCineplex(){
         int subChoice;
         Scanner sc = new Scanner(System.in);
@@ -237,6 +255,9 @@ public class Staff {
         }while (true);
     }
 
+    /**
+     * Adds or changes the showtimes of the cinemas.
+     */
     private static void setShowtimes() {
         int subChoice;
         Scanner sc = new Scanner(System.in);
@@ -325,6 +346,9 @@ public class Staff {
         }while (true);
     }
 
+    /**
+     * Removes the showtimes of the cinemas.
+     */
     private static void removeShowtimes() {
         int subChoice;
         Scanner sc = new Scanner(System.in);
@@ -421,6 +445,9 @@ public class Staff {
         } while (!abort);
     }
 
+    /**
+     * Adds 1 new cinema to a cineplex.
+     */
     private static void oneNewCinema() {
         Cinema cine;
         int cineplexChoice;
@@ -446,6 +473,9 @@ public class Staff {
         }
     }
 
+    /**
+     * Sets all the pricing information (base, discounts and surcharges) for ticket booking.
+     */
     private static void setPricing(){
         Scanner input = new Scanner(System.in);
         Float d1;
@@ -474,6 +504,9 @@ public class Staff {
         Pricing.setDiscountSurcharge(d1, d2, s1, s2, s3, s4, s5);
     }
 
+    /**
+     * Updates the information of a movie.
+     */
     private static void updateMovie() {
         Scanner input = new Scanner(System.in);
         Movie m = null;
@@ -497,6 +530,9 @@ public class Staff {
         }
     }
 
+    /**
+     * Adds a movie to the list of movies.
+     */
     private static void addMovie(){
         Scanner input = new Scanner(System.in);
         String title;
@@ -556,6 +592,9 @@ public class Staff {
         MovieListing.addMovie(new Movie(title, showStat, synopsis, director, cast, movieType));
     }
 
+    /**
+     * Removes a movie from the list of movies.
+     */
     private  static void removeMovie(){
         Scanner input = new Scanner(System.in);
         int choice;
@@ -608,6 +647,9 @@ public class Staff {
         }while (tryagain);
     }
 
+    /**
+     * Adds a public holiday to the program's calendar.
+     */
     private static void addPH(){
         Scanner sc = new Scanner(System.in);
         int month;
