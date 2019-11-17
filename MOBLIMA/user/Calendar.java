@@ -14,12 +14,8 @@ public class Calendar {
     public static boolean isPH(LocalDateTime showtime) {
     	boolean isPH = false;
     	for (LocalDateTime time : SunPH) {
-    		if (time.getDayOfYear() == showtime.getDayOfYear()) {
+    		if ((time.getDayOfYear() == showtime.getDayOfYear()) || (showtime.getDayOfWeek().equals(DayOfWeek.SUNDAY))) {
     			isPH = true;
-    		}
-    		else if (showtime.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
-    			isPH = true;
-    		}
     		else {
     			isPH = false;
     		}
