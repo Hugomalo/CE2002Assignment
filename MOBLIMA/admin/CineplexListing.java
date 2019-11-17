@@ -1,14 +1,16 @@
 package MOBLIMA.admin;
 
 import java.util.ArrayList;
+import java.io.File;
 import java.io.Serializable;
 import MOBLIMA.admin.Cineplex;
 
 public class CineplexListing implements Serializable{
     private static final long serialVersionUID = 1L;
-    private static final String filepath="listing\\cineplexes.ser";
+    private static final String filepath = "listing" + File.separator + "cineplexes.ser";
 
     protected static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);
+    
     public static String getFilepath(){
         return filepath;
     }

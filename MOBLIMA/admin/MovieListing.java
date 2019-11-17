@@ -1,6 +1,8 @@
 package MOBLIMA.admin;
 
 import javax.lang.model.type.NullType;
+
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +10,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class MovieListing implements Serializable {
-    private static final String filepath="listing\\movies.ser";
+	private static final String filepath = "listing" + File.separator + "movies.ser";
     private static final long serialVersionUID = 1L;
 
     private static ArrayList<Movie> movies = (ArrayList<Movie>) MOBLIMA.ObjectsIO.ReadObject(MovieListing.filepath);
