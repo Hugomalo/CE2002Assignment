@@ -31,7 +31,7 @@ public class Cineplex implements Serializable {
      * Adds a cinema to the cineplex.
      * @param cine Cinema
      */
-    protected void addCinema(Cinema cine) {
+    void addCinema(Cinema cine) {
         cinemas.add(cine);
         nbOfCinema+=1;
     }
@@ -41,20 +41,12 @@ public class Cineplex implements Serializable {
      * @return Name of cineplex
      */
     public String getName(){return name;}
-    
+
     /**
      * Sets the name of the cineplex.
      * @param n Name of cineplex
      */
-    public void setName(String n){name = n;}
-
-    /**
-     * Gets the number of cinemas in the cineplex.
-     * @return Number of cinemas
-     */
-    public  int getCinemaNb(){
-        return nbOfCinema;
-    }
+    void setName(String n){name = n;}
 
     /**
      * Gets a list of cinemas in the cineplex.
@@ -93,7 +85,7 @@ public class Cineplex implements Serializable {
      * @param code Cinema code
      * @return Cinema
      */
-    protected Cinema getCinema(String code){
+    Cinema getCinema(String code){
         for (Cinema c : cinemas) {
             if (c.getCineCode().equals(code)){
                 return c;
@@ -105,7 +97,7 @@ public class Cineplex implements Serializable {
     /**
      * Displays the showtimes of the cinemas.
      */
-    public void showShowtimes(){
+    void showShowtimes(){
         if (cinemas != null) {
             for (Cinema cine : cinemas) {
                 System.out.println("Cinema " + cine.getCineCode() + ":");
@@ -118,26 +110,9 @@ public class Cineplex implements Serializable {
     }
 
     /**
-     * Displays the information of a cinema, such as the cinema code, class
-     * and number of seats.
-     * @param i Index
-     */
-    public void showCinemaInfo(int i){
-        if (cinemas != null) {
-            System.out.println("cine code=" + cinemas.get(i).getCineCode());
-            System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
-            System.out.println("cine Class=" + cinemas.get(i).getCinemaClass());
-        }
-        else{
-            System.out.println("No cinema found in this cineplex");
-        }
-
-    }
-
-    /**
      * Creates 3 new cinemas upon creating a new cineplex.
      */
-    public void threeNewCinema(){
+    private void threeNewCinema(){
         Cinema cine;
         System.out.println("You need to add 3 new cinema when creating a new cineplex");
         for (int i = 0;i<3;i++) {
@@ -150,7 +125,7 @@ public class Cineplex implements Serializable {
      * For inputting a cinema code for the newly created cinema.
      * @return Cinema code
      */
-    protected static String chooseNewCinemaCode(){
+    static String chooseNewCinemaCode(){
         String newCineCode;
         Scanner input = new Scanner(System.in);
         do {
@@ -164,7 +139,7 @@ public class Cineplex implements Serializable {
      * For selecting a cinema class for the newly created cinema.
      * @return Cinema class
      */
-    protected static int chooseNewCinemaClass() {
+    static int chooseNewCinemaClass() {
      int newCineClass;
      Scanner input = new Scanner(System.in);
         do {
@@ -184,7 +159,7 @@ public class Cineplex implements Serializable {
      * @param cineCode Cinema code
      * @param s Showtime
      */
-    protected void addShowtime(String cineCode, Showtime s){
+    void addShowtime(String cineCode, Showtime s){
         for (Cinema c : cinemas){
             if (c.getCineCode().equals(cineCode)){
                 c.addShowtime(s);
@@ -197,7 +172,7 @@ public class Cineplex implements Serializable {
      * Removes a cinema from the cineplex.
      * @param c Cinema
      */
-    protected void removeCine(Cinema c){
+    void removeCine(Cinema c){
         cinemas.remove(c);
     }
 }

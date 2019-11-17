@@ -1,9 +1,8 @@
 package MOBLIMA.admin;
 
-import java.util.ArrayList;
 import java.io.File;
 import java.io.Serializable;
-import MOBLIMA.admin.Cineplex;
+import java.util.ArrayList;
 
 /**
  * CineplexListing class for the list of all cineplexes created.
@@ -14,8 +13,8 @@ public class CineplexListing implements Serializable{
     private static final long serialVersionUID = 1L;
     private static final String filepath = "listing" + File.separator + "cineplexes.ser";
 
-    protected static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);
-    
+    static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);
+
     /**
      * Gets the filepath of the cineplex listing.
      * @return Filepath
@@ -73,7 +72,7 @@ public class CineplexListing implements Serializable{
      * @param i Index
      * @param name Name of cineplex
      */
-    protected static void setName(int i, String name){
+    static void setName(int i, String name){
         if (cineplexes != null) {
             cineplexes.get(i).setName(name);
         }
@@ -83,7 +82,7 @@ public class CineplexListing implements Serializable{
      * Removes a cineplex from the program.
      * @param c Cineplex
      */
-    protected static void removeCineplex(Cineplex c){
+    static void removeCineplex(Cineplex c){
         cineplexes.remove(c);
     }
 

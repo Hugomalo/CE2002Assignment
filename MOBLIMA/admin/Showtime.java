@@ -26,7 +26,7 @@ public class Showtime implements Serializable {
      * @param minute Minute
      * @param c Cinema
      */
-    protected Showtime(Movie m, int month, int day, int hour, int minute, Cinema c){
+    Showtime(Movie m, int month, int day, int hour, int minute, Cinema c){
         int year;
         LocalDateTime curr = LocalDateTime.now();
         if (month < curr.getMonthValue()){
@@ -45,7 +45,7 @@ public class Showtime implements Serializable {
      * @return Movie
      */
     public Movie getMovie(){return movie;}
-    
+
     /**
      * Gets the showtime for a movie.
      * @return Movie showtime
@@ -59,7 +59,7 @@ public class Showtime implements Serializable {
     public ArrayList<Seat> getAvailableSeats() {
         return availableSeats;
     }
-    
+
     /**
      * Checks whether a seat is available for booking.
      * @param Row Row

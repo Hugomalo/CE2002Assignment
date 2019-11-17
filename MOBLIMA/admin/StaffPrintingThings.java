@@ -8,11 +8,11 @@ import java.util.Scanner;
  * @author CE2002 SE3 Group 4
  */
 
-public class StaffPrintingThings {
+class StaffPrintingThings {
     /**
      * Displays information such as the list of all cineplexes and movies.
      */
-	protected static void showStuff(){
+	static void showStuff(){
         int choice;
         Scanner input = new Scanner(System.in);
         do{

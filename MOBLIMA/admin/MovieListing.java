@@ -1,12 +1,8 @@
 package MOBLIMA.admin;
 
-import javax.lang.model.type.NullType;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Scanner;
 
 /**
  * MovieListing class for the list of movies.
@@ -57,11 +53,11 @@ public class MovieListing implements Serializable {
             System.out.println(movie.getTitle());
         }
     }
-    
+
     /**
      * Displays a list of movies that are not under 'End Of Showing'
      */
-    public static void showMoviesShowing(){
+    static void showMoviesShowing(){
         for (Movie movie : movies){
             if (movie.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing) {
                 System.out.println(movie.getTitle());
@@ -100,18 +96,18 @@ public class MovieListing implements Serializable {
      * Adds a movie to the list.
      * @param m Movie
      */
-    protected static void addMovie(Movie m){
+    static void addMovie(Movie m){
         if (m == null){
             System.out.println("No movies");
         }
         movies.add(m);
     }
-    
+
     /**
      * Removes a movie from the list.
      * @param m Movie
      */
-    protected static void removeMovie(Movie m){
+    static void removeMovie(Movie m){
         movies.remove(m);
     }
 
@@ -129,8 +125,4 @@ public class MovieListing implements Serializable {
         }
         return false;
     }
-
-
-
-
 }

@@ -8,12 +8,12 @@ import java.util.ArrayList;
  * @author CE2002 SE3 Group 4
  */
 
-public class Sorting {
+class Sorting {
     /**
      * Sorts the list of movies by overall rating.
      * @param list List of movies
      */
-	public static void ratingSort(ArrayList<Movie> list){
+    static void ratingSort(ArrayList<Movie> list){
         int min;
         Movie temp;
         for (int index = 0; index < list.size()-1; index++){
@@ -31,7 +31,7 @@ public class Sorting {
 	 * Sorts the list of movies by ticket sales.
 	 * @param list List of movies
 	 */
-    public static void saleSort(ArrayList<Movie> list){
+    static void saleSort(ArrayList<Movie> list){
         int min;
         Movie temp;
         for (int index = 0; index < list.size()-1; index++){

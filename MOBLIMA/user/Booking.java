@@ -19,6 +19,11 @@ public class Booking implements Serializable {
      * @return Filepath
      */
     public static String getFilepath() {
+class Booking implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private static final String filepath = "listing" + File.separator + "bookings.ser";
+
+    static String getFilepath() {
         return filepath;
     }
 
@@ -55,9 +60,9 @@ public class Booking implements Serializable {
      * @param c Cinema code
      * @return Transaction ID
      */
-    public String SetTID(String c){
+    private String SetTID(String c){
         LocalDateTime d = LocalDateTime.now();
-        return String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
+        return String.format("%s%s%s%d%d%d", c, String.valueOf(d.getYear()), d.getMonthValue(), d.getDayOfMonth(), d.getHour(), d.getMinute());
     }
 
     /**
