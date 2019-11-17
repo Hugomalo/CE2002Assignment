@@ -48,17 +48,17 @@ public class Movie implements Serializable {
         if (o instanceof Movie){
             Movie c = (Movie) o;
             if (getRating() < c.getRating()){
-                return -1;
+                return 1;
             }
             else if (getRating() > c.getRating()){
-                return 1;
+                return -1;
             }
             else if (getTicketSales() != (c.getTicketSales())){
                 if(getTicketSales() < getTicketSales()){
-                    return -1;
+                    return 1;
                 }
                 else {
-                    return 1;
+                    return -1;
                 }
             }
             else if (getTitle().compareTo(c.getTitle()) != 0){
@@ -74,17 +74,17 @@ public class Movie implements Serializable {
         if (o instanceof Movie){
             Movie c = (Movie) o;
             if (getTicketSales() < c.getTicketSales()){
-                return -1;
+                return 1;
             }
             else if (getTicketSales() > c.getTicketSales()){
-                return 1;
+                return -1;
             }
             else if (!getRating().equals(c.getRating())){
                 if(getRating() < getRating()){
-                    return -1;
+                    return 1;
                 }
                 else {
-                    return 1;
+                    return -1;
                 }
             }
             else if (getTitle().compareTo(c.getTitle()) != 0){
@@ -123,10 +123,11 @@ public class Movie implements Serializable {
     }
 
     public void showMovieDetails(){
-        System.out.println("Title : " + title);
-        System.out.println("Synopsis : " + synopsis);
-        System.out.println("Director :" + director);
-        System.out.print("Cast :");
+        System.out.println("Title: " + title);
+        System.out.println("Status: " + showingStatus);
+        System.out.println("Synopsis: " + synopsis);
+        System.out.println("Director: " + director);
+        System.out.print("Cast:");
         for(int i=0; i<cast.size(); i++){
             System.out.printf(" %s", cast.get(i));
         }
@@ -138,10 +139,15 @@ public class Movie implements Serializable {
         else{
             System.out.println("Global rating: NA");
         }
-        System.out.println("Reviews : ");
-        for (Review review : reviews) {
-            System.out.print(review.getRating() + "/5 : ");
-            System.out.println(review.getReview());
+        System.out.println("Reviews: ");
+        if (reviews.size() > 0) {
+            for (Review review : reviews) {
+                System.out.print(review.getRating() + "/5 : ");
+                System.out.println(review.getReview());
+            }
+        }
+        else{
+            System.out.println("NA");
         }
     }
 }

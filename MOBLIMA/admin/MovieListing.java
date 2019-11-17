@@ -47,7 +47,7 @@ public class MovieListing implements Serializable {
         if (r){
             ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
             for (int i=0; i<rankedMovies.size(); i++){
-                if(rankedMovies.get(i).getReviewNb() > 1){
+                if(rankedMovies.get(i).getReviewNb() < 1){
                     rankedMovies.remove(i);
                     i--;
                 }
@@ -59,12 +59,6 @@ public class MovieListing implements Serializable {
         }
         else{
             ArrayList<Movie> rankedMovies = new ArrayList<Movie>(movies);
-            for (int i=0; i<rankedMovies.size(); i++){
-                if(rankedMovies.get(i).getReviewNb() > 1){
-                    rankedMovies.remove(i);
-                    i--;
-                }
-            }
             Sorting.saleSort(rankedMovies);
             for (int i = 0; i<Integer.min(5, rankedMovies.size()); i++){
                 System.out.println(rankedMovies.get(i).getTitle() + " : " + rankedMovies.get(i).getTicketSales() + " tickets");
