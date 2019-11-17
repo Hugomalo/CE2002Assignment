@@ -21,7 +21,7 @@ public class Ticket implements Serializable {
     private String SeatRow;
     private int SeatColumn;
 
-    protected Ticket(Float price, AgeClasses age, Showtime selectedST, Cineplex cineplex, Cinema cine, String row, int column) {
+    Ticket(Float price, AgeClasses age, Showtime selectedST, Cineplex cineplex, Cinema cine, String row, int column) {
         this.price = price;
         ageClass = age;
         selection = selectedST;
@@ -31,15 +31,15 @@ public class Ticket implements Serializable {
         SeatColumn = column;
     }
 
-    protected void setPrice(Movie m, Cinema cine){
+    void setPrice(Movie m, Cinema cine){
         price = Pricing.priceCalc(this, this.ageClass.toString(), m, cine);
     }
 
-    protected String getCineCode(){return cineCode;}
+    String getCineCode(){return cineCode;}
     public Showtime getShowtime(){return selection;}
-    protected Float getPrice(){return price;}
+    Float getPrice(){return price;}
 
-    public void showTicket(){
+    void showTicket(){
         System.out.println("    Ticket age class: " + ageClass);
         System.out.println("    Cineplex: " + cineplexName +  " Cinema: " + cineCode);
         System.out.println("    Movie: " + selection.getMovie().getTitle() + " on " + selection.getMovieShowtime().getDayOfMonth() + "/" + selection.getMovieShowtime().getMonth() + "/" + selection.getMovieShowtime().getYear() + " at " + selection.getMovieShowtime().getHour() + ":" + selection.getMovieShowtime().getMinute());

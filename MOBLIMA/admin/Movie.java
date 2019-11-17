@@ -19,16 +19,16 @@ public class Movie implements Serializable {
         Now_Showing,
         End_Of_Showing
     }
-    protected String title;
-    protected ShowingStatus showingStatus;
-    protected String synopsis;
-    protected String director;
-    protected ArrayList<String> cast;
-    protected ArrayList<Review> reviews;
-    protected int reviewNb;
-    protected float globalRating;
-    protected int ticketSales;
-    protected MovieTypes movieType;
+    String title;
+    private ShowingStatus showingStatus;
+    private String synopsis;
+    private String director;
+    private ArrayList<String> cast;
+    private ArrayList<Review> reviews;
+    private int reviewNb;
+    private float globalRating;
+    private int ticketSales;
+    private MovieTypes movieType;
 
     public Movie(String title, ShowingStatus showingStatus, String synopsis, String director, ArrayList<String> cast, MovieTypes movieType) {
         this.title = title;
@@ -44,7 +44,7 @@ public class Movie implements Serializable {
     }
 
 
-    public int compareToRating(Object o){
+    int compareToRating(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
             if (getRating() < c.getRating()){
@@ -70,7 +70,7 @@ public class Movie implements Serializable {
         }
         return 0;
     }
-    public int compareToSale(Object o){
+    int compareToSale(Object o){
         if (o instanceof Movie){
             Movie c = (Movie) o;
             if (getTicketSales() < c.getTicketSales()){
@@ -98,17 +98,17 @@ public class Movie implements Serializable {
     }
 
     public String getTitle(){return title;}
-    public Float getRating(){return globalRating;}
-    public int getTicketSales(){return ticketSales;}
-    protected ShowingStatus getShowingStatus(){return showingStatus;}
-    protected int getReviewNb(){return reviewNb;}
+    Float getRating(){return globalRating;}
+    int getTicketSales(){return ticketSales;}
+    ShowingStatus getShowingStatus(){return showingStatus;}
+    int getReviewNb(){return reviewNb;}
 
-    public MovieTypes getType() {
+    MovieTypes getType() {
     	return movieType;
     }
     
     
-    protected void updateShowingStatus(ShowingStatus sh){
+    void updateShowingStatus(ShowingStatus sh){
         showingStatus = sh;
     }
 
@@ -122,14 +122,14 @@ public class Movie implements Serializable {
         reviewNb += 1;
     }
 
-    public void showMovieDetails(){
+    void showMovieDetails(){
         System.out.println("Title: " + title);
         System.out.println("Status: " + showingStatus);
         System.out.println("Synopsis: " + synopsis);
         System.out.println("Director: " + director);
         System.out.print("Cast:");
-        for(int i=0; i<cast.size(); i++){
-            System.out.printf(" %s", cast.get(i));
+        for (String s : cast) {
+            System.out.printf(" %s", s);
         }
         System.out.println("\nMovie type: " + movieType);
         System.out.println("Ticket sales: " + ticketSales);

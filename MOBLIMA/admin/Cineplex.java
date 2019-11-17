@@ -18,17 +18,14 @@ public class Cineplex implements Serializable {
         threeNewCinema();
     }
 
-    protected void addCinema(Cinema cine) {
+    void addCinema(Cinema cine) {
         cinemas.add(cine);
         nbOfCinema+=1;
     }
 
     public String getName(){return name;}
-    public void setName(String n){name = n;}
 
-    public  int getCinemaNb(){
-        return nbOfCinema;
-    }
+    void setName(String n){name = n;}
 
     public ArrayList<Cinema> getCinemas(){
         return cinemas;
@@ -54,7 +51,7 @@ public class Cineplex implements Serializable {
         else {return null;}
     }
 
-    protected Cinema getCinema(String code){
+    Cinema getCinema(String code){
         for (Cinema c : cinemas) {
             if (c.getCineCode().equals(code)){
                 return c;
@@ -63,7 +60,7 @@ public class Cineplex implements Serializable {
         return null;
     }
 
-    public void showShowtimes(){
+    void showShowtimes(){
         if (cinemas != null) {
             for (Cinema cine : cinemas) {
                 System.out.println("Cinema " + cine.getCineCode() + ":");
@@ -87,7 +84,7 @@ public class Cineplex implements Serializable {
 
     }
 
-    public void threeNewCinema(){
+    private void threeNewCinema(){
         Cinema cine;
         System.out.println("You need to add 3 new cinema when creating a new cineplex");
         for (int i = 0;i<3;i++) {
@@ -95,7 +92,7 @@ public class Cineplex implements Serializable {
             this.addCinema(cine);
         }
     }
-    protected static String chooseNewCinemaCode(){
+    static String chooseNewCinemaCode(){
         String newCineCode;
         Scanner input = new Scanner(System.in);
         do {
@@ -105,7 +102,7 @@ public class Cineplex implements Serializable {
         return newCineCode;
     }
 
-    protected static int chooseNewCinemaClass() {
+    static int chooseNewCinemaClass() {
      int newCineClass;
      Scanner input = new Scanner(System.in);
         do {
@@ -120,7 +117,7 @@ public class Cineplex implements Serializable {
         return newCineClass;
     }
 
-    protected void addShowtime(String cineCode, Showtime s){
+    void addShowtime(String cineCode, Showtime s){
         for (Cinema c : cinemas){
             if (c.getCineCode().equals(cineCode)){
                 c.addShowtime(s);
@@ -129,7 +126,7 @@ public class Cineplex implements Serializable {
         }
     }
 
-    protected void removeCine(Cinema c){
+    void removeCine(Cinema c){
         cinemas.remove(c);
     }
 }

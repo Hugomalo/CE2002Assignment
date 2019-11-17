@@ -626,7 +626,7 @@ public class Staff {
                 month = 0;
                 day = 0;
             }
-        }while (month > 12 || month < 1 || day > 31 || day < 1);
+        }while (month < 1);
         try {
             Calendar.addPH(month, day);
         }catch (Exception e){

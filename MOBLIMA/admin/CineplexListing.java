@@ -1,14 +1,13 @@
 package MOBLIMA.admin;
 
-import java.util.ArrayList;
 import java.io.Serializable;
-import MOBLIMA.admin.Cineplex;
+import java.util.ArrayList;
 
 public class CineplexListing implements Serializable{
     private static final long serialVersionUID = 1L;
     private static final String filepath="listing\\cineplexes.ser";
 
-    protected static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);
+    static ArrayList<Cineplex> cineplexes = (ArrayList<Cineplex>) MOBLIMA.ObjectsIO.ReadObject(CineplexListing.filepath);
     public static String getFilepath(){
         return filepath;
     }
@@ -41,13 +40,13 @@ public class CineplexListing implements Serializable{
         else{return null;}
     }
 
-    protected static void setName(int i, String name){
+    static void setName(int i, String name){
         if (cineplexes != null) {
             cineplexes.get(i).setName(name);
         }
     }
 
-    protected static void removeCineplex(Cineplex c){
+    static void removeCineplex(Cineplex c){
         cineplexes.remove(c);
     }
 

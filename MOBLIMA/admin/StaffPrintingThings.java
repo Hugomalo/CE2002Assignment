@@ -2,8 +2,8 @@ package MOBLIMA.admin;
 
 import java.util.Scanner;
 
-public class StaffPrintingThings {
-    protected static void showStuff(){
+class StaffPrintingThings {
+    static void showStuff(){
         int choice;
         Scanner input = new Scanner(System.in);
         do{

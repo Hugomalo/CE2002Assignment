@@ -8,7 +8,7 @@ public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String filepath="listing\\bookings.ser";
 
-    public static String getFilepath() {
+    static String getFilepath() {
         return filepath;
     }
 
@@ -19,7 +19,7 @@ public class Booking implements Serializable {
     private ArrayList<Ticket> tickets;
     private Float price;
 
-    public Booking(String name, String phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
+    Booking(String name, String phoneNb, String email, String cineCode, ArrayList<Ticket> tickets) {
         this.name = name;
         this.phoneNb = phoneNb;
         this.email = email;
@@ -33,16 +33,16 @@ public class Booking implements Serializable {
     }
 
 
-    public String SetTID(String c){
+    private String SetTID(String c){
         LocalDateTime d = LocalDateTime.now();
-        return String.format(String.valueOf(d.getYear()), d.getMonth(), d.getDayOfMonth(), d.getHour(), d.getMinute(), c);
+        return String.format("%s%s%s%d%d%d", c, String.valueOf(d.getYear()), d.getMonthValue(), d.getDayOfMonth(), d.getHour(), d.getMinute());
     }
 
-    public String getName(){
+    String getName(){
         return name;
     }
 
-    public void showBooking(){
+    void showBooking(){
         System.out.println("Transaction ID: " + TID);
         System.out.println("Phone number: " + phoneNb);
         System.out.println("email: " + email);

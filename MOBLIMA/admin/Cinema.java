@@ -44,7 +44,7 @@ public class Cinema implements Serializable {
         showtimes = new ArrayList<Showtime>();
     }
 
-    protected void setLayout(int numSeat){
+    void setLayout(int numSeat){
         Seat s;
         layout=new ArrayList<>();
         numOfSeat = numSeat;
@@ -58,7 +58,7 @@ public class Cinema implements Serializable {
         }
     }
 
-    protected void setClass(int cineClass){
+    void setClass(int cineClass){
         switch (cineClass) {
             case 1:
                 cinemaClass = cinemaClasses.Gold;
@@ -69,7 +69,7 @@ public class Cinema implements Serializable {
         }
     }
 
-    public ArrayList<Showtime> getShowtimes() {
+    ArrayList<Showtime> getShowtimes() {
         return showtimes;
     }
 
@@ -97,15 +97,15 @@ public class Cinema implements Serializable {
         return cineCode;
     }
 
-    public void setCineCode(String c) {
+    void setCineCode(String c) {
         cineCode = c;
     }
 
-    protected void showShowtimes() {
+    void showShowtimes() {
         if (showtimes != null) {
             for (Showtime s : showtimes) {
                 LocalDateTime show = s.getMovieShowtime();
-                Movie m = s.getMovie();
+                Movie m = MovieListing.getMovie(s.getMovie().title);
                 if (show.isAfter(LocalDateTime.now()) && (m.getShowingStatus() != Movie.ShowingStatus.End_Of_Showing)) {
                     System.out.println("    " + m.getTitle() + " : " + show.getMonth() + "/" + show.getDayOfMonth() + " " + show.getHour() + ":" + show.getMinute());
                 }
@@ -116,15 +116,15 @@ public class Cinema implements Serializable {
         }
     }
 
-    protected  void removeShowtime(Showtime s){
+    void removeShowtime(Showtime s){
         showtimes.remove(s);
     }
 
-    public int getNumOfSeat() {
+    int getNumOfSeat() {
         return numOfSeat;
     }
 
-    public cinemaClasses getCinemaClass() {
+    cinemaClasses getCinemaClass() {
         return cinemaClass;
     }
 
@@ -148,11 +148,11 @@ public class Cinema implements Serializable {
         }
     }
 
-    public ArrayList<Seat> getLayout() {
+    ArrayList<Seat> getLayout() {
         return layout;
     }
 
-    protected void addShowtime(Showtime s) {
+    void addShowtime(Showtime s) {
         showtimes.add(s);
     }
 }

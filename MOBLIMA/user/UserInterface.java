@@ -308,8 +308,11 @@ public class UserInterface {
         while (choice != 6) {
             System.out.println("What action do you want to do ?");
             System.out.println("Hit 1 to display movie listing, hit 2 to display showtimes, hit 3 to view your bookings, hit 4 to book tickets, Hit 5 to write a review, 6 to quit");
-            choice = sc.nextInt();
-            sc.nextLine();
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+            }catch (NumberFormatException e){
+                choice =-1;
+            }
             switch (choice){
                 case 1:{
                     showAllMovies();

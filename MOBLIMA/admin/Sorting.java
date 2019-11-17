@@ -2,8 +2,8 @@ package MOBLIMA.admin;
 
 import java.util.ArrayList;
 
-public class Sorting {
-    public static void ratingSort(ArrayList<Movie> list){
+class Sorting {
+    static void ratingSort(ArrayList<Movie> list){
         int min;
         Movie temp;
         for (int index = 0; index < list.size()-1; index++){
@@ -17,7 +17,7 @@ public class Sorting {
             list.set(index, temp);
         }
     }
-    public static void saleSort(ArrayList<Movie> list){
+    static void saleSort(ArrayList<Movie> list){
         int min;
         Movie temp;
         for (int index = 0; index < list.size()-1; index++){

@@ -12,7 +12,7 @@ public class Showtime implements Serializable {
     private LocalDateTime movieShowtime;
     private ArrayList<Seat> availableSeats;
 
-    protected Showtime(Movie m, int month, int day, int hour, int minute, Cinema c){
+    Showtime(Movie m, int month, int day, int hour, int minute, Cinema c){
         int year;
         LocalDateTime curr = LocalDateTime.now();
         if (month < curr.getMonthValue()){
