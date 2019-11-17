@@ -7,10 +7,6 @@ import java.util.ArrayList;
 public class Calendar {
     private static ArrayList<LocalDateTime> SunPH = new ArrayList<LocalDateTime>(); //Stores sundays and public holidays in an Array
 
-    public static ArrayList<LocalDateTime> getSunPH(){
-        return SunPH;
-    }
-    
     public static boolean isPH(LocalDateTime showtime) {
     	boolean isPH = false;
     	for (LocalDateTime time : SunPH) {

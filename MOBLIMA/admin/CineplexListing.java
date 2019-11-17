@@ -1,9 +1,8 @@
 package MOBLIMA.admin;
 
-import java.util.ArrayList;
 import java.io.File;
 import java.io.Serializable;
-import MOBLIMA.admin.Cineplex;
+import java.util.ArrayList;
 
 /**
  * CineplexListing class for the list of all cineplexes created.

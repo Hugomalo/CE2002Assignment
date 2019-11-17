@@ -1,6 +1,5 @@
 package MOBLIMA.admin;
 
-import javax.lang.model.type.NullType;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -126,8 +125,4 @@ public class MovieListing implements Serializable {
         }
         return false;
     }
-
-
-
-
 }

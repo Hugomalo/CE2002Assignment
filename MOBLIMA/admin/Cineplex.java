@@ -49,14 +49,6 @@ public class Cineplex implements Serializable {
     void setName(String n){name = n;}
 
     /**
-     * Gets the number of cinemas in the cineplex.
-     * @return Number of cinemas
-     */
-    public  int getCinemaNb(){
-        return nbOfCinema;
-    }
-
-    /**
      * Gets a list of cinemas in the cineplex.
      * @return List of cinemas
      */
@@ -115,23 +107,6 @@ public class Cineplex implements Serializable {
         else{
             System.out.println("No cinema in this cineplex");
         }
-    }
-
-    /**
-     * Displays the information of a cinema, such as the cinema code, class
-     * and number of seats.
-     * @param i Index
-     */
-    public void showCinemaInfo(int i){
-        if (cinemas != null) {
-            System.out.println("cine code=" + cinemas.get(i).getCineCode());
-            System.out.println("cine number of seats=" + cinemas.get(i).getNumOfSeat());
-            System.out.println("cine Class=" + cinemas.get(i).getCinemaClass());
-        }
-        else{
-            System.out.println("No cinema found in this cineplex");
-        }
-
     }
 
     /**

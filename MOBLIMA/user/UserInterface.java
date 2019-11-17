@@ -2,7 +2,6 @@ package MOBLIMA.user;
 
 import MOBLIMA.ObjectsIO;
 import MOBLIMA.admin.*;
-
 import java.util.*;
 
 public class UserInterface {

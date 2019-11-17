@@ -64,7 +64,7 @@ public class Pricing {
      * Sets the base price of a ticket.
      * @param p Base price
      */
-    protected static void setBasePrice(Float p){
+    static void setBasePrice(Float p){
         basePrice = p;
     }
     
@@ -78,7 +78,7 @@ public class Pricing {
      * @param s4 Preview movie surcharge
      * @param s5 Gold class cinema surcharge
      */
-    protected static void setDiscountSurcharge(Float d1, Float d2, Float s1, Float s2, Float s3, Float s4, Float s5){
+    static void setDiscountSurcharge(Float d1, Float d2, Float s1, Float s2, Float s3, Float s4, Float s5){
     	stdDiscount = d1;
     	elderDiscount = d2;
     	sunPHSurcharge = s1;
